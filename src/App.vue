@@ -3,39 +3,46 @@
 <template>
   <div>
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoList :videos="videos"/>
+    <div class="row">
+      <Player :selectedVideo="selectedVideo"/>
+      <VideoList :videos="videos" @onVideoSelect="onSelectedVideo"/>
+    </div>
   </div>
 </template>
 
 <script>
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
+import Player from "./components/Player";
 const API_KEY = "AIzaSyDLHKoMgoZ5X7_y97ARpDEOPBxp_Jui7hA";
 
 export default {
   components: {
     SearchBar,
-    VideoList
+    VideoList,
+    Player
   },
   data: function() {
     return {
-      videos: ""
+      videos: "",
+      selectedVideo: null
     };
   },
   methods: {
+    onSelectedVideo: function(video) {
+      console.log("video", video);
+      this.selectedVideo = video;
+    },
     onTermChange: function(searchTerm) {
-      var url = new URL("https://www.googleapis.com/youtube/v3/search");
+      const url = new URL("https://www.googleapis.com/youtube/v3/search");
 
-      console.log("URL1", url);
-      var params = {
+      const params = {
         part: "snippet",
         key: API_KEY,
         type: "video",
         q: searchTerm
       };
       url.search = new URLSearchParams(params);
-
-      console.log("URL", url);
       fetch(url, {
         headers: { "Content-Type": "application/json" }
       })
@@ -49,3 +56,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.row {
+  display: flex;
+  padding: 0 3rem 3rem 3rem;
+  justify-content: center;
+}
+.main-content-wrap {
+  display: flex;
+}
+</style>

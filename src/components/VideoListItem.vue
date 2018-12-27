@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card videos" @click="onVideoSelect">
     <div class="card-body-wrap">
       <div class="card-image-wrap">
         <img class="card-image" :src="getThumbnail">
@@ -9,7 +9,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   props: {
@@ -17,17 +16,20 @@ export default {
   },
   computed: {
     getThumbnail() {
-      return this.video.snippet.thumbnails.default.url;
+      return this.video.snippet.thumbnails.high.url;
+    }
+  },
+  methods: {
+    onVideoSelect: function() {
+      this.$emit("sendSelectedVideo", this.video);
     }
   }
 };
 </script>
 
 <style>
-.card {
-  width: 40%;
-  height: 10rem;
-  margin: 1rem;
+.card.videos {
+  margin: 1rem 0 1rem 0;
 }
 .card-body-wrap {
   display: grid;

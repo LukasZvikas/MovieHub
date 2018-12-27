@@ -1,6 +1,11 @@
 <template>
-  <ul>
-    <VideoListItem v-for="video in videos" :key="video.etag" :video="video"/>
+  <ul class="col-4 video-list-wrap">
+    <VideoListItem
+      v-for="video in videos"
+      :key="video.etag"
+      :video="video"
+      @sendSelectedVideo="passSelectedVideo"
+    />
   </ul>
 </template>
 
@@ -14,10 +19,18 @@ export default {
   props: {
     videos: Array
   },
-  mount: {
+  methods: {
+    passSelectedVideo: function(video) {
+      this.$emit("onVideoSelect", video);
+    }
   }
 };
 </script>
 
 <style>
+.video-list-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 </style>
