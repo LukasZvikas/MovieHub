@@ -1,37 +1,45 @@
 <template>
-  <PopularMovies/>
+  <PopularMovieList :movies="movies"/>
 </template>
 
 <script>
-import PopularMovies from "./PopularMovies";
+import PopularMovieList from "./PopularMovieList";
 import { keys } from "../../keys";
 export default {
   components: {
-    PopularMovies
+    PopularMovieList
+  },
+  data: function() {
+    return {
+      movies: {}
+    };
   },
   created() {
     this.getPopularMovies();
   },
   methods: {
-    getPopularMovies: function() {
+    getPopularMovies: async function() {
       const url = new URL("https://api.themoviedb.org/3/movie/popular");
 
       const params = {
         api_key: keys.TMDB_API_KEY,
         sort_by: "popularity.desc"
       };
-      console.log("URL", url);
       url.search = new URLSearchParams(params);
 
-      fetch(url, {
+      const response = await fetch(url, {
         headers: { "Content-Type": "application/json" }
       })
         .then(res => {
-          console.log("response", res);
+          res.json().then(res => {
+            this.movies = res.results;
+          });
         })
         .catch(err => {
           console.log("error", err);
         });
+
+      console.log(response);
     }
   }
 };
