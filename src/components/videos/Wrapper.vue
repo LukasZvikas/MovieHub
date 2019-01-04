@@ -12,7 +12,7 @@
 import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
 import Player from "./Player";
-const API_KEY = "AIzaSyDLHKoMgoZ5X7_y97ARpDEOPBxp_Jui7hA";
+import { keys } from "../../keys";
 
 export default {
   components: {
@@ -36,7 +36,7 @@ export default {
 
       const params = {
         part: "snippet",
-        key: API_KEY,
+        key: keys.YT_API_KEY,
         type: "video",
         q: searchTerm
       };
