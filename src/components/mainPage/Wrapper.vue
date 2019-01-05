@@ -32,6 +32,7 @@ export default {
       })
         .then(res => {
           res.json().then(res => {
+            console.log(res.results[0].poster_path);
             this.movies = res.results;
           });
         })

@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <div class="container">
+    <div class="row">
     <PopularListItem v-for="movie in movies" :key="movie.id" :movie="movie"/>
+    </div>
   </div>
 </template>
 
