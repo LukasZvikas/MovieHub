@@ -1,9 +1,13 @@
 
 <template>
-  <div class="card col-sm-auto">
-    <div>{{movie.title}}</div>
-    <div>
-    <img class="img-fluid" :src="getPoster(movie.poster_path)">
+  <div class="carousel-item">
+    <div class="row" style="padding: 0">
+      <div v-for="movie in movies" :key="movie.id">
+        <div class="col-md">
+          <img :src="getPoster(movie.poster_path)">
+          <div class="box-title">{{movie.title}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -11,7 +15,7 @@
 <script>
 export default {
   props: {
-    movie: Array
+    movies: {}
   },
   methods: {
     getPoster: function(poster_path) {
@@ -21,6 +25,13 @@ export default {
 };
 </script>
 
-</<style>
-
+<style>
+.box-title {
+  text-align: center;
+  width: 11.56rem;
+  color: #fff;
+}
+.row {
+  padding: 0;
+}
 </style>
