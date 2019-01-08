@@ -3,7 +3,7 @@
   <div class="carousel-item">
     <div class="row" style="padding: 0">
       <div v-for="movie in movies" :key="movie.id">
-        <div class="col-md">
+        <div class="col-sm-6 col-md-4">
           <img :src="getPoster(movie.poster_path)">
           <div class="box-title">{{movie.title}}</div>
         </div>
