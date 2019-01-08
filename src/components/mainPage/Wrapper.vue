@@ -1,46 +1,58 @@
 <template>
-  <PopularMovieList :movies="movies"/>
+  <div>
+    <MovieList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
+    <MovieList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
+  </div>
 </template>
 
 <script>
-import PopularMovieList from "./PopularMovieList";
+import MovieList from "./MovieList";
 import { keys } from "../../keys";
 export default {
   components: {
-    PopularMovieList
+    MovieList
   },
   data: function() {
     return {
-      movies: {}
+      popularMovies: {},
+      comingSoon: {}
     };
   },
   created() {
-    this.getPopularMovies();
+    this.getPopularMovies("popular");
+    this.getPopularMovies("upcoming");
   },
   methods: {
-    getPopularMovies: async function() {
-      const url = new URL("https://api.themoviedb.org/3/movie/popular");
+    getPopularMovies: function(listType) {
+      const url = new URL(`https://api.themoviedb.org/3/movie/${listType}`);
 
       const params = {
         api_key: keys.TMDB_API_KEY,
-        sort_by: "popularity.desc"
+        sort_by: "popularity.desc",
+        region: "US"
       };
       url.search = new URLSearchParams(params);
 
-      const response = await fetch(url, {
+      fetch(url, {
         headers: { "Content-Type": "application/json" }
       })
         .then(res => {
           res.json().then(res => {
-            console.log(res.results[0].poster_path);
-            this.movies = res.results;
+            console.log("REs", res);
+            console.log(listType);
+            switch (listType) {
+              case "popular":
+                this.popularMovies = res.results;
+                break;
+              case "upcoming":
+                this.comingSoon = res.results;
+                break;
+            }
           });
         })
         .catch(err => {
           console.log("error", err);
         });
-
-      console.log(response);
     }
   }
 };

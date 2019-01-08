@@ -1,31 +1,21 @@
 <template>
   <div>
-    <div style="color: #fff; text-align: center; font-size: 2.2rem;">Popular Movies</div>
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div style="color: #fff; text-align: center; font-size: 2.2rem;">{{title}}</div>
+    <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         {{window.width}}
-        <PopularListItem
+        <MovieListItem
           v-for="(movieItem, index) in sliceMovieArray(movies)"
           :class="{active: index===0}"
           :key="index"
           :movies="movieItem"
         />
       </div>
-      <a
-        class="carousel-control-prev"
-        href="#carouselExampleControls"
-        role="button"
-        data-slide="prev"
-      >
+      <a class="carousel-control-prev" :href="`#${caroID}`" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a
-        class="carousel-control-next"
-        href="#carouselExampleControls"
-        role="button"
-        data-slide="next"
-      >
+      <a class="carousel-control-next" :href="`#${caroID}`" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
@@ -34,13 +24,15 @@
 </template>
 
 <script>
-import PopularListItem from "./PopularListItem";
+import MovieListItem from "./MovieListItem";
 export default {
   components: {
-    PopularListItem
+    MovieListItem
   },
   props: {
-    movies: Object
+    movies: Object,
+    title: String,
+    caroID: Number
   },
   data() {
     return {
@@ -60,21 +52,25 @@ export default {
       const newArr = [];
 
       while (count > 0) {
+        console.log(count);
         if (this.window.width >= 720) {
+          console.log("one");
           newArr.push(arr.slice(from, to));
-          from = from + to;
-          to = to + to;
-          count = count - to;
+          from = from + 4;
+          to = to + 4;
+          count = count - 4;
         } else if (this.window.width <= 720) {
+          console.log("two");
           newArr.push(arr.slice(from, to));
-          from = from + to;
-          to = to + to;
-          count = count - to;
-        } else if (this.window.width < 540) {
+          from = from + 2;
+          to = to + 2;
+          count = count - 2;
+        } else if (this.window.width <= 540) {
+          console.log("third");
           newArr.push(arr.slice(from, to));
-          from = from + to;
-          to = to + to;
-          count = count - to;
+          from = from + 1;
+          to = to + 1;
+          count = count - 1;
         }
       }
       return newArr;
