@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 3rem">
     <div style="color: #fff; text-align: center; font-size: 2.2rem;">{{title}}</div>
     <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">

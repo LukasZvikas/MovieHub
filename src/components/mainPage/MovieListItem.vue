@@ -5,7 +5,7 @@
       <div v-for="movie in movies" :key="movie.id">
         <div class="col-sm-6 col-md-4">
           <img :src="getPoster(movie.poster_path)">
-          <div class="box-title" style="height: 3rem">{{movie.title}}</div>
+          <div class="box-title" style="height: 1.6rem">{{movie.title}}</div>
         </div>
       </div>
     </div>
