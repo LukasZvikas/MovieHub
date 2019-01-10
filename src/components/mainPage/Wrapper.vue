@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style=" height: 100vh; z-index: 2; margin: 7rem 0 7rem 0">
     <MovieList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
     <MovieList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
   </div>

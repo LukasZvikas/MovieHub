@@ -1,5 +1,5 @@
 <template>
-  <ul class="nav space-around">
+  <ul class="nav space-around fixed-top">
     <div>
       <li class="nav-link title">MovieHub</li>
     </div>
@@ -38,6 +38,13 @@ export default {
   align-items: center;
   padding: 1rem;
   color: white;
-  box-shadow: 0px 1px #1db954;
+  box-shadow: 0px 1px #40e0d0;
+  z-index: 1;
+  background: #001226;
+}
+.fixed-top {
+  top: 1rem;
+  right: 1rem;
+  left: 1rem;
 }
 </style>

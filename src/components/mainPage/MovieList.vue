@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 3rem">
+  <div class="movie-list-wrapper">
     <div style="color: #fff; text-align: center; font-size: 2.2rem;">{{title}}</div>
     <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -99,6 +99,10 @@ export default {
 </script>
 
 <style>
+.movie-list-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 .carousel {
   margin: 2rem;
 }
