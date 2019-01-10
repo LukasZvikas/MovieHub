@@ -3,9 +3,10 @@
   <div class="carousel-item">
     <div class="row" style="padding: 0">
       <div v-for="movie in movies" :key="movie.id">
-        <div class="col-sm-6 col-md-4">
-          <img :src="getPoster(movie.poster_path)">
-          <div class="box-title" style="height: 1.6rem">{{movie.title}}</div>
+        <div style="
+    border: 1px solid yellow;     margin: 1rem; ">
+          <img class="img-fluid" :src="getPoster(movie.poster_path)">
+          <div class="box-title">{{movie.title}}</div>
         </div>
       </div>
     </div>
@@ -25,11 +26,20 @@ export default {
 };
 </script>
 
+
+
 <style>
 .box-title {
   text-align: center;
-  width: 11.56rem;
-  color: #fff;
+  width: 11.57rem;
+  height: 3rem;
+  background: #ededed;
+  font-weight: bold;
+  color: rgb(0, 18, 38);
+  font-size: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 .row {
   padding: 0;

@@ -2,7 +2,8 @@
 // v-bind:videos="videos" also valid
 
 <template>
-  <div style="background: #001226; height: 100%; overflow: auto;">
+  <div style="background: #001226; height: 100%; overflow: auto; 
+  ">
     <Header/>
     <router-view></router-view>
   </div>

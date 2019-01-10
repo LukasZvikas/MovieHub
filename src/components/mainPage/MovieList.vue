@@ -1,6 +1,10 @@
 <template>
   <div class="movie-list-wrapper">
-    <div style="color: #fff; text-align: center; font-size: 2.2rem;">{{title}}</div>
+    <div style="color: #fff; display:flex; justify-content: center; font-size: 2.2rem;">
+      <div
+        style="padding: 0.4rem 1rem; font-weight: bold; border: 1px solid rgb(255, 200, 21);"
+      >{{title}}</div>
+    </div>
     <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         {{window.width}}
@@ -100,8 +104,10 @@ export default {
 
 <style>
 .movie-list-wrapper {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  background: #001226;
+  padding: 1rem;
+  margin: 5.3rem 0 0 0;
+  width: 100%;
 }
 .carousel {
   margin: 2rem;

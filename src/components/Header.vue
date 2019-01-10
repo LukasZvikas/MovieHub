@@ -38,9 +38,10 @@ export default {
   align-items: center;
   padding: 1rem;
   color: white;
-  box-shadow: 0px 1px #40e0d0;
+  box-shadow: 0px 1px #585858;
   z-index: 1;
   background: #001226;
+  height: 10%;
 }
 .fixed-top {
   top: 1rem;
