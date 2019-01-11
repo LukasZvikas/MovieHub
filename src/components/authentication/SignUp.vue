@@ -46,6 +46,10 @@ export default {};
   width: 100%;
 }
 
+.form-control {
+  border-radius: 1.6rem;
+}
+
 .form-wrapper {
   display: flex;
   width: 100%;
@@ -55,26 +59,23 @@ export default {};
 .form {
   width: 100%;
   color: #fff;
-  padding: 3rem;
+  padding: 2.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #001226;
   border: 1px solid #ffc815;
 }
-.btn-primary {
-  background-color: #ffc815;
-  border-color: #ffc815;
-  margin: 2rem;
-}
 
 .row {
   width: 100%;
 }
 .auth {
-    margin: 5.3rem 0 0 0; width: 100%;     height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 5.3rem 0 0 0;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

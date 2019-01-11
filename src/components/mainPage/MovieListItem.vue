@@ -3,8 +3,7 @@
   <div class="carousel-item">
     <div class="row" style="padding: 0">
       <div v-for="movie in movies" :key="movie.id">
-        <div style="
-    border: 1px solid yellow;     margin: 1rem; ">
+        <div style="border: 1px solid yellow; margin: 1rem; ">
           <img class="img-fluid" :src="getPoster(movie.poster_path)">
           <div class="box-title">{{movie.title}}</div>
         </div>

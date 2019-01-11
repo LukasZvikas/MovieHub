@@ -56,21 +56,17 @@ export default {
       const newArr = [];
 
       while (count > 0) {
-        console.log(count);
         if (this.window.width >= 720) {
-          console.log("one");
           newArr.push(arr.slice(from, to));
           from = from + 4;
           to = to + 4;
           count = count - 4;
         } else if (this.window.width <= 720) {
-          console.log("two");
           newArr.push(arr.slice(from, to));
           from = from + 2;
           to = to + 2;
           count = count - 2;
         } else if (this.window.width <= 540) {
-          console.log("third");
           newArr.push(arr.slice(from, to));
           from = from + 1;
           to = to + 1;
@@ -103,7 +99,7 @@ export default {
 </script>
 
 <style>
-.movie-list-wrapper {
+.movie-list-wrapper:first-child {
   background: #001226;
   padding: 1rem;
   margin: 5.3rem 0 0 0;

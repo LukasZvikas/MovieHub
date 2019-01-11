@@ -37,6 +37,11 @@ export default {};
   width: 100%;
 }
 
+.form-control {
+  border-radius: 1.6rem;
+  height: 2.8rem;
+}
+
 .form-wrapper {
   display: flex;
   width: 100%;
@@ -46,7 +51,7 @@ export default {};
 .form {
   width: 100%;
   color: #fff;
-  padding: 3rem;
+  padding: 2.6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,18 +59,28 @@ export default {};
   border: 1px solid #ffc815;
 }
 .btn-primary {
+  background: #001226;
+  border: 1px solid #ffc815;
+  border-radius: 1.6rem;
+  margin: 2rem;
+  width: 8rem;
+  height: 3rem;
+}
+
+.btn-primary:hover {
   background-color: #ffc815;
   border-color: #ffc815;
-  margin: 2rem;
 }
 
 .row {
   width: 100%;
 }
 .auth {
-    margin: 5.3rem 0 0 0; width: 100%;     height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 5.3rem 0 0 0;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

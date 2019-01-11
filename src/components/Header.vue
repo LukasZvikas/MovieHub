@@ -14,9 +14,6 @@
 import { keys } from "../keys";
 import batman from "./batman.png";
 export default {
-  created() {
-    this.getRandomImage();
-  },
   data() {
     return {
       poster: ""
@@ -25,7 +22,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .title {
   font-size: 1.6rem;
 }
@@ -42,6 +39,7 @@ export default {
   z-index: 1;
   background: #001226;
   height: 10%;
+  border-bottom: 1px solid #ffc815;
 }
 .fixed-top {
   top: 1rem;
