@@ -1,0 +1,25 @@
+.carousel {
+  margin: 2rem;
+}
+
+.carousel-item.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  margin: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $white;
+  box-shadow: 0px 1px #585858;
+  z-index: 1;
+  background: #001226;
+  height: 10%;
+  border-bottom: 1px solid $secondary;
+}

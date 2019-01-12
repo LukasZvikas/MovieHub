@@ -1,1 +1,30 @@
-@import "base"; 
+$theme-colors: (
+  "primary": #101d2c
+);
+
+$primary: rgb(0, 18, 38);
+
+$secondary: #c69963;
+$border-radius: 10rem;
+
+$body-bg: $secondary;
+
+body {
+  padding: 3rem;
+}
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "button";
+@import "form";
+@import "components";
+
+///CUSTOMS
+@import "./custom/MovieList";

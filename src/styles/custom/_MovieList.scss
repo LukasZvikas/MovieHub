@@ -1,0 +1,21 @@
+.movie-item-box {
+  position: relative;
+  border: 1px solid $secondary;
+  margin: 1rem;
+  height: 18rem;
+}
+
+.movie-item-box-title {
+  text-align: center;
+  height: 3rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0rem;
+  color: $white;
+}
