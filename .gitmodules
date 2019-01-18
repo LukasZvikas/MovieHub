@@ -1,0 +1,3 @@
+[submodule "AuthStarterJwt"]
+	path = AuthStarterJwt
+	url = https://github.com/LukasZvikas/AuthStarterJwt.git
