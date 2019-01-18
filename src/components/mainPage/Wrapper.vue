@@ -1,5 +1,5 @@
 <template>
-  <div style=" height: 100vh; z-index: 2;">
+  <div style="z-index: 2; overflow: auto;">
     <MovieList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
     <MovieList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
   </div>
