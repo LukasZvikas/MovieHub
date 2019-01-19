@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { validateEmail } from "./validations";
+import { validateEmail, validatePassword } from "./validations";
 export default {
   data() {
     return {
@@ -89,9 +89,13 @@ export default {
       this.passwordConfirm = e.target.value;
     },
     handleSubmit() {
-      if (!validateEmail) {
-        const err = { email: "Please, enter a valid email." };
+      if (!validateEmail(this.email)) {
+        const err = { email: "Please, enter a valid email" };
         this.errors = { ...err };
+      }
+      if (!validatePassword(this.password)) {
+        const err = { password: "Password must at least 5 characters long" };
+        this.errors = { ...this.errors, ...err };
       } else {
         const url = new URL("http://localhost:5000/user/signup");
 
