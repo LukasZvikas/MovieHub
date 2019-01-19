@@ -84,4 +84,4 @@ exports.googleToken = function(req, res, next) {
   console.log("TOKEN", req.user);
   res.json({ token: userToken(req.user) });
 };
-//"$2a$10$XtSqxds5dQncoY7VgZZvSuYrZalGpb.miJAh04nDoK.BN.n6l5vpu
+

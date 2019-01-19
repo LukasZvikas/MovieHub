@@ -1,6 +1,12 @@
 module.exports = {
   devServer: {
-    disableHostCheck: true
+    disableHostCheck: true,
+    proxy: {
+      "/auth/*": {
+        target: "http://localhost:5000",
+        changeOrigin: true
+      }
+    }
   },
   css: {
     loaderOptions: {
