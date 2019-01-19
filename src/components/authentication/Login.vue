@@ -5,7 +5,6 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
-          type="email"
           class="form-control"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
@@ -39,6 +38,9 @@
 </template>
 
 <script>
+import { validateEmail } from "./validations";
+import { mapMutations } from "vuex";
+import { setAuthToken } from "../../utils/localStorage";
 export default {
   data() {
     return {
@@ -48,32 +50,40 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setUserAuth"]),
+
     onEmailChange(e) {
       this.email = e.target.value;
     },
     onPasswordChange(e) {
       this.password = e.target.value;
     },
+    handleSuccess(token) {
+      if (!token) return;
+
+      setAuthToken(token);
+    },
     handleSubmit() {
       const url = new URL("http://localhost:5000/user/signin");
-
-      fetch(url, {
-        method: "POST",
-        body: JSON.stringify({ email: this.email, password: this.password }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then(res =>
-          res.json().then(res => {
-            if (res.error === "This email is in use") {
-              const err = { email: res.error };
-              this.errors = { ...err };
-            }
-            console.log("RES", res);
-          })
-        )
-        .catch(error => console.log("ERROR", error));
+      if (!validateEmail(this.email)) {
+        const err = { email: "Please, enter a valid email" };
+        this.errors = { ...err };
+      } else {
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify({ email: this.email, password: this.password }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+          .then(res =>
+            res.json().then(res => {
+              console.log("RES", res);
+              this.handleSuccess(res.token);
+            })
+          )
+          .catch(error => console.log("ERROR", error));
+      }
     }
   }
 };
