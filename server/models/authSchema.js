@@ -5,11 +5,13 @@ const bcrypt = require("bcrypt-nodejs");
 const saltRounds = 10;
 
 const userSchema = new Schema({
-  // userId: String,
   username: { type: String, unique: true, lowercase: true },
   password: String,
   confirmed: { type: Boolean, default: false },
-  resetPassToken: { type: String, default: undefined }
+  resetPassToken: { type: String, default: null },
+  points: {type: Number, default: 0},
+  referral_code: String,
+  referred_by: {type: String, default: null}
   // resetPassExp: { type: Date, default: undefined }
 });
 
@@ -41,7 +43,6 @@ userSchema.methods.verifyPassword = function(candidatePassword, callback) {
     if (err) {
       return callback(err);
     }
-
     callback(null, isMatch);
   });
 };

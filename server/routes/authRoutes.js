@@ -31,7 +31,7 @@ module.exports = app => {
 
   app.post("/user/signup", authController.signup);
 
-  app.post("/signin", requireSignin, authController.signin);
+  app.post("/user/signin", requireSignin, authController.signin);
 
   app.get("/confirmation/:token", emailController.confirmEmail);
 
