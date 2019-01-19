@@ -43,7 +43,7 @@ export default {
       }
     };
   },
-  mounted: function() {
+  mounted() {
     window.addEventListener("resize", this.handleResize);
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
       }
       return newArr;
     },
-    columnSetter: function() {
+    columnSetter() {
       switch (true) {
         case this.window.width >= 1120:
           return 4;
@@ -89,7 +89,7 @@ export default {
           break;
       }
     },
-    handleResize: function() {
+    handleResize() {
       this.window.width = window.innerWidth;
     }
   }
