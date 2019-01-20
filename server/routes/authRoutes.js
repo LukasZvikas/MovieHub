@@ -13,9 +13,7 @@ const googleAuth = passport.authenticate("google", {
 });
 
 module.exports = app => {
-  app.get("/user", requireAuth, (req, res) => {
-    res.send({ hey: "there" });
-  });
+  app.post("/user", authController.getUser);
 
   app.get("/auth/google", googleAuth);
 

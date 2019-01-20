@@ -8,6 +8,7 @@ const getters = {
 
 const mutations = {
   setUserAuth(state) {
+    console.log("state", state);
     state.isLogged = true;
   }
 };

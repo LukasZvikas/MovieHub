@@ -12,6 +12,19 @@ function userToken(user) {
   return JWT.encode({ id: user._id, iat: timestamp }, keys.JWT_SECRET);
 }
 
+exports.getUser = async (req, res, next) => {
+  const token = req.body.token;
+
+  const decoded = JWT.decode(token, keys.JWT_SECRET);
+
+  await User.findById(decoded.id, (err, user) => {
+    if (err) {
+      res.status(401).send({ error: "Token was not found" });
+    }
+    console.log("USER", user);
+    res.send(user);
+  });
+};
 exports.signup = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -84,4 +97,3 @@ exports.googleToken = function(req, res, next) {
   console.log("TOKEN", req.user);
   res.json({ token: userToken(req.user) });
 };
-

@@ -60,8 +60,8 @@ export default {
     },
     handleSuccess(token) {
       if (!token) return;
-
       setAuthToken(token);
+      this.setUserAuth();
     },
     handleSubmit() {
       const url = new URL("http://localhost:5000/user/signin");
