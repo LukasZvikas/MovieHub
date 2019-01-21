@@ -15,6 +15,8 @@ function userToken(user) {
 exports.getUser = async (req, res, next) => {
   const token = req.body.token;
 
+  if (!token) res.status(422).send({ error: "No token was provided" });
+
   const decoded = JWT.decode(token, keys.JWT_SECRET);
 
   await User.findById(decoded.id, (err, user) => {

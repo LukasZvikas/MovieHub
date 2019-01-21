@@ -40,14 +40,20 @@
 <script>
 import { validateEmail } from "./validations";
 import { mapMutations } from "vuex";
-import { setAuthToken } from "../../utils/localStorage";
+import { setAuthToken, getAuthToken } from "../../utils/localStorage";
 export default {
   data() {
     return {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      successMessage: ""
     };
+  },
+  mounted() {
+    if (getAuthToken()) {
+      this.$router.push("/");
+    }
   },
   methods: {
     ...mapMutations(["setUserAuth"]),
@@ -62,6 +68,9 @@ export default {
       if (!token) return;
       setAuthToken(token);
       this.setUserAuth();
+      this.$router.push("/", () => {
+        this.successMessage = "You have logged in successfully";
+      });
     },
     handleSubmit() {
       const url = new URL("http://localhost:5000/user/signin");
@@ -78,7 +87,6 @@ export default {
         })
           .then(res =>
             res.json().then(res => {
-              console.log("RES", res);
               this.handleSuccess(res.token);
             })
           )

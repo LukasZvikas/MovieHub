@@ -44,6 +44,7 @@ export default {
     };
   },
   mounted() {
+    console.log("params", this.$router.params)
     window.addEventListener("resize", this.handleResize);
   },
   methods: {

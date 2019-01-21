@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       navItems: [
-        { href: "/movies", name: "Movies" },
+        { href: "/", name: "Movies" },
         { href: "/login", name: "Login" },
         { href: "/signup", name: "Sign Up" },
         { href: "/profile", name: "Profile" }
@@ -41,7 +41,7 @@ export default {
       });
 
       const navItemsAferAuth = this.navItems.filter(item => {
-        return excludedItemsIfLoggedIn.includes(item.href);
+        return !excludedItemsIfLoggedIn.includes(item.href);
       });
 
       return this.isLoggedIn ? navItemsAferAuth : navItemsBeforeAuth;

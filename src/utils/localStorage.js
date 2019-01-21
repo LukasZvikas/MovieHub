@@ -17,3 +17,12 @@ export const setAuthToken = token => {
     return err;
   }
 };
+
+export const removeAuthToken = () => {
+  try {
+    localStorage.removeItem(AUTH_TOKEN);
+    return;
+  } catch {
+    return null;
+  }
+};
