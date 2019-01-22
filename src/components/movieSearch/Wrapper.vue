@@ -1,9 +1,9 @@
 <template>
-  <div style="    display: grid;
-    grid-template-columns: 30% 70%;
-    height: 100vh;">
-    <SearchBar @termChange="onTermChange"/>
-    <div style="overflow: auto; margin: 2rem;">
+  <div class="row" style="height: 100vh">
+    <div class="col-sm-12 col-md-3">
+      <SearchBar @termChange="onTermChange"/>
+    </div>
+    <div class="col-sm-12 col-md-9" :style="determineClass">
       <SearchResultList :searchResult="searchResult" :searchQuery="searchQuery"/>
     </div>
   </div>
@@ -24,10 +24,23 @@ export default {
       searchQuery: ""
     };
   },
+  computed: {
+    determineClass() {
+      console.log("is it", this.searchQuery.length);
+      return this.searchQuery.length === 0 ? "" : "overflow: auto;";
+    }
+  },
+
   methods: {
     onTermChange(searchTerm) {
       this.searchQuery = searchTerm;
+      if (this.searchQuery.length === 0) {
+        this.searchResult = [];
+        console.log("result", this.searchResult);
+        return;
+      }
 
+      console.log("goes here");
       const url = new URL("https://api.themoviedb.org/3/search/movie");
 
       const params = {
@@ -42,7 +55,6 @@ export default {
       fetch(url)
         .then(res =>
           res.json().then(res => {
-            console.log("RESPONSE is", res);
             this.searchResult = res.results;
           })
         )

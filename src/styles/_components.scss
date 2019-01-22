@@ -10,6 +10,7 @@
 
 .row {
   margin: 0;
+  padding: 0;
 }
 
 .nav {
@@ -22,4 +23,8 @@
   background: #001226;
   height: 9vh;
   border-bottom: 1px solid $secondary;
+}
+
+.col-md-8, .col-md-4, .col-md-9, .col-md-3 {
+  padding: 0;
 }

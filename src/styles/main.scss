@@ -10,7 +10,7 @@ $border-radius: 10rem;
 $body-bg: $secondary;
 
 body {
-  padding: 3rem;
+
 }
 
 @import "../../node_modules/bootstrap/scss/functions";
@@ -27,4 +27,4 @@ body {
 @import "components";
 
 ///CUSTOMS
-@import "./custom/MovieList";
+@import "./custom/movieList";
