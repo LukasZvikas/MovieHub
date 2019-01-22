@@ -26,7 +26,6 @@ export default {
   },
   computed: {
     determineClass() {
-      console.log("is it", this.searchQuery.length);
       return this.searchQuery.length === 0 ? "" : "overflow: auto;";
     }
   },
@@ -36,11 +35,9 @@ export default {
       this.searchQuery = searchTerm;
       if (this.searchQuery.length === 0) {
         this.searchResult = [];
-        console.log("result", this.searchResult);
         return;
       }
 
-      console.log("goes here");
       const url = new URL("https://api.themoviedb.org/3/search/movie");
 
       const params = {
@@ -55,6 +52,7 @@ export default {
       fetch(url)
         .then(res =>
           res.json().then(res => {
+            console.log("res", res.results)
             this.searchResult = res.results;
           })
         )
