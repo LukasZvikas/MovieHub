@@ -1,7 +1,11 @@
 <template>
-  <div>
+  <div style="    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 100vh;">
     <SearchBar @termChange="onTermChange"/>
-    <SearchResultList :searchResult="searchResult"/>
+    <div style="overflow: auto; margin: 2rem;">
+      <SearchResultList :searchResult="searchResult" :searchQuery="searchQuery"/>
+    </div>
   </div>
 </template>
 
@@ -16,11 +20,14 @@ export default {
   },
   data() {
     return {
-      searchResult: []
+      searchResult: [],
+      searchQuery: ""
     };
   },
   methods: {
     onTermChange(searchTerm) {
+      this.searchQuery = searchTerm;
+
       const url = new URL("https://api.themoviedb.org/3/search/movie");
 
       const params = {

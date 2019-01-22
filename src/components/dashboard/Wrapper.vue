@@ -1,16 +1,16 @@
 <template>
   <div style="z-index: 2; overflow: auto;">
-    <MovieList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
-    <MovieList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
+    <CarouselList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
+    <CarouselList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
   </div>
 </template>
 
 <script>
-import MovieList from "./MovieList";
+import CarouselList from "./CarouselList";
 import { keys } from "../../keys";
 export default {
   components: {
-    MovieList
+    CarouselList
   },
   data: function() {
     return {

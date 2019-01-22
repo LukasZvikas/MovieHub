@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Movies from "./components/mainPage/Wrapper";
+import Movies from "./components/dashboard/Wrapper";
 import MovieSearch from "./components/movieSearch/Wrapper";
 import Videos from "./components/videos/Wrapper";
 import Login from "./components/authentication/Login";

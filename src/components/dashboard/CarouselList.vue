@@ -6,7 +6,7 @@
     <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         {{window.width}}
-        <MovieListItem
+        <CarouselListItem
           v-for="(movieItem, index) in sliceMovieArray(movies)"
           :class="{active: index===0}"
           :key="index"
@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import MovieListItem from "./MovieListItem";
+import CarouselListItem from "./CarouselListItem";
 export default {
   components: {
-    MovieListItem
+    CarouselListItem
   },
   props: {
     movies: Object,
