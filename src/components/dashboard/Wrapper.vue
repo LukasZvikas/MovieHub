@@ -1,5 +1,5 @@
 <template>
-  <div style="z-index: 2; overflow: auto;">
+  <div class="dashboard-wrap">
     <CarouselList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
     <CarouselList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
   </div>
@@ -58,5 +58,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.dashboard-wrap {
+  z-index: 2;
+  overflow: auto;
+  background: $primary;
+}
 </style>

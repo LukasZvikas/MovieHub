@@ -1,8 +1,6 @@
 <template>
   <div class="movie-item-box">
-    <img class="img-fluid" style="height: 100%;     object-fit: cover;
-    height: 100%;
-    width: 100%;" :src="getPoster(movie.poster_path)">
+    <img class="img-fluid img-cover" :src="getPoster(movie.poster_path)">
     <div class="movie-item-box-title">{{movie.title}}</div>
   </div>
 </template>
@@ -21,4 +19,10 @@ export default {
 </script>
 
 <style>
+.img-cover {
+  height: 100%;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
 </style>

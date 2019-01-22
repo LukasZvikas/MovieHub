@@ -11,6 +11,8 @@
 .row {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .nav {
@@ -20,11 +22,14 @@
   color: $white;
   box-shadow: 0px 1px #585858;
   z-index: 1;
-  background: #001226;
+  background: $primary;
   height: 9vh;
   border-bottom: 1px solid $secondary;
 }
 
-.col-md-8, .col-md-4, .col-md-9, .col-md-3 {
+.col-md-8,
+.col-md-4,
+.col-md-9,
+.col-md-3 {
   padding: 0;
 }

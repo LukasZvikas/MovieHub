@@ -23,7 +23,7 @@ export default {
   align-items: flex-start;
   justify-content: center;
   height: 100%;
-  background: #001226;
+  background: $primary;
 
   &.circle {
     border-radius: 50%;
