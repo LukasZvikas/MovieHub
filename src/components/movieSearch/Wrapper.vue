@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     determineClass() {
-      return this.searchQuery.length === 0 ? "" : "overflow: auto;";
+      return this.searchQuery.length === 0 ? "" : "background: whitesmoke; overflow: auto;";
     }
   },
 

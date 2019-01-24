@@ -27,9 +27,20 @@
   border-bottom: 1px solid $secondary;
 }
 
+.card {
+  padding: 0;
+  border-radius: 0;
+}
+
+.card-img-top {
+  border-radius: 0;
+}
+
 .col-md-8,
 .col-md-4,
 .col-md-9,
-.col-md-3 {
+.col-md-3,
+.col-sm-2,
+.col-sm-4 {
   padding: 0;
 }
