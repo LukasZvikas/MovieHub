@@ -1,48 +1,30 @@
 <template>
-  <div class="movie-overview">
-    <div class="movie-description-wrap">
-      <div class="container" style="box-shadow: none">
-        <div class="row">
-          <div
-            class="col-sm-12 col-md-4"
-            style="  
-    object-fit: cover;
-    display: flex;
-    justify-content: center;"
+  <div class="movie-overview container-fluid">
+    <MovieDescription
+      :title="title"
+      :description="description"
+      :backdrop_path="backdrop_path"
+      :poster_path="poster_path"
+    />
+    <div class="movie-overview-heading">Top Billed Cast</div>
+    <div class="row bg-dark">
+      <div
+        class="shadow-sm"
+        style="padding: 0 1rem 1rem 1rem "
+        v-for="(item, index) in cast"
+        :key="index"
+      >
+        <div style=" position: relative;
+    height: 15rem;
+    width: 9rem;">
+          <img
+            class="card-img-top img-fluid"
+            style="    object-fit: cover;     height: 13rem;
+    width: 9rem;"
+            :src="getPosterPath(item.profile_path)"
           >
-            <img
-              class="img-fluid"
-              style="    height: 100%;
-    width: 100%;
-    object-fit: cover;"
-              :src="getPosterPath(poster_path)"
-            >
-          </div>
-          <div class="col-sm-12 col-md-8 movie-overview-description" :style="setBackgroundImage">
-            <div class="movie-overview-title">{{title}}</div>
-            <div style="height: 100%; width:100%">{{description}}</div>
-          </div>
-          <div class="col-md-12">
-            <div class="row">
-              <div
-                class="col-sm-4 col-md-2 shadow-sm"
-                style="margin: 0.5rem;  width: 10rem;    height: 18rem;"
-                v-for="(item, index) in cast"
-                :key="index"
-              >
-                <div style="height: 14.5rem;">
-                  <img
-                    class="card-img-top"
-                    style="    object-fit: cover;
-    height: 100%;
-    width: 100%;"
-                    :src="getPosterPath(item.profile_path)"
-                  >
-                </div>
-                <div class="card-title">{{item.name}}</div>
-              </div>
-            </div>
-          </div>
+
+          <div class="card-title" style="height: 2rem">{{item.name}}</div>
         </div>
       </div>
     </div>
@@ -50,9 +32,14 @@
 </template>
 
 <script>
-import { keys } from "../../keys";
+import MovieDescription from "./MovieDescription";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
+import { keys } from "../../keys";
+
 export default {
+  components: {
+    MovieDescription
+  },
   data() {
     return {
       poster_path: "",
@@ -66,18 +53,7 @@ export default {
     this.fetchMovieDetails();
     this.fetchMovieCredits();
   },
-  computed: {
-    setBackgroundImage() {
-      return {
-        "background-image": `linear-gradient(59deg, rgba(25,20,20,0.5) 53%, rgba(25, 20, 20, 0.8) 76%), url(${this.getPosterPath(
-          this.backdrop_path
-        )})`,
-        "background-repeat": "no repeat",
-        "background-position": "center",
-        "background-size": "cover"
-      };
-    }
-  },
+
   methods: {
     getPosterPath(path) {
       return generatePosterPath(path);
@@ -140,23 +116,21 @@ export default {
 
 <style lang="scss">
 .movie-overview {
-  display: flex;
-  justify-content: center;
   background-color: $primary;
 }
-.movie-description-wrap {
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: center;
-  width: 60rem;
-}
-.movie-overview-description {
+.movie-overview-heading {
   text-align: center;
-  padding: 2rem;
-  background-color: whitesmoke;
-  color: $white;
-}
-.movie-overview-title {
+  color: whitesmoke;
   font-size: 2rem;
+  padding: 2rem;
+  background-color: $primary;
+}
+.card-title {
+  background-color: whitesmoke;
+}
+.wrp {
+}
+.flex-fill {
+  flex: 1;
 }
 </style>

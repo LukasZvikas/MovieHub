@@ -9,8 +9,13 @@ $border-radius: 10rem;
 
 $body-bg: $secondary;
 
-body {
+.bg-dark {
+  background-color: #191414!important;
+}
 
+body,
+html {
+  height: 100%;
 }
 
 @import "../../node_modules/bootstrap/scss/functions";

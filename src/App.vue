@@ -2,7 +2,7 @@
 // v-bind:videos="videos" also valid
 
 <template>
-  <div>
+  <div class="container-fluid">
     <Header/>
     <router-view></router-view>
   </div>
