@@ -5,6 +5,9 @@
       :description="description"
       :backdrop_path="backdrop_path"
       :poster_path="poster_path"
+      :release_date="release_date"
+      :genres="genres"
+      :vote_average="vote_average"
     />
     <div class="movie-overview-heading">Top Billed Cast</div>
     <div class="row bg-dark">
@@ -46,7 +49,10 @@ export default {
       description: "",
       backdrop_path: "",
       title: "",
-      cast: []
+      cast: [],
+      genres: [],
+      release_date: "",
+      vote_average: 0
     };
   },
   created() {
@@ -79,6 +85,9 @@ export default {
             this.description = res.overview;
             this.title = res.title;
             this.backdrop_path = res.backdrop_path;
+            this.release_date = res.release_date;
+            this.genres = res.genres;
+            this.vote_average = res.vote_average;
             console.log("Res", res);
           })
         )

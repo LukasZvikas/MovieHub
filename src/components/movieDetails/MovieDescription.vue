@@ -17,22 +17,48 @@
         >
       </div>
 
-      <div class="col-sm-12 col-md-8 movie-overview-description">
-        <div class="movie-overview-title">{{title}}</div>
+      <div class="col-sm-12 col-md-8 movie-overview-description" style="padding: 1.5rem">
+        <h1 class="movie-overview-title font-weight-bolder">
+          {{title}}
+          <span
+            class="font-weight-light"
+            style="    color: grey;
+    font-size: 1.5rem;"
+          >({{release_date.slice(0,4)}})</span>
+        </h1>
+        <div class="d-flex align-items-center">
+          <h5>User Score</h5>
+          <PercentCircle :vote_average="vote_average"/>
+        </div>
+        <h3>Overview</h3>
         <div>{{description}}</div>
+        <div class="row">
+          <div
+            class="movie-overview-genres col-md-auto"
+            v-for="(item, index) in genres"
+            :key="index"
+          >{{item.name}}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import PercentCircle from "../svg/PercentCircle";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 export default {
+  components: {
+    PercentCircle
+  },
   props: {
     title: String,
     description: String,
     backdrop_path: String,
-    poster_path: String
+    poster_path: String,
+    genres: Array,
+    release_date: String,
+    vote_average: Number
   },
   computed: {
     setBackgroundImage() {
@@ -58,17 +84,22 @@ export default {
 
 <style lang="scss">
 .movie-overview-description {
-  text-align: center;
   color: $white;
-  padding: 0 2rem 2rem 2rem;
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
 }
 .movie-overview-title {
-  font-size: 2rem;
+}
+
+.movie-overview-genres {
+  background: $primary;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
 }
 
 .wrp {
