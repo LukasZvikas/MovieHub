@@ -3,8 +3,8 @@
     <svg
       class="circle-chart"
       viewBox="0 0 33.83098862 33.83098862"
-      width="80"
-      height="80"
+      width="70"
+      height="70"
       xmlns="http://www.w3.org/2000/svg"
     >
       <circle
@@ -29,7 +29,7 @@
       ></circle>
       <g class="circle-chart__info">
         <text
-          class="circle-chart__percent"
+          class="circle-chart__percent font-weight-bold"
           x="16.91549431"
           y="16"
           alignment-baseline="central"

@@ -10,12 +10,11 @@ $border-radius: 10rem;
 $body-bg: $secondary;
 
 .bg-dark {
-  background-color: #191414!important;
+  background-color: #191414 !important;
 }
 
 body,
 html {
-  height: 100%;
 }
 
 @import "../../node_modules/bootstrap/scss/functions";
@@ -30,6 +29,7 @@ html {
 @import "button";
 @import "form";
 @import "components";
+@import "spacing";
 
 ///CUSTOMS
 @import "./custom/movieList";
