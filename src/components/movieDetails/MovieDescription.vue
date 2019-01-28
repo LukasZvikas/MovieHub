@@ -105,7 +105,6 @@ export default {
   color: grey;
   font-size: 1.5rem;
 }
-
 .movie-overview-poster {
   object-fit: cover;
 }
@@ -123,9 +122,6 @@ export default {
     fill: $black;
   }
 }
-.movie-overview-title {
-}
-
 .movie-overview-genres {
   background: $primary;
   height: 3rem;

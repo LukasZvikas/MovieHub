@@ -8,8 +8,10 @@
 <script>
 import MovieDescription from "./MovieDescription";
 import CastList from "./CastList";
+import { fetchMovieDetails } from "../../utilities/fetch";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 import { keys } from "../../keys";
+import { setTimeout } from "timers";
 
 export default {
   components: {
@@ -28,6 +30,9 @@ export default {
   },
 
   methods: {
+    async getDetails(movieId) {
+      this.movie_details = await fetchMovieDetails(movieId);
+    },
     getPosterPath(path) {
       return generatePosterPath(path);
     },
