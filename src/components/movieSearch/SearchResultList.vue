@@ -1,6 +1,6 @@
 <template>
   <div :class="showBackgoundImage">
-    <div v-if="searchResult.length !== 0 || undefined">
+    <div v-if="searchResult.length !== 0 || searchResult === undefined">
       <div class="search-term">Movies matching: "{{searchQuery}}"</div>
       <div class="row">
         <SearchResultListItem v-for="(item, index) in searchResult" :key="index" :movie="item"/>

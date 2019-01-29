@@ -24,6 +24,7 @@ export default {
     return {
       navItems: [
         { href: "/", name: "Movies" },
+        { href: "/search", name: "Search" },
         { href: "/login", name: "Login" },
         { href: "/signup", name: "Sign Up" },
         { href: "/profile", name: "Profile" }

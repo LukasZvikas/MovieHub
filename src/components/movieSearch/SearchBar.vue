@@ -2,13 +2,19 @@
   <div class="input-group mb-3 search-bar">
     <div class="search-bar items-wrap">
       <input class="form-control" @input="onInputChange" placeholder="Search movies">
-      <div class="search-bar circle"></div>
+      <div class="search-bar circle d-flex justify-content-center align-items-center">
+        <magnifying-glass/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import MagnifyingGlass from "../svg/MagnifyingGlass";
 export default {
+  components: {
+    MagnifyingGlass
+  },
   methods: {
     onInputChange(e) {
       this.$emit("termChange", e.target.value);

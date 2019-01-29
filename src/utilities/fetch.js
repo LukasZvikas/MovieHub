@@ -1,25 +1,21 @@
 import { keys } from "../keys";
 
-export const fetchMovieDetails = (urlProp, parameters = {}) => {
-  console.log("prop", urlProp);
-  console.log("param", parameters);
+export default async (urlPath, parameters = {}) => {
+  const url = new URL(urlPath);
 
-  const url = new URL(`https://api.themoviedb.org/3/movie/${urlProp}`);
-
+  console.log("params", parameters);
   const params = {
     api_key: keys.TMDB_API_KEY,
     ...parameters
   };
   url.search = new URLSearchParams(params);
 
-  fetch(url)
-    .then(res =>
-      res.json().then(res => {
-        console.log("RESPONSE", res);
-        return res;
-      })
-    )
-    .catch(err => {
-      return err;
-    });
+  try {
+    const result = await fetch(url);
+    const data = await result.json();
+    console.log("DATA", data);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 };

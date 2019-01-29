@@ -50,9 +50,11 @@ export default {
   methods: {
     formatAverage(avg) {
       return avg
-        .toString()
-        .split(".")
-        .join("");
+        ? avg
+            .toString()
+            .split(".")
+            .join("")
+        : "...";
     }
   }
 };

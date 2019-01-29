@@ -4,18 +4,20 @@
     <div class="movie-overview-description-width row">
       <div class="col-sm-12 col-md-4 movie-overview-poster-wrap">
         <img
+          data-test="movie-overview-poster"
           class="movie-overview-poster p-1 h-100 w-100"
           :src="getPosterPath(movie_details.poster_path)"
         >
       </div>
 
       <div class="col-sm-12 col-md-8 movie-overview-description p-2 d-flex justify-content-center">
-        <h1 class="movie-overview-title font-weight-bolder mb-2">
-          {{movie_details.title}}
+        <div class="movie-overview-title font-weight-bolder mb-2">
+          <h1 data-test="movie-overview-title">{{movie_details.title}}</h1>
           <span
             class="font-weight-regular movie-overview-release-date"
-          >({{movie_details.release_date.slice(0,4)}})</span>
-        </h1>
+             data-test="movie-overview-release-date"
+          >({{sliceDate(movie_details.release_date)}})</span>
+        </div>
         <div class="row d-flex justify-content-start align-items-center">
           <div class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0">
             <h6 class="font-weight-bold mr-1">
@@ -82,6 +84,9 @@ export default {
   methods: {
     getPosterPath(path) {
       return generatePosterPath(path);
+    },
+    sliceDate(date) {
+      return date ? date.slice(0, 4) : "...";
     }
   }
 };

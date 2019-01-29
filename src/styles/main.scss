@@ -15,6 +15,7 @@ $body-bg: $secondary;
 
 body,
 html {
+  background: $primary;
 }
 
 @import "../../node_modules/bootstrap/scss/functions";

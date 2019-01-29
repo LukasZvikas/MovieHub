@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchHeading renders content correctly 1`] = `
+<div>
+  <div
+    class="search-text-heading"
+    data-test="text-heading"
+  >
+    Discover movies here!
+  </div>
+   
+  <div
+    class="search-text-body"
+    data-test="text-body"
+  >
+    Our database stores pretty much every movie ever made. Give it a shot and you will see!
+  </div>
+</div>
+`;

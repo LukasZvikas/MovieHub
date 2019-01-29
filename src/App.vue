@@ -34,6 +34,8 @@ export default {
     getUser() {
       const url = new URL("http://localhost:5000/user");
       const token = getAuthToken();
+
+      if (!token) return;
       fetch(url, {
         method: "POST",
         body: JSON.stringify({ token }),

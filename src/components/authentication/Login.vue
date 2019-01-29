@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-center align-items-center auth image back-image">
-    <form @submit.prevent="handleSubmit" class="form col-md-4 col-xs-12">
+    <form @submit.prevent="handleSubmit" class="form col-md-4 col-xs-12 p-4">
       <div class="h3" style="margin-bottom: 2rem">Create new account</div>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
@@ -100,10 +100,6 @@ export default {
 <style lang="scss">
 .back-image {
   @include image("../pacific.jpg", rgba(16, 29, 44, 0.7));
-}
-.auth {
-  width: 100%;
-  height: 90%;
 }
 .row {
   margin-left: 0;

@@ -28,16 +28,16 @@ export default {
 .movie-overview-cast-image-wrapper {
   position: relative;
   height: 15rem;
-  width: 9rem;
+  width: 11rem;
 }
 .movie-overview-cast-image {
   object-fit: cover;
   height: 13rem;
-  width: 9rem;
+  width: 11rem;
 }
 .card-title {
   background-color: whitesmoke;
   text-align: center;
-  height: 4rem;
+  height: 5rem;
 }
 </style>
