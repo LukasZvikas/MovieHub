@@ -29,6 +29,7 @@
       ></circle>
       <g class="circle-chart__info">
         <text
+          data-test="movie-overview-average"
           class="circle-chart__percent font-weight-bold"
           x="16.91549431"
           y="16"

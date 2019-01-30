@@ -1,6 +1,6 @@
 
 <template>
-  <div :style="setBackgroundImage">
+  <div data-test="movie-overview-description-wrapper" :style="setBackgroundImage">
     <div class="movie-overview-description-width row">
       <div class="col-sm-12 col-md-4 movie-overview-poster-wrap">
         <img
@@ -15,7 +15,7 @@
           <h1 data-test="movie-overview-title">{{movie_details.title}}</h1>
           <span
             class="font-weight-regular movie-overview-release-date"
-             data-test="movie-overview-release-date"
+            data-test="movie-overview-release-date"
           >({{sliceDate(movie_details.release_date)}})</span>
         </div>
         <div class="row d-flex justify-content-start align-items-center">
@@ -39,10 +39,11 @@
         </div>
         <div class="mb-2">
           <h3 class="font-weight-bold mt-2">Overview</h3>
-          <div>{{movie_details.overview}}</div>
+          <div data-test="movie-overview-body">{{movie_details.overview}}</div>
         </div>
         <div class="row">
           <div
+            data-test="movie-overview-genre"
             class="movie-overview-genres m-1 col-4 col-md-4 p-1"
             v-for="(item, index) in movie_details.genres"
             :key="index"

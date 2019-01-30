@@ -25,9 +25,15 @@ export default {
   },
   async created() {
     const urlId = this.getIdFromUrl();
-    const movieDetails = await fetchFactory(`https://api.themoviedb.org/3/movie/${urlId}`);
+    const movieDetails = await fetchFactory(
+      `https://api.themoviedb.org/3/movie/${urlId}`
+    );
+
     this.movie_details = movieDetails;
-    const castDetails = await fetchFactory(`https://api.themoviedb.org/3/movie/${urlId}/credits`);
+
+    const castDetails = await fetchFactory(
+      `https://api.themoviedb.org/3/movie/${urlId}/credits`
+    );
     this.cast = castDetails.cast.slice(0, 4);
   },
 
