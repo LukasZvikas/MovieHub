@@ -1,8 +1,7 @@
-
 <template>
   <div>
-    <div class="search-text-heading" data-test="text-heading">{{heading}}</div>
-    <div class="search-text-body" data-test="text-body">{{textBody}}</div>
+    <div class="search-text-heading" data-test="movie-search-heading">{{heading}}</div>
+    <div class="search-text-body" data-test="movie-search-body">{{textBody}}</div>
   </div>
 </template>
 

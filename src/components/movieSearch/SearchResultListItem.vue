@@ -1,7 +1,15 @@
 <template>
-  <div class="movie-item-box" @click="showMovieDetails(movie.id)" data-test="movie-item-search">
-    <img class="img-fluid img-cover" :src="getPoster(movie.poster_path)">
-    <div class="movie-item-box-title">{{movie.title}}</div>
+  <div
+    class="movie-item-box"
+    @click="showMovieDetails(movie.id)"
+    data-test="movie-item-search-result-item"
+  >
+    <img
+      class="img-fluid img-cover"
+      :src="getPoster(movie.poster_path)"
+      data-test="movie-item-search-box-image"
+    >
+    <div class="movie-item-box-title" data-test="movie-item-search-box-title">{{movie.title}}</div>
   </div>
 </template>
 

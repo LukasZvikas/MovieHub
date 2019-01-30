@@ -16,13 +16,15 @@ describe("SearchHeading", () => {
   });
 
   it("has a correct heading text", () => {
-    expect(wrapper.find('[data-test="text-heading"]').text()).toBe(
+    expect(wrapper.find('[data-test="movie-search-heading"]').text()).toBe(
       props.heading
     );
   });
 
   it("has a correct textBody text", () => {
-    expect(wrapper.find('[data-test="text-body"]').text()).toBe(props.textBody);
+    expect(wrapper.find('[data-test="movie-search-body"]').text()).toBe(
+      props.textBody
+    );
   });
 
   it("renders content correctly", () => {

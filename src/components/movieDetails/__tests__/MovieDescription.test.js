@@ -1,4 +1,4 @@
-import { shallowMount} from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import MovieDescription from "../MovieDescription";
 import PercentCircle from "../../svg/PercentCircle";
 import Bookmark from "../../svg/Bookmark";

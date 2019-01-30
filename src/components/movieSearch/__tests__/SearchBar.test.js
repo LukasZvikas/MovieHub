@@ -8,12 +8,20 @@ describe("SearchBar unit", () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallowMount(SearchBar);
-    console.log(wrapper);
+  });
+
+  it("has an input", () => {
+    expect(wrapper.contains("input")).toBe(true);
   });
   it("has an input", () => {
     expect(wrapper.contains("input")).toBe(true);
   });
   it("has an MagnifyingGlass Icon", () => {
     expect(wrapper.contains(MagnifyingGlass)).toBe(true);
+  });
+  it("has a correct placeholder", () => {
+    expect(wrapper.find("input").attributes("placeholder")).toBe(
+      "Search movies"
+    );
   });
 });
