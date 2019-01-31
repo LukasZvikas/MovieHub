@@ -27,8 +27,9 @@ describe("Movie Search if input query has a result and fetch are triggered", () 
     input.trigger("input");
     wrapper.vm.$nextTick(() => {
       wrapper.setData({ searchResult: [...search_data] });
-      done();
       expect(wrapper.vm.$el).toMatchSnapshot();
+      done();
+      
     });
   });
   it("Search results has correct heading", () => {

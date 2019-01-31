@@ -1,7 +1,7 @@
 <template>
   <div class="movie-list-wrapper">
     <div style="color: #fff; display:flex; justify-content: center; font-size: 2.2rem;">
-      <div class="movie-list-title">{{title}}</div>
+      <div class="movie-list-title" :data-test="caroID">{{title}}</div>
     </div>
     <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -10,6 +10,7 @@
           :class="{active: index===0}"
           :key="index"
           :movies="movieItem"
+          data-test="carousel"
         />
       </div>
       <a class="carousel-control-prev" :href="`#${caroID}`" role="button" data-slide="prev">
@@ -31,9 +32,9 @@ export default {
     CarouselListItem
   },
   props: {
-    movies: Object,
+    movies: Array,
     title: String,
-    caroID: Number
+    caroID: String
   },
   data() {
     return {
@@ -43,7 +44,6 @@ export default {
     };
   },
   mounted() {
-    console.log("params", this.$router.params);
     window.addEventListener("resize", this.handleResize);
   },
   methods: {
@@ -52,24 +52,18 @@ export default {
       let from = 0;
       let to = this.columnSetter();
       const newArr = [];
-
       while (count > 0) {
         if (this.window.width >= 720) {
           newArr.push(arr.slice(from, to));
           from = from + 4;
           to = to + 4;
           count = count - 4;
-        } else if (this.window.width <= 720) {
+        } else if (this.window.width < 720) {
           newArr.push(arr.slice(from, to));
           from = from + 2;
           to = to + 2;
           count = count - 2;
-        } else if (this.window.width <= 540) {
-          newArr.push(arr.slice(from, to));
-          from = from + 1;
-          to = to + 1;
-          count = count - 1;
-        }
+        } 
       }
       return newArr;
     },
@@ -84,7 +78,7 @@ export default {
         case this.window.width <= 540:
           return 1;
           break;
-        case this.window.width <= 960:
+        case this.window.width < 960:
           return 2;
           break;
       }

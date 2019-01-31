@@ -30,8 +30,14 @@ export default async (urlProp, parameters = {}) => {
     return await new Promise(resolve => {
       resolve(data);
     });
-  else if (urlProp === "https://api.themoviedb.org/3/movie//credits")
+  else if (
+    urlProp === "https://api.themoviedb.org/3/movie//credits" ||
+    "https://api.themoviedb.org/3/movie/popular" ||
+    "https://api.themoviedb.org/3/movie/upcoming"
+  ) {
+    console.log("this is it", urlProp);
     return await new Promise(resolve => {
       resolve(search_data);
     });
+  }
 };

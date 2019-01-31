@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Movies from "./components/dashboard/Wrapper";
+import Dashboard from "./components/dashboard/";
 import MovieSearch from "./components/movieSearch";
 import Login from "./components/authentication/Login";
 import SignUp from "./components/authentication/SignUp";
@@ -19,7 +19,7 @@ function ifAuthenticated(to, from, next) {
 export const routes = [
   {
     path: "/",
-    component: Movies
+    component: Dashboard
   },
   {
     path: "/login",
