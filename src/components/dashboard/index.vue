@@ -7,7 +7,6 @@
 
 <script>
 import CarouselList from "./CarouselList";
-import { keys } from "../../keys";
 import fetchFactory from "../../utilities/fetch";
 export default {
   components: {

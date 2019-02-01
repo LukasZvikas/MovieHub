@@ -4,14 +4,17 @@
     class="movie-overview-cast-image-wrapper h-100 m-1"
   >
     <img
-    data-test="movie-overview-cast-list-item-img"
+      data-test="movie-overview-cast-list-item-img"
       class="card-img-top img-fluid movie-overview-cast-image"
       :src="getPosterPath(profile_path)"
     >
 
     <div class="card-title font-weight-bolder">
       <div data-test="movie-overview-cast-list-item-name">{{name}}</div>
-      <div data-test="movie-overview-cast-list-item-char-name" class="font-weight-normal">{{character}}</div>
+      <div
+        data-test="movie-overview-cast-list-item-char-name"
+        class="font-weight-normal"
+      >{{character}}</div>
     </div>
   </div>
 </template>

@@ -34,6 +34,10 @@ export const routes = [
     component: MovieSearch
   },
   {
+    path: "/favorites",
+    component: () => import("./components/favorites")
+  },
+  {
     path: "/movie/:id",
     component: () => import("./components/movieDetails")
   }

@@ -11,8 +11,8 @@
       </div>
 
       <div class="col-sm-12 col-md-8 movie-overview-description p-2 d-flex justify-content-center">
-        <div class="movie-overview-title font-weight-bolder mb-2">
-          <h1 data-test="movie-overview-title">{{movie_details.title}}</h1>
+        <div class="movie-overview-title font-weight-bolder d-flex align-items-center mb-2">
+          <h1 data-test="movie-overview-title" style="margin-right: 0.5rem">{{movie_details.title}}</h1>
           <span
             class="font-weight-regular movie-overview-release-date"
             data-test="movie-overview-release-date"

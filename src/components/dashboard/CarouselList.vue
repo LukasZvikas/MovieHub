@@ -63,7 +63,7 @@ export default {
           from = from + 2;
           to = to + 2;
           count = count - 2;
-        } 
+        }
       }
       return newArr;
     },

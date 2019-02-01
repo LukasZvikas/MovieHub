@@ -16,6 +16,7 @@ $body-bg: $secondary;
 body,
 html {
   background: $primary;
+  font-family: "Oswald-Regular";
 }
 
 @import "../../node_modules/bootstrap/scss/functions";
@@ -31,6 +32,7 @@ html {
 @import "form";
 @import "components";
 @import "spacing";
+@import "fonts";
 
 ///CUSTOMS
 @import "./custom/movieList";
