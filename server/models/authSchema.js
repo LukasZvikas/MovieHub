@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const FavoritesSchema = require("./favoritesSchema");
 const bcrypt = require("bcrypt-nodejs");
 
 const saltRounds = 10;
@@ -9,9 +10,10 @@ const userSchema = new Schema({
   password: String,
   confirmed: { type: Boolean, default: false },
   resetPassToken: { type: String, default: null },
-  points: {type: Number, default: 0},
+  points: { type: Number, default: 0 },
   referral_code: String,
-  referred_by: {type: String, default: null}
+  referred_by: { type: String, default: null },
+  favorites: [FavoritesSchema]
   // resetPassExp: { type: Date, default: undefined }
 });
 
@@ -31,7 +33,6 @@ userSchema.pre("save", function(next) {
       if (err) {
         return next(err);
       }
-
       user.password = hash;
       next();
     });
@@ -47,5 +48,5 @@ userSchema.methods.verifyPassword = function(candidatePassword, callback) {
   });
 };
 
-const authSchema = mongoose.model("authentication", userSchema);
+const authSchema = mongoose.model("users", userSchema);
 module.exports = authSchema;
