@@ -10,11 +10,13 @@ exports.addFavorite = (req, res, next) => {
 
   const decoded = JWT.decode(token, keys.JWT_SECRET);
 
-  const user_id = JWT.decode({});
   User.findById({ _id: decoded.id }, async (err, user) => {
-    if (err) res.status(422).send({ error: "User was not found" });
+    if (err) next(err);
+
+    if (!user) res.status(422).send({ error: "User was not found" });
 
     if (user) {
+      console.log("favor", user.favorites);
       user.favorites.push(movieDetails);
 
       await user.save(err => {
@@ -26,5 +28,23 @@ exports.addFavorite = (req, res, next) => {
         });
       });
     }
+  });
+};
+
+exports.getFavorites = (req, res, next) => {
+  const token = req.body.token;
+
+  if (!token) res.status(422).send({ error: "No token was provided" });
+
+  const decoded = JWT.decode(token, keys.JWT_SECRET);
+
+  User.findById({ _id: decoded.id }, async (err, user) => {
+    if (err) next(err);
+
+    if (!user) res.status(422).send({ error: "User was not found" });
+
+    res.send({
+      data: user.favorites
+    });
   });
 };

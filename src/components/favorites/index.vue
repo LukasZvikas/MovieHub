@@ -7,7 +7,9 @@
 
 <script>
 import FavoritesList from "./FavoritesList";
-import fetchFactory from "../../utilities/fetch";
+import postFetchFactory from "../../utilities/postFetch";
+import { getAuthToken } from "../../utilities/localStorage";
+
 export default {
   components: { FavoritesList },
   data() {
@@ -20,16 +22,13 @@ export default {
   },
   methods: {
     async getPopularMovies(listType) {
-      const url = `https://api.themoviedb.org/3/movie/${listType}`;
+      const url = "http://localhost:5000/user/get_user_favorites";
 
-      const params = {
-        sort_by: "popularity.desc",
-        region: "US"
-      };
+      const token = getAuthToken();
 
-      const response = await fetchFactory(url, params);
-      console.log("res", response);
-      this.movies = response.results.slice(0, 4);
+      const response = await postFetchFactory(url, { token });
+      console.log("ressss", response);
+      this.movies = response.data;
     }
   }
 };

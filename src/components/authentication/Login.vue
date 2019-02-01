@@ -40,7 +40,7 @@
 <script>
 import { validateEmail } from "./validations";
 import { mapMutations } from "vuex";
-import { setAuthToken, getAuthToken } from "../../utils/localStorage";
+import { setAuthToken, getAuthToken } from "../../utilities/localStorage";
 export default {
   data() {
     return {

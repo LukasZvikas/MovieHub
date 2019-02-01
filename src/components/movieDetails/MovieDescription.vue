@@ -33,6 +33,7 @@
           </div>
           <div
             class="movie-overview-add-favorites d-flex justify-content-center align-items-center"
+            @click="addMovieToFavorites"
           >
             <Favorite class="svgclass" :fill="'#fff'"/>
           </div>
@@ -59,6 +60,9 @@ import PercentCircle from "../svg/PercentCircle";
 import Bookmark from "../svg/Bookmark";
 import Favorite from "../svg/Favorite";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
+import { getAuthToken } from "../../utilities/localStorage";
+import postFetchFactory from "../../utilities/postFetch";
+import postFetch from "../../utilities/postFetch";
 export default {
   components: {
     PercentCircle,
@@ -88,6 +92,17 @@ export default {
     },
     sliceDate(date) {
       return date ? date.slice(0, 4) : "...";
+    },
+    async addMovieToFavorites() {
+      const token = getAuthToken();
+      const movieData = { token, movie_details: this.movie_details };
+
+      const response = await postFetch(
+        "http://localhost:5000/user/add_to_favorites",
+        movieData
+      );
+
+      console.log("response", response);
     }
   }
 };

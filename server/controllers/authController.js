@@ -23,7 +23,6 @@ exports.getUser = async (req, res, next) => {
     if (err) {
       res.status(401).send({ error: "Token was not found" });
     }
-    console.log("USER", user);
     res.send(user);
   });
 };
@@ -76,7 +75,6 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.signin = async (req, res, next) => {
-  console.log(req.user._id);
   await User.findById({ _id: req.user.id }, (err, user) => {
     if (err) {
       return next(err);

@@ -8,7 +8,12 @@ const FavoritesSchema = new mongoose.Schema({
   poster_path: String,
   release_date: String,
   title: String,
-  vote_average: Number
+  vote_average: Number,
+  adult: Boolean,
+  original_language: String,
+  original_title: String,
+  popularity: Number,
+  video: Boolean
 });
 
 module.exports = FavoritesSchema;
