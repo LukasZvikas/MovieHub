@@ -49,7 +49,6 @@ export default {
         include_adult: false
       };
       const response = await fetchFactory(url, params);
-      console.log(response.results);
       this.searchResult = response.results;
     }
   }

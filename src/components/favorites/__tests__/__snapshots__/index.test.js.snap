@@ -1,0 +1,278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Details after fetch has one favorites item 1`] = `
+<div
+  class="bg-dark h-100"
+>
+  <div
+    class="text-center font-weight-bold heading-1"
+  >
+    Your Favorites
+  </div>
+   
+  <div
+    class="row"
+  >
+    <div
+      class="favorites__list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
+      data-test="favorites-list-item-wrapper"
+      style="background-position: center; background-size: cover;"
+    >
+      <div
+        data-test="favorites-list-item"
+      >
+        <div
+          class="favorites__list-item-title font-weight-bold"
+          data-test="favorites-list-item-title"
+        >
+          A Star Is Born
+        </div>
+         
+        <div
+          class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0"
+        >
+          <h6
+            class="font-weight-bold mr-1 text-white"
+          >
+            <div>
+              User
+            </div>
+             
+            <div>
+              Score
+            </div>
+          </h6>
+           
+          <div>
+            <svg
+              class="circle-chart"
+              height="70"
+              viewBox="0 0 33.83098862 33.83098862"
+              width="70"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="circle-chart__background"
+                cx="16.91549431"
+                cy="16.91549431"
+                fill="none"
+                r="15.91549431"
+                stroke="whitesmoke"
+                stroke-width="2"
+              />
+               
+              <circle
+                class="circle-chart__circle"
+                cx="16.91549431"
+                cy="16.91549431"
+                fill="none"
+                r="15.91549431"
+                stroke="#f70963"
+                stroke-dasharray="84 100"
+                stroke-linecap="round"
+                stroke-width="2"
+              />
+               
+              <g
+                class="circle-chart__info"
+              >
+                <text
+                  alignment-baseline="central"
+                  class="circle-chart__percent font-weight-bold"
+                  data-test="movie-overview-average"
+                  fill="#fff"
+                  font-size="8"
+                  text-anchor="middle"
+                  x="16.91549431"
+                  y="16"
+                >
+                  84%
+                </text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Movie Details after fetch movie title is correct 1`] = `
+<div
+  class="bg-dark h-100"
+>
+  <div
+    class="text-center font-weight-bold heading-1"
+  >
+    Your Favorites
+  </div>
+   
+  <div
+    class="row"
+  >
+    <div
+      class="favorites__list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
+      data-test="favorites-list-item-wrapper"
+      style="background-position: center; background-size: cover;"
+    >
+      <div
+        data-test="favorites-list-item"
+      >
+        <div
+          class="favorites__list-item-title font-weight-bold"
+          data-test="favorites-list-item-title"
+        >
+          A Star Is Born
+        </div>
+         
+        <div
+          class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0"
+        >
+          <h6
+            class="font-weight-bold mr-1 text-white"
+          >
+            <div>
+              User
+            </div>
+             
+            <div>
+              Score
+            </div>
+          </h6>
+           
+          <div>
+            <svg
+              class="circle-chart"
+              height="70"
+              viewBox="0 0 33.83098862 33.83098862"
+              width="70"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="circle-chart__background"
+                cx="16.91549431"
+                cy="16.91549431"
+                fill="none"
+                r="15.91549431"
+                stroke="whitesmoke"
+                stroke-width="2"
+              />
+               
+              <circle
+                class="circle-chart__circle"
+                cx="16.91549431"
+                cy="16.91549431"
+                fill="none"
+                r="15.91549431"
+                stroke="#f70963"
+                stroke-dasharray="84 100"
+                stroke-linecap="round"
+                stroke-width="2"
+              />
+               
+              <g
+                class="circle-chart__info"
+              >
+                <text
+                  alignment-baseline="central"
+                  class="circle-chart__percent font-weight-bold"
+                  data-test="movie-overview-average"
+                  fill="#fff"
+                  font-size="8"
+                  text-anchor="middle"
+                  x="16.91549431"
+                  y="16"
+                >
+                  84%
+                </text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="favorites__list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
+      data-test="favorites-list-item-wrapper"
+      style="background-position: center; background-size: cover;"
+    >
+      <div
+        data-test="favorites-list-item"
+      >
+        <div
+          class="favorites__list-item-title font-weight-bold"
+          data-test="favorites-list-item-title"
+        >
+          
+        </div>
+         
+        <div
+          class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0"
+        >
+          <h6
+            class="font-weight-bold mr-1 text-white"
+          >
+            <div>
+              User
+            </div>
+             
+            <div>
+              Score
+            </div>
+          </h6>
+           
+          <div>
+            <svg
+              class="circle-chart"
+              height="70"
+              viewBox="0 0 33.83098862 33.83098862"
+              width="70"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                class="circle-chart__background"
+                cx="16.91549431"
+                cy="16.91549431"
+                fill="none"
+                r="15.91549431"
+                stroke="whitesmoke"
+                stroke-width="2"
+              />
+               
+              <circle
+                class="circle-chart__circle"
+                cx="16.91549431"
+                cy="16.91549431"
+                fill="none"
+                r="15.91549431"
+                stroke="#f70963"
+                stroke-dasharray="... 100"
+                stroke-linecap="round"
+                stroke-width="2"
+              />
+               
+              <g
+                class="circle-chart__info"
+              >
+                <text
+                  alignment-baseline="central"
+                  class="circle-chart__percent font-weight-bold"
+                  data-test="movie-overview-average"
+                  fill="#fff"
+                  font-size="8"
+                  text-anchor="middle"
+                  x="16.91549431"
+                  y="16"
+                >
+                  ...%
+                </text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -10,7 +10,7 @@
 
 <script>
 import Header from "./components/Header";
-import { getAuthToken, removeAuthToken } from "./utils/localStorage";
+import { getAuthToken, removeAuthToken } from "./utilities/localStorage";
 import { mapMutations } from "vuex";
 export default {
   components: {

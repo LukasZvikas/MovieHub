@@ -1,10 +1,15 @@
-import { shallowMount, mount } from "@vue/test-utils";
+import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
 
-import MovieDetailsWrapper from "../../movieDetails";
+import MovieDetails from "../";
 
-import { wrap } from "module";
+import Vuex from "vuex";
+
+const localVue = createLocalVue();
+
+localVue.use(Vuex);
 
 jest.mock("../../../utilities/fetch");
+jest.mock("../../../utilities/postFetch");
 
 const cast_data = {
   cast: [
@@ -30,14 +35,41 @@ const movie_data = {
 };
 
 describe("Movie Details after fetch", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = mount(MovieDetailsWrapper);
+  let store;
+  let favGetters = {
+    isFavorite: () => true
+  };
 
+  let authGetters = { isLoggedIn: () => true };
+
+  store = new Vuex.Store({
+    modules: {
+      FavoritesModule: {
+        state: {},
+        favGetters
+      },
+      AuthModule: {
+        state: {},
+        authGetters
+      }
+    }
+  });
+
+  let wrapper = mount(MovieDetails, {
+    store,
+    localVue
+  });
+  beforeEach(() => {
     wrapper.vm.$nextTick(() => {
       wrapper.setData({ ...movie_data });
-    //   expect(wrapper.vm.$el).toMatchSnapshot();
+      //   expect(wrapper.vm.$el).toMatchSnapshot();
     });
+  });
+
+  it("favorites button gets alled", () => {
+    wrapper
+      .find('[data-test="movie-overview-favorites-button"]')
+      .trigger("click");
   });
 
   it("movie title is correct", () => {
@@ -93,10 +125,30 @@ describe("Movie Details after fetch", () => {
 });
 
 describe("CastList after fetch", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = mount(MovieDetailsWrapper);
+  let store;
+  let favGetters = {
+    isFavorite: () => true
+  };
 
+  let authGetters = { isLoggedIn: () => true };
+
+  store = new Vuex.Store({
+    modules: {
+      FavoritesModule: {
+        state: {},
+        favGetters
+      },
+      AuthModule: {
+        state: {},
+        authGetters
+      }
+    }
+  });
+  let wrapper = mount(MovieDetails, {
+    store,
+    localVue
+  });
+  beforeEach(() => {
     wrapper.vm.$nextTick(() => {
       wrapper.setData({ ...cast_data });
     });

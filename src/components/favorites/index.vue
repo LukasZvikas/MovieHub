@@ -8,27 +8,39 @@
 <script>
 import FavoritesList from "./FavoritesList";
 import postFetchFactory from "../../utilities/postFetch";
+import fetchFactory from "../../utilities/fetch";
 import { getAuthToken } from "../../utilities/localStorage";
 
 export default {
   components: { FavoritesList },
   data() {
     return {
+      movie_ids: [],
       movies: []
     };
   },
-  created() {
-    this.getPopularMovies("popular");
+  async created() {
+    const response = await this.findUsersFavoriteMovies();
+    console.log("respone", response);
+    await response.forEach(async movie_id => {
+      const movieDetails = await fetchFactory(
+        `https://api.themoviedb.org/3/movie/${movie_id}`
+      );
+
+      console.log("movieDetails", movieDetails)
+      this.movies.push(movieDetails);
+    });
+    console.log("movies", this.movies);
   },
   methods: {
-    async getPopularMovies(listType) {
+    async findUsersFavoriteMovies() {
       const url = "http://localhost:5000/user/get_user_favorites";
 
       const token = getAuthToken();
 
       const response = await postFetchFactory(url, { token });
-      console.log("ressss", response);
-      this.movies = response.data;
+
+      return response.data;
     }
   }
 };

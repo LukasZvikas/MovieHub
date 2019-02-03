@@ -34,8 +34,9 @@
           <div
             class="movie-overview-add-favorites d-flex justify-content-center align-items-center"
             @click="addMovieToFavorites"
+            data-test="movie-overview-favorites-button"
           >
-            <Favorite class="svgclass" :fill="'#fff'"/>
+            <Favorite class="svgclass" :fill="determineFill"/>
           </div>
         </div>
         <div class="mb-2">
@@ -59,20 +60,22 @@
 import PercentCircle from "../svg/PercentCircle";
 import Bookmark from "../svg/Bookmark";
 import Favorite from "../svg/Favorite";
-import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 import { getAuthToken } from "../../utilities/localStorage";
+import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 import postFetchFactory from "../../utilities/postFetch";
-import postFetch from "../../utilities/postFetch";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   components: {
     PercentCircle,
     Bookmark,
     Favorite
   },
+
   props: {
     movie_details: Object
   },
   computed: {
+    ...mapGetters(["isFavorite"]),
     setBackgroundImage() {
       return {
         "background-image": `linear-gradient(59deg, rgba(25,20,20,0.7) 53%, rgba(25, 20, 20, 0.8) 76%), url(${this.getPosterPath(
@@ -84,9 +87,15 @@ export default {
         display: "flex",
         "justify-content": "center"
       };
+    },
+    determineFill() {
+      const favorited = this.isFavorite;
+      if (favorited) return "#f70963";
+      return "#fff";
     }
   },
   methods: {
+    ...mapMutations(["addToFavorites", "removeFromFavorites"]),
     getPosterPath(path) {
       return generatePosterPath(path);
     },
@@ -95,14 +104,16 @@ export default {
     },
     async addMovieToFavorites() {
       const token = getAuthToken();
-      const movieData = { token, movie_details: this.movie_details };
+      const { id } = this.movie_details;
+      const movieData = { token, movie_id: id };
 
-      const response = await postFetch(
+      const response = await postFetchFactory(
         "http://localhost:5000/user/add_to_favorites",
         movieData
       );
 
-      console.log("response", response);
+      if (response.status === "added") this.addToFavorites();
+      else if (response.status === "removed") this.removeFromFavorites();
     }
   }
 };

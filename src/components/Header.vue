@@ -1,7 +1,7 @@
 <template>
   <ul class="nav">
     <div>
-      <li class="nav-link title">MovieHub</li>
+      <router-link to="/" class="nav-link title header-logo text-white">MovieHub</router-link>
     </div>
     <div class="nav-link-wrapper">
       <template v-for="(item, index) in decideNavLinks">
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       navItems: [
-        { href: "/", name: "Movies" },
+        { href: "/favorites", name: "Favorites" },
         { href: "/search", name: "Search" },
         { href: "/login", name: "Login" },
         { href: "/signup", name: "Sign Up" },
@@ -60,5 +60,9 @@ export default {
 }
 .nav-link-wrapper {
   display: flex;
+}
+
+.header-log:hover {
+  color: $white;
 }
 </style>
