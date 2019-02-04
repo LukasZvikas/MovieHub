@@ -6,8 +6,10 @@
 </template>
 
 <script>
-import fetchFactory from "../../utilities/fetch";
 import WatchList from "./WatchList";
+import postFetchFactory from "../../utilities/postFetch";
+import fetchFactory from "../../utilities/fetch";
+import { getAuthToken } from "../../utilities/localStorage";
 
 export default {
   components: {
@@ -18,22 +20,29 @@ export default {
       watchlist: []
     };
   },
-  created() {
-    this.getUpcomingMovies("upcoming");
+  async created() {
+    const response = await this.findUsersWatchlistMovies();
+    
+    await response.forEach(async movie_id => {
+      const movieDetails = await fetchFactory(
+        `https://api.themoviedb.org/3/movie/${movie_id}`
+      );
+
+      this.watchlist.push(movieDetails);
+    });
   },
   methods: {
-    async getUpcomingMovies(listType) {
-      const url = `https://api.themoviedb.org/3/movie/${listType}`;
+    async findUsersWatchlistMovies() {
+      const url = "http://localhost:5000/user/get_user_watchlist";
 
-      const params = {
-        sort_by: "popularity.desc",
-        region: "US",
-        page: 1
-      };
+      const token = getAuthToken();
 
-      const response = await fetchFactory(url, params);
-      console.log("rresss", response);
-      this.watchlist = response.results.slice(0, 5);
+      const response = await postFetchFactory(url, {
+        token,
+        type: "watchlist"
+      });
+
+      return response.data;
     }
   }
 };

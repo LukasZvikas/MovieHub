@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss">
 .favorites__list-item {
-  height: 22rem;
+  height: 20rem;
   object-fit: cover;
   display: flex;
   justify-content: center;
@@ -84,7 +84,7 @@ export default {
   font-size: 1.4rem;
   font-family: inherit;
   padding: 0.8rem 2rem;
-  background-color: #1a1a1a;
+  background-color: rgba(46, 49, 49, 1)
 }
 .release-date__heading {
   font-size: 1.4rem;

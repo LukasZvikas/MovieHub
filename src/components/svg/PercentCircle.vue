@@ -67,7 +67,7 @@ export default {
 <style>
 .circle-bg {
   fill: none;
-  stroke: rgba(0, 0, 0, 0.6);
+  stroke: rgba(46, 49, 49, 1);
   stroke-width: 4.2;
 }
 .circle-chart__circle {

@@ -5,6 +5,8 @@ const keys = require("../config/keys");
 exports.addFavorite = (req, res, next) => {
   const token = req.body.token;
   const movieId = req.body.movie_id;
+  const type = req.body.type;
+  console.log("typeis", type);
   if (!movieId)
     res.status(422).send({ error: "No movie details were provided" });
 
@@ -17,14 +19,20 @@ exports.addFavorite = (req, res, next) => {
 
     if (!user) res.status(422).send({ error: "User was not found" });
 
-    const checkIfMovieIdExists = user.favorites.filter(
-      movie_id => movie_id === movieId
-    );
+    let model;
+
+    if (type === "favorites") model = user.favorites;
+    else if (type === "watchlist") model = user.watchlist;
+
+    const checkIfMovieIdExists = model.filter(movie_id => movie_id === movieId);
 
     if (checkIfMovieIdExists.length === 1) {
-      updatedArray = user.favorites.filter(movie_id => movie_id !== movieId);
+      updatedArray = model.filter(movie_id => movie_id !== movieId);
 
-      user.favorites = updatedArray;
+      if (type === "favorites") user.favorites = updatedArray;
+
+      else if (type === "watchlist") user.watchlist = updatedArray;
+
       await user.save(err => {
         if (err) next(err);
       });
@@ -34,7 +42,9 @@ exports.addFavorite = (req, res, next) => {
       });
     } else {
 
-      user.favorites.push(movieId);
+      if (type === "favorites") user.favorites.push(movieId);
+
+      else if (type === "watchlist") user.watchlist.push(movieId);
 
       await user.save(err => {
         if (err) {
@@ -54,6 +64,8 @@ exports.addFavorite = (req, res, next) => {
 exports.getFavorites = (req, res, next) => {
   const token = req.body.token;
 
+  const type = req.body.type;
+
   if (!token) res.status(422).send({ error: "No token was provided" });
 
   const decoded = JWT.decode(token, keys.JWT_SECRET);
@@ -63,16 +75,24 @@ exports.getFavorites = (req, res, next) => {
 
     if (!user) res.status(422).send({ error: "User was not found" });
 
+    let model;
+
+    if (type === "favorites") model = user.favorites;
+
+    else if (type === "watchlist") model = user.watchlist;
+     
     res.send({
-      data: user.favorites
+      data: model
     });
   });
 };
 
 exports.checkIfFavorited = (req, res, next) => {
   const token = req.body.token;
+
   const movieId = req.body.movie_id;
 
+  const type = req.body.type;
 
   if (!movieId) res.status(422).send({ error: "No movie ID was provided" });
 
@@ -85,7 +105,13 @@ exports.checkIfFavorited = (req, res, next) => {
 
     if (!user) res.status(422).send({ error: "User was not found" });
 
-    const checkIfMovieIdExists = user.favorites.filter(
+    let model; 
+
+    if (type === "favorites") model = user.favorites;
+
+    else if (type === "watchlist") model = user.watchlist;
+      
+    const checkIfMovieIdExists = model.filter(
       movie_id => movieId === movie_id
     );
 

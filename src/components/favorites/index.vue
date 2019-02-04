@@ -38,7 +38,7 @@ export default {
 
       const token = getAuthToken();
 
-      const response = await postFetchFactory(url, { token });
+      const response = await postFetchFactory(url, { token, type: "favorites" });
 
       return response.data;
     }

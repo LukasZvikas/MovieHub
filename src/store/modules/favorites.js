@@ -1,9 +1,11 @@
 const state = {
-  isMovieFavorited: false
+  isMovieFavorited: false,
+  isMovieWatchlisted: false
 };
 
 const getters = {
-  isFavorite: state => state.isMovieFavorited
+  isFavorite: state => state.isMovieFavorited,
+  isInWatchlist: state => state.isMovieWatchlisted
 };
 
 const mutations = {
@@ -12,6 +14,12 @@ const mutations = {
   },
   removeFromFavorites(state) {
     state.isMovieFavorited = false;
+  },
+  addToWatchlist(state) {
+    state.isMovieWatchlisted = true;
+  },
+  removeFromWatchlist(state) {
+    state.isMovieWatchlisted = false;
   }
 };
 

@@ -32,7 +32,7 @@ export default {
     const movieDetails = await fetchFactory(
       `https://api.themoviedb.org/3/movie/${urlId}`
     );
-    
+
     this.movie_details = movieDetails;
 
     const castDetails = await fetchFactory(
@@ -40,21 +40,28 @@ export default {
     );
     this.cast = castDetails.cast.slice(0, 4);
 
-    const isFavorited = await this.CheckIfFavorited();
+   await this.CheckIfFavorited();
+
+   await this.CheckIfWatchlisted();
   },
 
   beforeDestroy() {
     this.removeFromFavorites();
+    this.removeFromWatchlist()
   },
 
   methods: {
-    ...mapMutations(["addToFavorites", "removeFromFavorites"]),
+    ...mapMutations(["addToFavorites", "removeFromFavorites", "addToWatchlist", "removeFromWatchlist"]),
     async getDetails(movieId) {
       this.movie_details = await fetchMovieDetails(movieId);
     },
     async CheckIfFavorited() {
       const token = getAuthToken();
-      const movieData = { token, movie_id: this.movie_details.id };
+      const movieData = {
+        token,
+        movie_id: this.movie_details.id,
+        type: "favorites"
+      };
 
       const response = await postFetchFactory(
         "http://localhost:5000/user/check_if_favorited",
@@ -62,6 +69,22 @@ export default {
       );
       if (response.data.isFavorited) {
         this.addToFavorites();
+      }
+    },
+     async CheckIfWatchlisted() {
+      const token = getAuthToken();
+      const movieData = {
+        token,
+        movie_id: this.movie_details.id,
+        type: "watchlist"
+      };
+
+      const response = await postFetchFactory(
+        "http://localhost:5000/user/check_if_watchlisted",
+        movieData
+      );
+      if (response.data.isFavorited) {
+        this.addToWatchlist();
       }
     },
     getPosterPath(path) {
