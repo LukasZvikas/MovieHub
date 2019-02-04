@@ -34,6 +34,10 @@ export const routes = [
     component: MovieSearch
   },
   {
+    path: "/coming_soon",
+    component: () => import("./components/watchList")
+  },
+  {
     path: "/favorites",
     component: () => import("./components/favorites")
   },

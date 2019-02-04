@@ -8,7 +8,7 @@ export default async (urlProp, parameters = {}) => {
     return await new Promise(resolve => {
       resolve(movieIds);
     });
-    return await new Promise(resolve => {
-        resolve(movieIds);
-      });
+  return await new Promise(resolve => {
+    resolve(movieIds);
+  });
 };

@@ -19,7 +19,7 @@
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
-        stroke="#f70963"
+        :stroke="determineColor()"
         stroke-width="2"
         :stroke-dasharray="`${this.formatAverage(vote_average)} 100`"
         stroke-linecap="round"
@@ -46,6 +46,12 @@ export default {
     vote_average: Number
   },
   methods: {
+    determineColor() {
+      if (this.vote_average < 5.0) {
+        return "#f70963";
+      }
+      return "#48AE48";
+    },
     formatAverage(avg) {
       return avg
         ? avg
