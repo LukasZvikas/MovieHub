@@ -18,14 +18,13 @@ const search_data = [
 
 describe("CarouselWrapper", () => {
   let wrapper;
-  beforeEach(done => {
+  beforeEach((done) => {
     wrapper = mount(CarouselWrapper);
     wrapper.vm.$nextTick(() => {
       wrapper.setData({
         popularMovies: [...search_data],
         comingSoon: [...search_data]
       });
-      expect(wrapper.vm.$el).toMatchSnapshot();
       done();
     });
   });
@@ -39,6 +38,7 @@ describe("CarouselWrapper", () => {
 
   describe("Popular Movies", () => {
     it("carousel has a correct heading", () => {
+      expect(wrapper.vm.$el).toMatchSnapshot();
       expect(wrapper.find('[data-test="carousel-1"]').text()).toBe(
         "Popular Movies"
       );

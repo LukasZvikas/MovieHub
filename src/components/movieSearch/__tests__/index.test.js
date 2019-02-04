@@ -27,12 +27,12 @@ describe("Movie Search if input query has a result and fetch are triggered", () 
     input.trigger("input");
     wrapper.vm.$nextTick(() => {
       wrapper.setData({ searchResult: [...search_data] });
-      expect(wrapper.vm.$el).toMatchSnapshot();
       done();
       
     });
   });
   it("Search results has correct heading", () => {
+    expect(wrapper.vm.$el).toMatchSnapshot();
     expect(
       wrapper.find('[data-test="movie-search-query-result-heading"]').text()
     ).toBe('Movies matching: "star"');

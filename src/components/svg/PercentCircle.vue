@@ -2,37 +2,34 @@
   <div>
     <svg
       class="circle-chart"
-      viewBox="0 0 33.83098862 33.83098862"
+      viewBox="0 0 36 36"
       width="70"
       height="70"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle
-        class="circle-chart__background"
-        stroke="whitesmoke"
-        stroke-width="2"
-        fill="none"
-        cx="16.91549431"
-        cy="16.91549431"
-        r="15.91549431"
-      ></circle>
-      <circle
+      <path
+        class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      ></path>
+
+      <path
         class="circle-chart__circle"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
         stroke="#f70963"
         stroke-width="2"
         :stroke-dasharray="`${this.formatAverage(vote_average)} 100`"
         stroke-linecap="round"
-        fill="none"
-        cx="16.91549431"
-        cy="16.91549431"
-        r="15.91549431"
-      ></circle>
+      ></path>
       <g class="circle-chart__info">
         <text
           data-test="movie-overview-average"
           class="circle-chart__percent font-weight-bold"
-          x="16.91549431"
-          y="16"
+          x="18"
+          y="17"
           alignment-baseline="central"
           text-anchor="middle"
           font-size="8"
@@ -62,10 +59,17 @@ export default {
 </script>
 
 <style>
+.circle-bg {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.6);
+  stroke-width: 4.2;
+}
 .circle-chart__circle {
   animation: circle-chart-fill 2s reverse;
   transform: rotate(-90deg);
   transform-origin: center;
+  fill: none;
+  stroke-width: 2.5;
 }
 
 @keyframes circle-chart-fill {

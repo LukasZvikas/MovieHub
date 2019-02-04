@@ -62,17 +62,12 @@ describe("Movie Details after fetch", () => {
   beforeEach(() => {
     wrapper.vm.$nextTick(() => {
       wrapper.setData({ ...movie_data });
-      //   expect(wrapper.vm.$el).toMatchSnapshot();
     });
   });
-
-  it("favorites button gets alled", () => {
-    wrapper
-      .find('[data-test="movie-overview-favorites-button"]')
-      .trigger("click");
-  });
+  
 
   it("movie title is correct", () => {
+    expect(wrapper.vm.$el).toMatchSnapshot();
     expect(wrapper.find('[data-test="movie-overview-title"]').text()).toBe(
       "A Star Is Born"
     );

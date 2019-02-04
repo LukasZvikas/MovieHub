@@ -1,11 +1,8 @@
 import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
-
 import Favorites from "../";
-
+import PercentCircle from "../../svg/PercentCircle";
 import Vuex from "vuex";
-
 const localVue = createLocalVue();
-
 localVue.use(Vuex);
 
 jest.mock("../../../utilities/fetch");
@@ -18,7 +15,7 @@ const movie_data = {
       poster_path: "wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg",
       title: "A Star Is Born",
       release_date: "2018-08-24",
-      vote_average: 8.4,
+      vote_average: 8.7,
       overview:
         "Seasoned musician Jackson Maine discovers—and falls in love with—struggling artist Ally. She has just about given up on her dream to make it big as a singer",
       genres: [{ name: "Drama" }, { name: "Music" }],
@@ -55,7 +52,6 @@ describe("Movie Details after fetch", () => {
   beforeEach(() => {
     wrapper.vm.$nextTick(() => {
       wrapper.setData({ ...movie_data });
-      expect(wrapper.vm.$el).toMatchSnapshot();
     });
   });
   it("has one favorites item", () => {
@@ -63,9 +59,18 @@ describe("Movie Details after fetch", () => {
       1
     );
   });
-  it("movie title is correct", () => {
+  it("favorites movie title is correct", () => {
+    expect(wrapper.vm.$el).toMatchSnapshot();
     expect(wrapper.find('[data-test="favorites-list-item-title"]').text()).toBe(
       "A Star Is Born"
+    );
+  });
+  it("favorites item has a percent circle component", () => {
+    expect(wrapper.contains(PercentCircle)).toBe(true);
+  });
+  it("favorites items' percent component is rendered with the correct vote average", () => {
+    expect(wrapper.find('[data-test="movie-overview-average"]').text()).toBe(
+      "87%"
     );
   });
 });
