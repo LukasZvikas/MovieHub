@@ -47,10 +47,5 @@ export default {
 </script>
 
 <style lang="scss">
-.heading-1 {
-  background: linear-gradient(59deg, rgb(255, 28, 114) 0%, rgb(226, 2, 87) 54%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 3.5rem;
-}
+
 </style>

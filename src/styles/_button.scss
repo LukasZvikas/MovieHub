@@ -9,3 +9,17 @@
     border-color: $secondary;
   }
 }
+
+.btn-secondary {
+  border-radius: 1.6rem;
+  width: 8rem;
+  height: 3rem;
+  border: 1px solid #f2005b;
+  background-color: $primary;
+  color: #f2005b;
+  &:hover {
+    background-color: $primary;
+    color: $white;
+    border: 1px solid $white;
+  }
+}
