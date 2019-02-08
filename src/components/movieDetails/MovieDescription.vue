@@ -41,6 +41,13 @@
           >
             <Favorite class="svgclass" :fill="determineFavoritesFill"/>
           </div>
+          <div
+            class="movie-overview-trailer-btn d-flex justify-content-center align-items-center ml-1 flex-column"
+            @click="showTrailer"
+          >
+            <div class="font-weight-bold">Play Trailer</div>
+            <play-video/>
+          </div>
         </div>
         <div class="mb-2">
           <h3 class="font-weight-bold mt-2">Overview</h3>
@@ -63,6 +70,7 @@
 import PercentCircle from "../svg/PercentCircle";
 import Bookmark from "../svg/Bookmark";
 import Favorite from "../svg/Favorite";
+import PlayVideo from "../svg/PlayVideo";
 import { getAuthToken } from "../../utilities/localStorage";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 import postFetchFactory from "../../utilities/postFetch";
@@ -71,7 +79,8 @@ export default {
   components: {
     PercentCircle,
     Bookmark,
-    Favorite
+    Favorite,
+    PlayVideo
   },
 
   props: {
@@ -107,7 +116,9 @@ export default {
       "addToFavorites",
       "removeFromFavorites",
       "addToWatchlist",
-      "removeFromWatchlist"
+      "removeFromWatchlist",
+      "showTrailer",
+      "closeTrailer"
     ]),
     getPosterPath(path) {
       return generatePosterPath(path);

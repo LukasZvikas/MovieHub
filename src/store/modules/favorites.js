@@ -1,11 +1,15 @@
+import { stat } from "fs";
+
 const state = {
   isMovieFavorited: false,
-  isMovieWatchlisted: false
+  isMovieWatchlisted: false,
+  isTrailerOpen: false
 };
 
 const getters = {
   isFavorite: state => state.isMovieFavorited,
-  isInWatchlist: state => state.isMovieWatchlisted
+  isInWatchlist: state => state.isMovieWatchlisted,
+  isTrailerShown: state => state.isTrailerOpen
 };
 
 const mutations = {
@@ -20,6 +24,12 @@ const mutations = {
   },
   removeFromWatchlist(state) {
     state.isMovieWatchlisted = false;
+  },
+  showTrailer(state) {
+    state.isTrailerOpen = true;
+  },
+  closeTrailer(state) {
+    state.isTrailerOpen = false;
   }
 };
 

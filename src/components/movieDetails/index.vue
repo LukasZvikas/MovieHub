@@ -2,7 +2,7 @@
   <div class="movie-overview h-100">
     <movie-description :movie_details="movie_details"/>
     <cast-list :cast="cast"/>
-    <trailer-modal/>
+    <trailer-modal :trailer_id="trailer_id"/>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
     return {
       cast: [],
       movie_details: {},
-      favoriteFillColor: "#fff"
+      trailer_id: ""
     };
   },
   async created() {
@@ -43,9 +43,23 @@ export default {
     );
     this.cast = castDetails.cast.slice(0, 4);
 
-    await this.CheckIfFavorited();
+    const favoritesURL = "http://localhost:5000/user/check_if_favorited";
 
-    await this.CheckIfWatchlisted();
+    const watchlistURL = "http://localhost:5000/user/check_if_watchlisted";
+
+    await this.getUsersMovieData(
+      "favorites",
+      favoritesURL,
+      this.addToFavorites
+    );
+
+    await this.getUsersMovieData(
+      "watchlist",
+      watchlistURL,
+      this.addToWatchlist
+    );
+
+    await this.getVideoTrailerData(this.movie_details.id);
   },
 
   beforeDestroy() {
@@ -63,37 +77,25 @@ export default {
     async getDetails(movieId) {
       this.movie_details = await fetchMovieDetails(movieId);
     },
-    async CheckIfFavorited() {
+    async getUsersMovieData(type, url, fn) {
       const token = getAuthToken();
       const movieData = {
         token,
         movie_id: this.movie_details.id,
-        type: "favorites"
+        type
       };
 
-      const response = await postFetchFactory(
-        "http://localhost:5000/user/check_if_favorited",
-        movieData
-      );
+      const response = await postFetchFactory(url, movieData);
       if (response.data.isFavorited) {
-        this.addToFavorites();
+        fn();
       }
     },
-    async CheckIfWatchlisted() {
-      const token = getAuthToken();
-      const movieData = {
-        token,
-        movie_id: this.movie_details.id,
-        type: "watchlist"
-      };
+    async getVideoTrailerData(movie_id) {
+      const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos`;
 
-      const response = await postFetchFactory(
-        "http://localhost:5000/user/check_if_watchlisted",
-        movieData
-      );
-      if (response.data.isFavorited) {
-        this.addToWatchlist();
-      }
+      const response = await fetchFactory(url);
+
+      this.trailer_id = response.results[0].key;
     },
     getPosterPath(path) {
       return generatePosterPath(path);
