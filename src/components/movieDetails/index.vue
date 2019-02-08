@@ -1,12 +1,14 @@
 <template>
   <div class="movie-overview h-100">
-    <MovieDescription :movie_details="movie_details"/>
-    <CastList :cast="cast"/>
+    <movie-description :movie_details="movie_details"/>
+    <cast-list :cast="cast"/>
+    <trailer-modal/>
   </div>
 </template>
 
 <script>
 import MovieDescription from "./MovieDescription";
+import TrailerModal from "./TrailerModal";
 import CastList from "./CastList";
 import fetchFactory from "../../utilities/fetch";
 import postFetchFactory from "../../utilities/postFetch";
@@ -18,7 +20,8 @@ import { mapMutations } from "vuex";
 export default {
   components: {
     MovieDescription,
-    CastList
+    CastList,
+    TrailerModal
   },
   data() {
     return {
