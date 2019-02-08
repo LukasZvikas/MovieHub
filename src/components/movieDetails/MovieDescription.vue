@@ -124,7 +124,6 @@ export default {
         "http://localhost:5000/user/add_to_favorites",
         movieData
       );
-      console.log("resss");
       if (response.status === "added") this.addToFavorites();
       else if (response.status === "removed") this.removeFromFavorites();
     },

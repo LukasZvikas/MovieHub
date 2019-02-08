@@ -21,16 +21,13 @@ export default {
   },
   async created() {
     const response = await this.findUsersFavoriteMovies();
-    console.log("respone", response);
     await response.forEach(async movie_id => {
       const movieDetails = await fetchFactory(
         `https://api.themoviedb.org/3/movie/${movie_id}`
       );
 
-      console.log("movieDetails", movieDetails)
       this.movies.push(movieDetails);
     });
-    console.log("movies", this.movies);
   },
   methods: {
     async findUsersFavoriteMovies() {
@@ -38,7 +35,10 @@ export default {
 
       const token = getAuthToken();
 
-      const response = await postFetchFactory(url, { token, type: "favorites" });
+      const response = await postFetchFactory(url, {
+        token,
+        type: "favorites"
+      });
 
       return response.data;
     }
@@ -47,5 +47,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>

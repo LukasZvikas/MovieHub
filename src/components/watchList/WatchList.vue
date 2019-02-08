@@ -5,11 +5,18 @@
       v-for="(movie, index) in movies"
       :key="index"
       @click="showMovieDetails(movie.id)"
-      data-test="favorites-list-item-wrapper"
+      data-test="watchlist-list-item"
     >
-      <div class="release-date">
-        <span class="release-date__heading">Release Date:</span>
-        <span class="release-date__date">{{determineIfReleased(movie.release_date)}}</span>
+      <div class="release-date d-flex align-items-center">
+        <clock :fill="'#f70963'"/>
+        <span
+          class="release-date__heading"
+          data-test="watchlist-list-item-date-heading"
+        >Release Date:</span>
+        <span
+          class="release-date__date"
+          data-test="watchlist-list-item-date"
+        >{{formatReleaseDate(movie.release_date)}}</span>
       </div>
       <div
         class="favorites__list-item card w-100 justify-content-start align-items-start p-2"
@@ -27,14 +34,17 @@
 
 <script>
 import WatchListItem from "./WatchListItem";
+import Clock from "../svg/Clock";
 import { months } from "../../utilities/months";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 export default {
   components: {
-    WatchListItem
+    WatchListItem,
+    Clock
   },
   props: {
-    movies: Array
+    movies: Array,
+    months
   },
   methods: {
     getPosterPath(path) {
@@ -53,18 +63,13 @@ export default {
     showMovieDetails(id) {
       this.$router.push({ path: `/movie/${id}` });
     },
-    determineIfReleased(release_date) {
-      const dateToday = new Date();
-      const releaseDate = new Date(release_date);
 
-      if (dateToday.getDate() > releaseDate) {
-        return "released!";
-      } else {
-        const month = release_date.slice(6, 7);
-        const day = release_date.slice(8, 10);
-        const year = release_date.slice(0, 4);
-        return ` ${months(parseInt(month)).slice(0, 3)} ${day} ${year}`;
-      }
+    formatReleaseDate(release_date) {
+      const month = parseInt(release_date.slice(6, 7));
+      const day = release_date.slice(8, 10);
+      const year = release_date.slice(0, 4);
+
+      return `${months(month).slice(0, 3)} ${day} ${year}`;
     }
   }
 };
@@ -81,13 +86,14 @@ export default {
 }
 .release-date {
   color: $white;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: inherit;
   padding: 0.8rem 2rem;
-  background-color: rgba(46, 49, 49, 1)
+  background-color: rgba(46, 49, 49, 1);
 }
 .release-date__heading {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
 }
 
 .release-date__date {

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Details after fetch watchlist movie title is correct 1`] = `
+<div
+  class="bg-dark h-100"
+>
+  <div
+    class="text-center font-weight-bold heading-1"
+  >
+    Your Watchlist
+  </div>
+   
+  <div
+    class="row"
+  />
+</div>
+`;

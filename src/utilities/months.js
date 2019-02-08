@@ -13,7 +13,8 @@ export const months = month => {
     "November",
     "December"
   ];
-  console.log("months", months, month);
 
   return months[month - 1];
 };
+
+

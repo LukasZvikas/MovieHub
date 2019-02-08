@@ -1,5 +1,5 @@
-import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
-
+import { mount, createLocalVue } from "@vue/test-utils";
+import { movie_data, cast_data } from "../../../utilities/movieMockData";
 import MovieDetails from "../";
 
 import Vuex from "vuex";
@@ -10,29 +10,6 @@ localVue.use(Vuex);
 
 jest.mock("../../../utilities/fetch");
 jest.mock("../../../utilities/postFetch");
-
-const cast_data = {
-  cast: [
-    {
-      name: "Bradley Cooper",
-      character: "Jackson Maine",
-      profile_path: "/z5LUl9bljJnah3S5rtN7rScrmI8.jpg"
-    }
-  ]
-};
-const movie_data = {
-  movie_details: {
-    id: 332562,
-    poster_path: "wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg",
-    title: "A Star Is Born",
-    release_date: "2018-08-24",
-    vote_average: 8.4,
-    overview:
-      "Seasoned musician Jackson Maine discovers—and falls in love with—struggling artist Ally. She has just about given up on her dream to make it big as a singer",
-    genres: [{ name: "Drama" }, { name: "Music" }],
-    backdrop_path: "/wqtaHWOEZ3rXDJ8c6ZZShulbo18.jpg"
-  }
-};
 
 describe("Movie Details after fetch", () => {
   let store;
@@ -64,7 +41,6 @@ describe("Movie Details after fetch", () => {
       wrapper.setData({ ...movie_data });
     });
   });
-  
 
   it("movie title is correct", () => {
     expect(wrapper.vm.$el).toMatchSnapshot();

@@ -32,7 +32,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
           class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0"
         >
           <h6
-            class="font-weight-bold mr-1 text-white"
+            class="font-weight-bold mr-1 text-white user-score"
           >
             <div>
               User
@@ -63,7 +63,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
                 d="M18 2.0845
         a 15.9155 15.9155 0 0 1 0 31.831
         a 15.9155 15.9155 0 0 1 0 -31.831"
-                stroke="#f70963"
+                stroke="#48AE48"
                 stroke-dasharray="87 100"
                 stroke-linecap="round"
                 stroke-width="2"
@@ -109,7 +109,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
           class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0"
         >
           <h6
-            class="font-weight-bold mr-1 text-white"
+            class="font-weight-bold mr-1 text-white user-score"
           >
             <div>
               User
@@ -140,7 +140,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
                 d="M18 2.0845
         a 15.9155 15.9155 0 0 1 0 31.831
         a 15.9155 15.9155 0 0 1 0 -31.831"
-                stroke="#f70963"
+                stroke="#48AE48"
                 stroke-dasharray="... 100"
                 stroke-linecap="round"
                 stroke-width="2"

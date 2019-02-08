@@ -1,7 +1,7 @@
 <template>
   <div class="bg-dark h-100">
     <div class="text-center font-weight-bold heading-1">Your Watchlist</div>
-    <watch-list :movies="watchlist"/>
+    <watch-list :movies="movies"/>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      watchlist: []
+      movies: []
     };
   },
   async created() {
@@ -28,7 +28,7 @@ export default {
         `https://api.themoviedb.org/3/movie/${movie_id}`
       );
 
-      this.watchlist.push(movieDetails);
+      this.movies.push(movieDetails);
     });
   },
   methods: {

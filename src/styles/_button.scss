@@ -14,9 +14,9 @@
   border-radius: 1.6rem;
   width: 8rem;
   height: 3rem;
-  border: 1px solid #f2005b;
+  border: 1px solid $secondary;
   background-color: $primary;
-  color: #f2005b;
+  color: $secondary;
   &:hover {
     background-color: $primary;
     color: $white;

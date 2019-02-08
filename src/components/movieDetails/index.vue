@@ -40,18 +40,23 @@ export default {
     );
     this.cast = castDetails.cast.slice(0, 4);
 
-   await this.CheckIfFavorited();
+    await this.CheckIfFavorited();
 
-   await this.CheckIfWatchlisted();
+    await this.CheckIfWatchlisted();
   },
 
   beforeDestroy() {
     this.removeFromFavorites();
-    this.removeFromWatchlist()
+    this.removeFromWatchlist();
   },
 
   methods: {
-    ...mapMutations(["addToFavorites", "removeFromFavorites", "addToWatchlist", "removeFromWatchlist"]),
+    ...mapMutations([
+      "addToFavorites",
+      "removeFromFavorites",
+      "addToWatchlist",
+      "removeFromWatchlist"
+    ]),
     async getDetails(movieId) {
       this.movie_details = await fetchMovieDetails(movieId);
     },
@@ -71,7 +76,7 @@ export default {
         this.addToFavorites();
       }
     },
-     async CheckIfWatchlisted() {
+    async CheckIfWatchlisted() {
       const token = getAuthToken();
       const movieData = {
         token,
