@@ -4,16 +4,13 @@
       class="trailer-modal-content-wrapper d-flex justify-content-center align-items-center flex-column"
     >
       <div class="trailer-modal-heading">
-        <div class="trailer-modal-heading-exit" @click="closeTrailer">
+        <div class="trailer-modal-heading-exit" @click="closeAntStopTrailer">
           <div class="trailer-modal-heading-exit-line"></div>
           <div class="trailer-modal-heading-exit-line"></div>
         </div>
       </div>
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe
-          class="embed-responsive-item"
-          :src="`https://www.youtube.com/embed/${trailer_id}?rel=0`"
-        ></iframe>
+        <iframe class="embed-responsive-item" src></iframe>
       </div>
     </div>
   </div>
@@ -25,15 +22,26 @@ export default {
   props: {
     trailer_id: String
   },
+  created() {
+    this.closeAntStopTrailer();
+  },
   computed: {
     ...mapGetters(["isTrailerShown"]),
     checkTrailerState() {
       const trailerState = this.isTrailerShown;
-      if (trailerState === false) return "visibility: hidden!important; opacity: 0;";
+      if (trailerState === false)
+        return "visibility: hidden!important; opacity: 0;";
+      document.querySelector("iframe").src = `https://www.youtube.com/embed/${
+        this.trailer_id
+      }?rel=0`;
     }
   },
   methods: {
-    ...mapMutations(["closeTrailer"])
+    ...mapMutations(["closeTrailer"]),
+    closeAntStopTrailer() {
+      document.querySelector("iframe").src = "";
+      this.closeTrailer();
+    }
   }
 };
 </script>
