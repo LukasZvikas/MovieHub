@@ -12,6 +12,126 @@ exports[`Movie Details after fetch watchlist movie title is correct 1`] = `
    
   <div
     class="row"
-  />
+  >
+    <div
+      class="col-sm-6 grow d-flex flex-column p-1"
+      data-test="watchlist-list-item"
+    >
+      <div
+        class="release-date d-flex align-items-center"
+      >
+        <svg
+          fill="#f70963"
+          height="32"
+          version="1.1"
+          viewBox="0 0 32 32"
+          width="32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20.586 23.414l-6.586-6.586v-8.828h4v7.172l5.414 5.414zM16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 28c-6.627 0-12-5.373-12-12s5.373-12 12-12c6.627 0 12 5.373 12 12s-5.373 12-12 12z"
+          />
+        </svg>
+         
+        <span
+          class="release-date__heading"
+          data-test="watchlist-list-item-date-heading"
+        >
+          Release Date:
+        </span>
+         
+        <span
+          class="release-date__date"
+          data-test="watchlist-list-item-date"
+        >
+          Aug 24 2018
+        </span>
+      </div>
+       
+      <div
+        class="user-movie-list-item card w-100 justify-content-start align-items-start p-2"
+        style="background-position: center; background-size: cover;"
+      >
+        <div
+          data-test="user-movie-list-item"
+        >
+          <div
+            class="user-movie-list-item-title font-weight-bold"
+            data-test="watchlist-list-item-title"
+          >
+            A Star Is Born
+          </div>
+           
+          <div
+            class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-sm-0 user-score"
+          >
+            <h6
+              class="font-weight-bold mr-1 text-white"
+            >
+              <div>
+                User
+              </div>
+               
+              <div>
+                Score
+              </div>
+            </h6>
+             
+            <div>
+              <svg
+                class="circle-chart"
+                height="70"
+                viewBox="0 0 36 36"
+                width="70"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                 
+                <path
+                  class="circle-chart__circle"
+                  d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
+                  stroke="#48AE48"
+                  stroke-dasharray="87 100"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                />
+                 
+                <g
+                  class="circle-chart__info"
+                >
+                  <text
+                    alignment-baseline="central"
+                    class="circle-chart__percent font-weight-bold"
+                    data-test="movie-overview-average"
+                    fill="#fff"
+                    font-size="8"
+                    text-anchor="middle"
+                    x="18"
+                    y="17"
+                  >
+                    87%
+                  </text>
+                </g>
+              </svg>
+            </div>
+          </div>
+           
+          <button
+            class="btn btn-secondary"
+            data-test="watchlist-list-item-button"
+          >
+            Show more
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

@@ -1,7 +1,7 @@
 <template>
   <div data-test="favorites-list-item">
     <div
-      class="favorites__list-item-title font-weight-bold"
+      class="user-movie-list-item-title font-weight-bold text-white"
       data-test="favorites-list-item-title"
     >{{title}}</div>
     <div class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0">
@@ -27,5 +27,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.user-movie-list-item-title {
+  font-size: 1.6rem;
+}
 </style>

@@ -3,8 +3,9 @@ import MovieDescription from "../MovieDescription";
 import PercentCircle from "../../svg/PercentCircle";
 import Bookmark from "../../svg/Bookmark";
 import Favorite from "../../svg/Favorite";
+import PlayVideo from "../../svg/PlayVideo";
 
-import FavoritesModule from "../../../store/modules/favorites";
+import MovieModule from "../../../store/modules/movies";
 
 jest.mock("../../../utilities/postFetch");
 
@@ -21,8 +22,12 @@ describe("MovieDescription", () => {
   let state;
   beforeEach(() => {
     actions = {
-      addToFavorites: jest.fn(() => {state.isMovieFavorited = true}),
-      removeFromFavorites: jest.fn(() => {state.isMovieFavorited = false})
+      addToFavorites: jest.fn(() => {
+        state.isMovieFavorited = true;
+      }),
+      removeFromFavorites: jest.fn(() => {
+        state.isMovieFavorited = false;
+      })
     };
 
     state = {
@@ -31,13 +36,13 @@ describe("MovieDescription", () => {
 
     store = new Vuex.Store({
       modules: {
-        FavoritesModule: {
+        MovieModule: {
           state,
-          getters: FavoritesModule.getters
+          getters: MovieModule.getters
         }
       }
     });
-    
+
     wrapper = shallowMount(MovieDescription, {
       propsData: {
         movie_details: {
@@ -50,7 +55,7 @@ describe("MovieDescription", () => {
   });
 
   it("addToFavorites gets called addToFavorites when favorites button is clicked", () => {
-    wrapper.setMethods({ addMovieToFavorites:jest.fn() })
+    wrapper.setMethods({ addMovieToFavorites: jest.fn() });
 
     wrapper
       .find('[data-test="movie-overview-favorites-button"]')
@@ -64,16 +69,14 @@ describe("MovieDescription", () => {
   });
 
   it("if movie is not favorited and addToFavorites is clicked, icon in favorite button becomes of color #f70963", () => {
+    actions.addToFavorites();
 
-    actions.addToFavorites()
- 
     expect(wrapper.find(Favorite).props("fill")).toBe("#f70963");
   });
 
   it("if movie is favorited and addToFavorites is clicked, icon in favorite button becomes of color #fff", () => {
-    
-    actions.removeFromFavorites()
- 
+    actions.removeFromFavorites();
+
     expect(wrapper.find(Favorite).props("fill")).toBe("#fff");
   });
 
@@ -85,6 +88,9 @@ describe("MovieDescription", () => {
   });
   it("has a Favorites button", () => {
     expect(wrapper.contains(Favorite)).toBe(true);
+  });
+  it("has a PlayButton button", () => {
+    expect(wrapper.contains(PlayVideo)).toBe(true);
   });
   describe("methods", () => {
     it("sliceData returns correct value if argument is not undefined", () => {

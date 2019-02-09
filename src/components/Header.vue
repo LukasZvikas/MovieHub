@@ -1,7 +1,10 @@
 <template>
   <ul class="nav">
     <div>
-      <router-link to="/" class="nav-link title header-logo text-white">MovieHub</router-link>
+      <router-link to="/" class="nav-link title header-logo text-white d-flex align-items-center">
+        <logo/>
+        <div>MovieHub</div>
+      </router-link>
     </div>
     <div class="nav-link-wrapper">
       <template v-for="(item, index) in decideNavLinks">
@@ -19,7 +22,11 @@
 <script>
 import { keys } from "../keys";
 import { mapGetters } from "vuex";
+import Logo from "./svg/Logo";
 export default {
+  components: {
+    Logo
+  },
   data() {
     return {
       navItems: [

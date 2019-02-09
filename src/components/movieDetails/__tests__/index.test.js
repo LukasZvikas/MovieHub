@@ -14,7 +14,8 @@ jest.mock("../../../utilities/postFetch");
 describe("Movie Details after fetch", () => {
   let store;
   let favGetters = {
-    isFavorite: () => true
+    isFavorite: () => true,
+    isTrailerShown: () => false
   };
 
   let authGetters = { isLoggedIn: () => true };
@@ -98,7 +99,8 @@ describe("Movie Details after fetch", () => {
 describe("CastList after fetch", () => {
   let store;
   let favGetters = {
-    isFavorite: () => true
+    isFavorite: () => true,
+    isTrailerShown: () => false
   };
 
   let authGetters = { isLoggedIn: () => true };

@@ -1,7 +1,7 @@
 <template>
-  <div data-test="favorites-list-item">
+  <div data-test="user-movie-list-item">
     <div
-      class="favorites__list-item-title font-weight-bold"
+      class="user-movie-list-item-title font-weight-bold"
       data-test="watchlist-list-item-title"
     >{{title}}</div>
     <div class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-sm-0 user-score">

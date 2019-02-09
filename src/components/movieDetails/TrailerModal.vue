@@ -1,16 +1,22 @@
 <template>
-  <div class="trailer-modal-container d-flex h-100" :style="checkTrailerState">
+  <div
+    :class="`trailer-modal-container d-flex h-100 ${checkTrailerState}`"
+    data-test="trailer-modal-container"
+  >
     <div
       class="trailer-modal-content-wrapper d-flex justify-content-center align-items-center flex-column"
     >
       <div class="trailer-modal-heading">
-        <div class="trailer-modal-heading-exit" @click="closeAntStopTrailer">
+        <div class="trailer-modal-heading-exit" @click="closeAndStopTrailer">
           <div class="trailer-modal-heading-exit-line"></div>
           <div class="trailer-modal-heading-exit-line"></div>
         </div>
       </div>
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src></iframe>
+        <iframe
+          class="embed-responsive-item"
+          :src="`https://www.youtube.com/embed/${trailer_id}?rel=0`"
+        ></iframe>
       </div>
     </div>
   </div>
@@ -22,24 +28,24 @@ export default {
   props: {
     trailer_id: String
   },
-  created() {
-    this.closeAntStopTrailer();
-  },
   computed: {
     ...mapGetters(["isTrailerShown"]),
     checkTrailerState() {
       const trailerState = this.isTrailerShown;
-      if (trailerState === false)
-        return "visibility: hidden!important; opacity: 0;";
-      document.querySelector("iframe").src = `https://www.youtube.com/embed/${
-        this.trailer_id
-      }?rel=0`;
+      if (!trailerState) return "hidden";
+
+      if (document.querySelector("iframe"))
+        document.querySelector("iframe").src = `https://www.youtube.com/embed/${
+          this.trailer_id
+        }?rel=0`;
+      return "visible";
     }
   },
   methods: {
     ...mapMutations(["closeTrailer"]),
-    closeAntStopTrailer() {
-      document.querySelector("iframe").src = "";
+    closeAndStopTrailer() {
+      if (document.querySelector("iframe"))
+        document.querySelector("iframe").src = "";
       this.closeTrailer();
     }
   }
@@ -54,7 +60,17 @@ export default {
   top: 0;
   left: 0;
   background: rgba(24, 24, 24, 0.8);
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s ease-out;
 }
 .trailer-modal-content-wrapper {
   height: 850px;

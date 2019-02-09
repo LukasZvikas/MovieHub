@@ -19,7 +19,7 @@
         >{{formatReleaseDate(movie.release_date)}}</span>
       </div>
       <div
-        class="favorites__list-item card w-100 justify-content-start align-items-start p-2"
+        class="user-movie-list-item card w-100 justify-content-start align-items-start p-2"
         :style="setBackgroundImage(movie.backdrop_path)"
       >
         <watch-list-item
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
-.favorites__list-item {
+.user-movie-list-item {
   height: 20rem;
   object-fit: cover;
   display: flex;
@@ -89,7 +89,7 @@ export default {
   font-size: 1.2rem;
   font-family: inherit;
   padding: 0.8rem 2rem;
-  background-color: rgba(46, 49, 49, 1);
+  background-color: $grey;
 }
 .release-date__heading {
   font-size: 1.2rem;

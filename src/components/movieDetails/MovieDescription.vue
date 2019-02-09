@@ -44,9 +44,10 @@
           <div
             class="movie-overview-trailer-btn d-flex justify-content-center align-items-center ml-1 flex-column"
             @click="showTrailer"
+            data-test="movie-overview-trailer-btn"
           >
             <div class="font-weight-bold">Play Trailer</div>
-            <play-video/>
+            <play-video class="movie-overview-play-video-icon"/>
           </div>
         </div>
         <div class="mb-2">
@@ -156,6 +157,13 @@ export default {
 </script>
 
 <style lang="scss">
+.movie-overview-trailer-btn:hover {
+  color: $secondary;
+}
+
+.movie-overview-trailer-btn:hover > .movie-overview-play-video-icon {
+  fill: $secondary;
+}
 .movie-overview-description {
   color: $white;
   display: flex;

@@ -14,7 +14,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
     class="row"
   >
     <div
-      class="favorites__list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
+      class="favorites-list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
       data-test="favorites-list-item-wrapper"
       style="background-position: center; background-size: cover;"
     >
@@ -22,7 +22,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
         data-test="favorites-list-item"
       >
         <div
-          class="favorites__list-item-title font-weight-bold"
+          class="user-movie-list-item-title font-weight-bold text-white"
           data-test="favorites-list-item-title"
         >
           A Star Is Born
@@ -91,7 +91,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
       </div>
     </div>
     <div
-      class="favorites__list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
+      class="favorites-list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
       data-test="favorites-list-item-wrapper"
       style="background-position: center; background-size: cover;"
     >
@@ -99,7 +99,7 @@ exports[`Movie Details after fetch favorites movie title is correct 1`] = `
         data-test="favorites-list-item"
       >
         <div
-          class="favorites__list-item-title font-weight-bold"
+          class="user-movie-list-item-title font-weight-bold text-white"
           data-test="favorites-list-item-title"
         >
           
