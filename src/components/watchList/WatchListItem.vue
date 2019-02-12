@@ -30,8 +30,8 @@ export default {
 </script>
 
 <style lang="scss">
-.favorites__list-item-title {
-  font-size: 1.6rem;
+.user-movie-list-item-title {
+  font-size: 1.4rem;
   color: $white;
 }
 </style>

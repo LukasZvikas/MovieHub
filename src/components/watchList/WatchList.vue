@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div
-      class="col-sm-6 grow d-flex flex-column p-1"
+      class="col-sm-5 grow d-flex flex-column p-2"
       v-for="(movie, index) in movies"
       :key="index"
       @click="showMovieDetails(movie.id)"

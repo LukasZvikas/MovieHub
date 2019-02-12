@@ -4,7 +4,9 @@
 <template>
   <div class="container-fluid">
     <Header/>
-    <router-view></router-view>
+    <div style="margin-top: 6rem">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

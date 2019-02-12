@@ -48,7 +48,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 }
 </style>
