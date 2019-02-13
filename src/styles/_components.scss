@@ -42,7 +42,8 @@
 }
 
 .heading-1 {
-  background: linear-gradient(59deg, rgb(214, 14, 89) 40%, rgb(158, 17, 68) 54%);
+  background: linear-gradient(59deg, $secondary 40%, $secondary-dark 54%);
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3.5rem;
@@ -51,4 +52,9 @@
 
 .user-score {
   padding: 1.6rem 0 !important;
+}
+
+a {
+  text-decoration: none !important;
+  padding: 0;
 }

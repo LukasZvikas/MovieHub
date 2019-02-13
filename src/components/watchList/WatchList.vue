@@ -89,7 +89,7 @@ export default {
   font-size: 1.2rem;
   font-family: inherit;
   padding: 0.8rem 2rem;
-  background-color: $grey;
+  background-color: $black;
 }
 .release-date__heading {
   font-size: 1.2rem;

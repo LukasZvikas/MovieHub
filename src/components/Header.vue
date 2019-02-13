@@ -6,8 +6,13 @@
         <div style="margin-left: 0.5rem">MovieHub</div>
       </router-link>
     </div>
-    <input type="checkbox" class="navigation__checkbox" id="nav-toggle">
-    
+    <input
+      type="checkbox"
+      class="navigation__checkbox"
+      id="nav-toggle"
+      :checked="headerState"
+      @input="changeCheckBoxState"
+    >
     <label for="nav-toggle" class="navigation__button">
       <span class="navigation__icon">&nbsp;</span>
     </label>
@@ -15,7 +20,7 @@
       <ul class="navigation__list">
         <template v-for="(item, index) in decideNavLinks">
           <router-link :to="item.href" :key="index" style="color: #fff">
-            <li class="navigation__item">{{item.name}}</li>
+            <li class="navigation__item" @click="changeCheckBoxState">{{item.name}}</li>
           </router-link>
         </template>
         <div v-if="isUserLoggedIn">
@@ -43,7 +48,8 @@ export default {
         { href: "/signup", name: "Sign Up" },
         { href: "/profile", name: "Profile" },
         { href: "/watchlist", name: "Watchlist" }
-      ]
+      ],
+      headerState: false
     };
   },
   computed: {
@@ -69,6 +75,12 @@ export default {
     isUserLoggedIn() {
       return this.isLoggedIn;
     }
+  },
+  methods: {
+    changeCheckBoxState() {
+      this.headerState = !this.headerState;
+      console.log(this.headerState);
+    }
   }
 };
 </script>
@@ -85,21 +97,18 @@ export default {
   color: $white;
 }
 
-a {
-  text-decoration: none !important;
-}
-
 .navigation {
   position: fixed;
   top: 0px;
   display: flex;
   width: 100%;
   align-items: center;
-  justify-items: end;
+  justify-content: space-between;
   background-color: $black;
   z-index: 400;
-  font-family: inherit; 
+  font-family: inherit;
   height: 6rem;
+  padding: 0 2rem 0 2rem;
 
   &__checkbox {
     display: none;
@@ -122,26 +131,10 @@ a {
     }
   }
 
-  ///safari navigation __button
-  //   display: grid;
-  // /* height: 7rem; */
-  // width: 100%;
-  // /* top: 6rem; */
-  // /* right: 3rem; */
-  // border-radius: 50%;
-  // z-index: 2000;
-  // text-align: center;
-  // cursor: pointer;
-  // justify-items: end;
-  // margin: 0 2rem 0 0;
-  // align-items: center;
-
   &__button {
     display: flex;
-    height: 7rem;
-    width: 100%;
+    height: 6rem;
     justify-content: flex-end;
-    margin: 0 3rem 0 0;
     border-radius: 50%;
     z-index: 2000;
     text-align: center;
@@ -150,20 +143,8 @@ a {
     align-items: center;
   }
 
-  // &__background {
-  //   height: 6rem;
-  //   width: 6rem;
-  //   border-radius: 50%;
-
-  //   top: 6.5rem;
-  //   right: 6.5rem;
-  //   background-color: #000;
-  //   z-index: 1000;
-  // }
-
   &__nav {
     height: 100vh;
-    width: 100%;
     position: fixed;
     top: 0;
     right: 0;
@@ -174,10 +155,8 @@ a {
     text-align: center;
     opacity: 0;
     width: 0;
-    transition: all 0.6s;
+    transition: all 0.8s;
     background-color: black;
-
-    // cubic-bezier(0.68, -0.55, 0.265, 1.55)
   }
 
   &__list {
@@ -196,8 +175,6 @@ a {
     text-transform: uppercase;
     font-weight: 400;
     margin: 1rem;
-    text-decoration: none !important;
-    // border: 1px solid #d3d3d3;
     background-image: linear-gradient(
       120deg,
       transparent 0%,
@@ -214,10 +191,6 @@ a {
       transform: translateX(1rem);
     }
   }
-
-  // &__checkbox:checked ~ &__background {
-
-  // }
 
   &__checkbox:checked ~ &__nav {
     opacity: 1;
@@ -292,17 +265,6 @@ a {
   }
   to {
     opacity: 1;
-  }
-}
-
-.feather {
-  @media only screen and (min-width: 375px) {
-    width: 7.5rem;
-    height: 4.5rem;
-  }
-  @media only screen and (min-width: 1200px) {
-    width: 6rem;
-    height: 3rem;
   }
 }
 </style>
