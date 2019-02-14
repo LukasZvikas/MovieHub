@@ -42,7 +42,7 @@
 }
 
 .heading-1 {
-  background: linear-gradient(59deg, $secondary 40%, $secondary-dark 54%);
+  background: $secondary-gradient-regular;
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

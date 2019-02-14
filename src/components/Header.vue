@@ -88,6 +88,7 @@ export default {
 <style lang="scss">
 .title {
   font-size: 1.6rem;
+  padding: 0;
 }
 .nav-link-wrapper {
   display: flex;

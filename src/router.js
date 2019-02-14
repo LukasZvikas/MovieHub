@@ -44,7 +44,12 @@ export const routes = [
   {
     path: "/movie/:id",
     component: () => import("./components/movieDetails")
+  },
+  {
+    path: "/profile",
+    component: () => import("./components/profile")
   }
+
 ];
 
 export default new VueRouter({

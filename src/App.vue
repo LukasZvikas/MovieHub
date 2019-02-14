@@ -22,11 +22,12 @@ export default {
     this.getUser();
   },
   methods: {
-    ...mapMutations(["setUserAuth"]),
-    handleSuccess() {
+    ...mapMutations(["setUserAuth", "setUserData"]),
+    handleSuccess(data) {
       const checkToken = getAuthToken();
       if (checkToken) {
         this.setUserAuth();
+        this.setUserData(data);
       }
     },
     handleError(error) {
@@ -47,7 +48,8 @@ export default {
       })
         .then(res =>
           res.json().then(res => {
-            this.handleSuccess(res.token);
+            console.log("ressss", res);
+            this.handleSuccess(res);
           })
         )
         .catch(error => handleError(error));

@@ -5,6 +5,12 @@ $theme-colors: (
 $primary: #191414;
 $secondary: #d60e59;
 $secondary-dark: #9e1144;
+$secondary-gradient-regular: linear-gradient(
+  95deg,
+  $secondary 0,
+  $secondary-dark 77%
+);
+
 $grey: #2e3138;
 $border-radius: 10rem;
 
