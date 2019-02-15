@@ -1,17 +1,17 @@
 <template>
   <div class="profile__recommended-list h-100 row d-flex flex-direction-column">
-    <recommended-list-item v-for="(movie, index) in recommended" :key="index" :movie_data="movie"/>
+    <movie-list-item v-for="(movie, index) in recommended" :key="index" :movie="movie"/>
   </div>
 </template>
 
 <script>
 import fetchFactory from "../../utilities/fetch";
 import { mapGetters } from "vuex";
-import RecommendedListItem from "./RecommendedListItem";
+import MovieListItem from "../reusable/MovieListItem";
 
 export default {
   components: {
-    RecommendedListItem
+    MovieListItem
   },
   props: {
     movie_id: Number
@@ -22,29 +22,26 @@ export default {
     };
   },
   created() {
-    this.getRecommendedMovies(this.getUserData.favorites[0]);
+    const usersFavorites = this.getUserData.favorites;
+    const randomId = this.createRandomSuggestion(usersFavorites);
+    console.log("rand", randomId);
+    this.getRecommendedMovies(usersFavorites[randomId]);
   },
   computed: {
     ...mapGetters(["getUserData"])
   },
   methods: {
+    createRandomSuggestion(arr) {
+      return Math.abs(Math.floor(Math.random() * arr.length - 1));
+    },
     async getRecommendedMovies(movie_id) {
       const url = `https://api.themoviedb.org/3/movie/${movie_id}/recommendations`;
 
       const response = await fetchFactory(url);
-      console.log(response.results);
-      this.recommended = response.results.slice(0, 4);
-    },
 
-    setBackgroundImage(path) {
-      return {
-        "background-image": `linear-gradient(59deg, rgba(25,20,20,0.3), rgba(25, 20, 20, 0.3)), url(${this.getPosterPath(
-          path
-        )})`,
-        "background-repeat": "no repeat",
-        "background-position": "center",
-        "background-size": "cover"
-      };
+      console.log(response);
+
+      this.recommended = response.results.slice(0, 4);
     }
   }
 };

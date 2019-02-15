@@ -1,0 +1,60 @@
+.movie-overview {
+  &__background-image {
+    width: 80%;
+  }
+  &__poster {
+    object-fit: cover;
+  }
+  &__description {
+    color: $white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin-right: 0.5rem;
+  }
+  &__release-date {
+    color: $light-grey;
+    font-size: 1.5rem;
+  }
+
+  &__add-to-user-list {
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    background-color: rgba(1, 1, 1, 0.6);
+    border: 2px solid $white;
+
+    &:hover {
+      background-color: $white;
+      border: 2px solid $white !important;
+    }
+    &:hover > .svgclass {
+      fill: $black;
+    }
+  }
+
+  &__trailer-btn:hover {
+    color: $secondary;
+  }
+
+  &__trailer-btn:hover > &__play-video-icon {
+    fill: $secondary;
+  }
+
+  &__poster-wrap {
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__genres {
+    background: $primary;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $secondary;
+  }
+}

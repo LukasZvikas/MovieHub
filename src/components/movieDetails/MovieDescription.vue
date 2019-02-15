@@ -1,53 +1,40 @@
 
 <template>
-  <div data-test="movie-overview-description-wrapper" :style="setBackgroundImage">
-    <div class="movie-overview-description-width row">
+  <div data-test="movie-overview" :style="setBackgroundImage">
+    <div class="movie-overview__background-image row">
       <div class="col-sm-12 col-md-4 movie-overview-poster-wrap">
         <img
-          data-test="movie-overview-poster"
+          data-test="movie-overview__poster"
           class="movie-overview-poster p-1 h-100 w-100"
           :src="getPosterPath(movie_details.poster_path)"
         >
       </div>
-
-      <div class="col-sm-12 col-md-8 movie-overview-description p-2 d-flex justify-content-center">
-        <div class="movie-overview-title font-weight-bolder d-flex align-items-center mb-2">
-          <h1 data-test="movie-overview-title" style="margin-right: 0.5rem">{{movie_details.title}}</h1>
-          <span
-            class="font-weight-regular movie-overview-release-date"
-            data-test="movie-overview-release-date"
-          >({{sliceDate(movie_details.release_date)}})</span>
-        </div>
+      <div class="col-sm-12 col-md-8 movie-overview__description p-2 d-flex justify-content-center">
+        <heading :release_date="movie_details.release_date" :title="movie_details.title"/>
         <div class="row d-flex justify-content-start align-items-center">
-          <div class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-4 mb-sm-0">
-            <h6 class="font-weight-bold mr-1">
-              <div>User</div>
-              <div>Score</div>
-            </h6>
-            <PercentCircle :vote_average="movie_details.vote_average"/>
-          </div>
+          <user-score :vote_average="movie_details.vote_average"/>
           <div
-            class="movie-overview-add-favorites d-flex justify-content-center align-items-center mr-1"
-            @click="addMovieToWatchlist"
+            class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center mr-1"
+            @click="addMovieToUsersList('watchlist')"
             :style="`border-color: ${determineWatchlistFill}`"
           >
             <Bookmark class="svgclass" :fill="determineWatchlistFill"/>
           </div>
           <div
-            class="movie-overview-add-favorites d-flex justify-content-center align-items-center"
-            @click="addMovieToFavorites"
+            class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center"
+            @click="addMovieToUsersList('favorites')"
             data-test="movie-overview-favorites-button"
             :style="`border-color: ${determineFavoritesFill}`"
           >
             <Favorite class="svgclass" :fill="determineFavoritesFill"/>
           </div>
           <div
-            class="movie-overview-trailer-btn d-flex justify-content-center align-items-center ml-1 flex-column"
+            class="movie-overview__trailer-btn d-flex justify-content-center align-items-center ml-1 flex-column"
             @click="showTrailer"
             data-test="movie-overview-trailer-btn"
           >
             <div class="font-weight-bold">Play Trailer</div>
-            <play-video class="movie-overview-play-video-icon"/>
+            <play-video class="movie-overview__play-video-icon"/>
           </div>
         </div>
         <div class="mb-2">
@@ -57,7 +44,7 @@
         <div class="row">
           <div
             data-test="movie-overview-genre"
-            class="movie-overview-genres m-1 col-4 col-md-4 p-1"
+            class="movie-overview__genres m-1 col-4 col-md-4 p-1"
             v-for="(item, index) in movie_details.genres"
             :key="index"
           >{{item.name}}</div>
@@ -68,7 +55,8 @@
 </template>
 
 <script>
-import PercentCircle from "../svg/PercentCircle";
+import UserScore from "../reusable/UserScore";
+import Heading from "./Heading";
 import Bookmark from "../svg/Bookmark";
 import Favorite from "../svg/Favorite";
 import PlayVideo from "../svg/PlayVideo";
@@ -78,12 +66,12 @@ import postFetchFactory from "../../utilities/postFetch";
 import { mapGetters, mapMutations } from "vuex";
 export default {
   components: {
-    PercentCircle,
+    UserScore,
     Bookmark,
     Favorite,
-    PlayVideo
+    PlayVideo,
+    Heading
   },
-
   props: {
     movie_details: Object
   },
@@ -124,91 +112,29 @@ export default {
     getPosterPath(path) {
       return generatePosterPath(path);
     },
-    sliceDate(date) {
-      return date ? date.slice(0, 4) : "...";
-    },
-    async addMovieToFavorites() {
+    async addMovieToUsersList(type) {
       const token = getAuthToken();
       const { id } = this.movie_details;
-      const movieData = { token, movie_id: id, type: "favorites" };
+      const movieData = { token, movie_id: id, type };
 
       const response = await postFetchFactory(
-        "http://localhost:5000/user/add_to_favorites",
-        movieData
-      );
-      if (response.status === "added") this.addToFavorites();
-      else if (response.status === "removed") this.removeFromFavorites();
-    },
-    async addMovieToWatchlist() {
-      const token = getAuthToken();
-      const { id } = this.movie_details;
-      const movieData = { token, movie_id: id, type: "watchlist" };
-
-      const response = await postFetchFactory(
-        "http://localhost:5000/user/add_to_watchlist",
+        `http://localhost:5000/user/add_to_${type}`,
         movieData
       );
 
-      if (response.status === "added") this.addToWatchlist();
-      else if (response.status === "removed") this.removeFromWatchlist();
+      if (type === "watchlist") {
+        response.status === "added"
+          ? this.addToWatchlist()
+          : this.removeFromWatchlist();
+      } else {
+        response.status === "added"
+          ? this.addToFavorites()
+          : this.removeFromFavorites();
+      }
     }
   }
 };
 </script>
 
-<style lang="scss">
-.movie-overview-trailer-btn:hover {
-  color: $secondary;
-}
-
-.movie-overview-trailer-btn:hover > .movie-overview-play-video-icon {
-  fill: $secondary;
-}
-.movie-overview-description {
-  color: $white;
-  display: flex;
-  flex-direction: column;
-}
-
-.movie-overview-poster-wrap {
-  object-fit: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.movie-overview-release-date {
-  color: grey;
-  font-size: 1.5rem;
-}
-.movie-overview-poster {
-  object-fit: cover;
-}
-.movie-overview-add-favorites {
-  border-radius: 50%;
-  height: 4rem;
-  width: 4rem;
-  background-color: rgba(1, 1, 1, 0.6);
-  border: 2px solid $white;
-
-  &:hover {
-    background-color: $white;
-    border: 2px solid $white !important;
-  }
-  &:hover > .svgclass {
-    fill: $black;
-  }
-}
-.movie-overview-genres {
-  background: $primary;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid $secondary;
-}
-
-.movie-overview-description-width {
-  width: 80%;
-}
+<style>
 </style>
