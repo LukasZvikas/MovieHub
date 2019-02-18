@@ -5,7 +5,7 @@
     </div>
     <div class="text-center font-weight-bold heading-1">Update your account</div>
     <user-details-form/>
-    <div class="text-center font-weight-bold heading-1">Total movies watched: 0</div>
+    <div class="text-center font-weight-bold heading-1">Total movies watched: {{getUserWatchedCount}}</div>
     <div class="heading-2 m-2">Movies you might also like</div>
     <recommended-list/>
   </div>
@@ -25,6 +25,9 @@ export default {
     ...mapGetters(["getUserData"]),
     getUserInitials() {
       return this.getUserData.username.slice(0, 1).toUpperCase();
+    },
+    getUserWatchedCount() {
+      return this.getUserData.watched.length;
     }
   }
 };

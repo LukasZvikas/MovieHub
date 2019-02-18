@@ -25,7 +25,7 @@ export default {
     const usersFavorites = this.getUserData.favorites;
     const randomId = this.createRandomSuggestion(usersFavorites);
     console.log("rand", randomId);
-    this.getRecommendedMovies(usersFavorites[randomId]);
+    this.getRecommendedMovies(usersFavorites[randomId] || 500);
   },
   computed: {
     ...mapGetters(["getUserData"])

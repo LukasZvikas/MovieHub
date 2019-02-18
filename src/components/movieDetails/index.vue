@@ -47,6 +47,8 @@ export default {
 
     const watchlistURL = "http://localhost:5000/user/check_if_watchlisted";
 
+    const watchedURL = "http://localhost:5000/user/check_if_watched";
+
     await this.getUsersMovieData(
       "favorites",
       favoritesURL,
@@ -59,12 +61,14 @@ export default {
       this.addToWatchlist
     );
 
+    await this.getUsersMovieData("watched", watchedURL, this.addToWatched);
     await this.getVideoTrailerData(this.movie_details.id);
   },
 
   beforeDestroy() {
     this.removeFromFavorites();
     this.removeFromWatchlist();
+    this.removeFromWatched();
   },
 
   methods: {
@@ -72,7 +76,9 @@ export default {
       "addToFavorites",
       "removeFromFavorites",
       "addToWatchlist",
-      "removeFromWatchlist"
+      "removeFromWatchlist",
+      "addToWatched",
+      "removeFromWatched"
     ]),
     async getDetails(movieId) {
       this.movie_details = await fetchMovieDetails(movieId);

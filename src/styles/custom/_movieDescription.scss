@@ -19,6 +19,21 @@
     font-size: 1.5rem;
   }
 
+  &__watched-mark {
+    border-radius: 50%;
+    border: 2px solid $white;
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &:hover {
+      background-color: $white;
+    }
+
+    &:hover > .svgclass {
+      fill: $black;
+    }
+  }
+
   &__add-to-user-list {
     border-radius: 50%;
     height: 4rem;

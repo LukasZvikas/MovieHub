@@ -38,7 +38,16 @@
           </div>
         </div>
         <div class="mb-2">
-          <h3 class="font-weight-bold mt-2">Overview</h3>
+          <div class="d-flex mt-2 align-items-center">
+            <h3 class="font-weight-bold mr-1">Overview</h3>
+            <div
+              class="movie-overview__watched-mark d-flex justify-content-center align-items-center flex-column"
+              :style="`border-color: ${determineWatchedFill}`"
+              @click="addMovieToUsersList('watched')"
+            >
+              <check-mark class="svgclass" :fill="determineWatchedFill"/>
+            </div>
+          </div>
           <div data-test="movie-overview-body">{{movie_details.overview}}</div>
         </div>
         <div class="row">
@@ -60,6 +69,7 @@ import Heading from "./Heading";
 import Bookmark from "../svg/Bookmark";
 import Favorite from "../svg/Favorite";
 import PlayVideo from "../svg/PlayVideo";
+import CheckMark from "../svg/CheckMark";
 import { getAuthToken } from "../../utilities/localStorage";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 import postFetchFactory from "../../utilities/postFetch";
@@ -70,13 +80,14 @@ export default {
     Bookmark,
     Favorite,
     PlayVideo,
-    Heading
+    Heading,
+    CheckMark
   },
   props: {
     movie_details: Object
   },
   computed: {
-    ...mapGetters(["isFavorite", "isInWatchlist"]),
+    ...mapGetters(["isFavorite", "isInWatchlist", "isWatched"]),
     setBackgroundImage() {
       return {
         "background-image": `linear-gradient(59deg, rgba(25,20,20,0.7) 53%, rgba(25, 20, 20, 0.8) 76%), url(${this.getPosterPath(
@@ -98,6 +109,11 @@ export default {
       const watchlisted = this.isInWatchlist;
       if (watchlisted) return "#f70963";
       return "#fff";
+    },
+    determineWatchedFill() {
+      const isWatched = this.isWatched;
+      if (isWatched) return "#48AE48";
+      return "#fff";
     }
   },
   methods: {
@@ -106,6 +122,8 @@ export default {
       "removeFromFavorites",
       "addToWatchlist",
       "removeFromWatchlist",
+      "addToWatched",
+      "removeFromWatched",
       "showTrailer",
       "closeTrailer"
     ]),
@@ -126,10 +144,14 @@ export default {
         response.status === "added"
           ? this.addToWatchlist()
           : this.removeFromWatchlist();
-      } else {
+      } else if (type === "favorites") {
         response.status === "added"
           ? this.addToFavorites()
           : this.removeFromFavorites();
+      } else {
+        response.status === "added"
+          ? this.addToWatched()
+          : this.removeFromWatched();
       }
     }
   }
