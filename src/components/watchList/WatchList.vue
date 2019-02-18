@@ -88,7 +88,7 @@ export default {
   color: $white;
   font-size: 1.2rem;
   font-family: inherit;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1rem;
   background-color: $black;
 }
 .release-date__heading {

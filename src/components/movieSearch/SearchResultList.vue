@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import MovieListItem from "../reusable/MovieListItem"
+import MovieListItem from "../reusable/MovieListItem";
 import SearchHeading from "./SearchHeading";
 export default {
   components: {

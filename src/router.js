@@ -49,7 +49,6 @@ export const routes = [
     path: "/profile",
     component: () => import("./components/profile")
   }
-
 ];
 
 export default new VueRouter({

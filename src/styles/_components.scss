@@ -50,6 +50,15 @@
   padding: 2rem 0;
 }
 
+.heading-2 {
+  padding: 0.4rem 1rem;
+  font-weight: bold;
+  border: 1px solid $secondary;
+  color: rgb(255, 255, 255);
+  font-size: 2.2rem;
+  text-align: center
+}
+
 .user-score {
   padding: 1.6rem 0 !important;
 }

@@ -1,10 +1,12 @@
 <template>
   <div class="profile d-flex flex-column justify-content-center align-items-center">
-    <div class="profile__circle d-flex justify-content-center align-items-center m-2">
+    <div class="profile__circle d-flex justify-content-center align-items-center mt-2">
       <div>{{getUserInitials}}</div>
     </div>
-    <div class="profile__movie-stats">Watched movies: 0</div>
-    <div class="profile__movie-stats m-2">Movies you might also like</div>
+    <div class="text-center font-weight-bold heading-1">Update your account</div>
+    <user-details-form/>
+    <div class="text-center font-weight-bold heading-1">Total movies watched: 0</div>
+    <div class="heading-2 m-2">Movies you might also like</div>
     <recommended-list/>
   </div>
 </template>
@@ -12,9 +14,12 @@
 <script>
 import { mapGetters } from "vuex";
 import RecommendedList from "./RecommendedList";
+import UserDetailsForm from "./UserDetailsForm";
+
 export default {
   components: {
-    RecommendedList
+    RecommendedList,
+    UserDetailsForm
   },
   computed: {
     ...mapGetters(["getUserData"]),

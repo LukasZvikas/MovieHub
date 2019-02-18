@@ -3,7 +3,7 @@
     <div class="movie-overview-heading mb-1">Top Billed Cast</div>
     <div class="row">
       <div
-        class="shadow-sm col-auto col-sm-auto  col-md-auto d-flex justify-content-center"
+        class="shadow-sm col-6 col-sm-auto col-md-auto d-flex justify-content-center"
         v-for="(item, index) in cast"
         :key="index"
       >
