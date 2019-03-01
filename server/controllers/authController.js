@@ -3,7 +3,6 @@ const JWT = require("jwt-simple");
 const jsonToken = require("jsonwebtoken");
 const keys = require("../config/keys");
 const sgMail = require("@sendgrid/mail");
-const crypto = require("crypto");
 const confirmTemplate = require("../services/confirmEmailTemplate");
 sgMail.setApiKey(keys.SENDGRID_KEY);
 
@@ -89,6 +88,33 @@ exports.signin = async (req, res, next) => {
     }
 
     res.json({ token: userToken(req.user) });
+  });
+};
+
+exports.updateUserData = async (req, res, next) => {
+  const token = req.body.token;
+  const newEmail = req.body.email;
+  const newPassword = req.body.password;
+
+  const decoded = JWT.decode(token, keys.JWT_SECRET);
+  await User.findById(decoded.id, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return res.status(422).send({ error: "User was not found" });
+    }
+
+    if (newEmail !== user.username) user.username = newEmail;
+
+    if (newPassword !== user.password) user.password = newPassword;
+
+    user.save(err => {
+      if (err) return next(err);
+
+      res.send({ success: "User data was updated successfully" });
+    });
   });
 };
 

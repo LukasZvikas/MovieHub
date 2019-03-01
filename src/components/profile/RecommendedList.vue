@@ -3,7 +3,6 @@
     <movie-list-item v-for="(movie, index) in recommended" :key="index" :movie="movie"/>
   </div>
 </template>
-
 <script>
 import fetchFactory from "../../utilities/fetch";
 import { mapGetters } from "vuex";

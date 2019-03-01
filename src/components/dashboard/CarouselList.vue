@@ -94,5 +94,4 @@ export default {
 .movie-list-wrapper:first-child {
   margin-top: 2rem;
 }
-
 </style>

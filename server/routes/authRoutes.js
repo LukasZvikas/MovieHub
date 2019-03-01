@@ -34,4 +34,6 @@ module.exports = app => {
   app.get("/reset/:token", emailController.forgotTokenGet);
 
   app.post("/reset/:token", emailController.forgotTokenPost);
+
+  app.post("/update", authController.updateUserData);
 };
