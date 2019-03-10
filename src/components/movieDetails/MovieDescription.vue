@@ -2,7 +2,7 @@
 <template>
   <div data-test="movie-overview" :style="setBackgroundImage">
     <div class="movie-overview__background-image row">
-      <div class="col-sm-12 col-md-4 movie-overview-poster-wrap">
+      <div class="col-sm-12 col-md-6 col-xl-4 movie-overview-poster-wrap">
         <img
           data-test="movie-overview__poster"
           class="movie-overview-poster p-1 h-100 w-100"
