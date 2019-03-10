@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div
-      class="col-sm-6 grow d-flex flex-column p-1"
+      class="col-sm-5 grow d-flex flex-column p-2"
       v-for="(movie, index) in movies"
       :key="index"
       @click="showMovieDetails(movie.id)"
@@ -88,8 +88,8 @@ export default {
   color: $white;
   font-size: 1.2rem;
   font-family: inherit;
-  padding: 0.8rem 2rem;
-  background-color: $grey;
+  padding: 0.8rem 1rem;
+  background-color: $black;
 }
 .release-date__heading {
   font-size: 1.2rem;

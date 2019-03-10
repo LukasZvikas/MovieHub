@@ -6,7 +6,7 @@
   >
     <img
       class="img-fluid img-cover"
-      :src="getPoster(movie.poster_path)"
+      :src="getPosterPath(movie.poster_path)"
       data-test="movie-item-search-box-image"
     >
     <div class="movie-item-box-title" data-test="movie-item-search-box-title">{{movie.title}}</div>
@@ -14,13 +14,14 @@
 </template>
 
 <script>
+import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 export default {
   props: {
     movie: Object
   },
   methods: {
-    getPoster: function(poster_path) {
-      return `http://image.tmdb.org/t/p/original/${poster_path}`;
+    getPosterPath(path) {
+      return generatePosterPath(path);
     },
     showMovieDetails(id) {
       this.$router.push({ path: `/movie/${id}` });

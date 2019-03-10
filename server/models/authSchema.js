@@ -14,7 +14,8 @@ const userSchema = new Schema({
   referral_code: String,
   referred_by: { type: String, default: null },
   favorites: [],
-  watchlist: []
+  watchlist: [],
+  watched: Array
   // resetPassExp: { type: Date, default: undefined }
 });
 

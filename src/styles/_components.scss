@@ -42,13 +42,36 @@
 }
 
 .heading-1 {
-  background: linear-gradient(59deg, rgb(214, 14, 89) 40%, rgb(158, 17, 68) 54%);
+  background: $secondary-gradient-regular;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3.5rem;
   padding: 2rem 0;
 }
 
+.heading-2 {
+  padding: 0.4rem 1rem;
+  font-weight: bold;
+  border: 1px solid $secondary;
+  color: rgb(255, 255, 255);
+  font-size: 2.2rem;
+  text-align: center;
+}
+
 .user-score {
   padding: 1.6rem 0 !important;
+}
+
+a {
+  text-decoration: none !important;
+  padding: 0;
+}
+
+.form-control:focus {
+  border: 2px solid $secondary !important;
+}
+
+.radio-primary {
+  background-color: $secondary !important;
 }

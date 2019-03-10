@@ -28,7 +28,6 @@ export default {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 100%;
   background: $primary;
 
   &.circle {
@@ -43,12 +42,12 @@ export default {
 
   &.items-wrap {
     height: 3rem;
-    width: 16rem;
+    width: 17rem;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div
-      class="favorites-list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
+      class="favorites__list-item card col-sm-5 grow d-flex justify-content-start align-items-start p-2"
       :style="setBackgroundImage(movie.backdrop_path)"
       v-for="(movie, index) in movies"
       :key="index"
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-.favorites-list-item {
+.favorites__list-item {
   height: 14rem;
   margin: 1rem;
   object-fit: cover;

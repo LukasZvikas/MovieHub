@@ -4,22 +4,16 @@
       class="user-movie-list-item-title font-weight-bold"
       data-test="watchlist-list-item-title"
     >{{title}}</div>
-    <div class="col-sm-auto col-md-auto d-flex align-items-center mr-1 mb-sm-0 user-score">
-      <h6 class="font-weight-bold mr-1 text-white">
-        <div>User</div>
-        <div>Score</div>
-      </h6>
-      <percent-circle :vote_average="vote_average"/>
-    </div>
+    <user-score :vote_average="vote_average"/>
     <button class="btn btn-secondary" data-test="watchlist-list-item-button">Show more</button>
   </div>
 </template>
 
 <script>
-import PercentCircle from "../svg/PercentCircle";
+import UserScore from "../reusable/UserScore";
 export default {
   components: {
-    PercentCircle
+    UserScore
   },
   props: {
     title: String,
@@ -30,8 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
-.favorites__list-item-title {
-  font-size: 1.6rem;
+.user-movie-list-item-title {
+  font-size: 1.4rem;
   color: $white;
 }
 </style>

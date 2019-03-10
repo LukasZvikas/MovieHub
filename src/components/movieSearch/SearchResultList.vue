@@ -6,7 +6,7 @@
         data-test="movie-search-query-result-heading"
       >Movies matching: "{{searchQuery}}"</div>
       <div class="row">
-        <SearchResultListItem v-for="(item, index) in searchResult" :key="index" :movie="item"/>
+        <movie-list-item v-for="(item, index) in searchResult" :key="index" :movie="item"/>
       </div>
     </div>
     <div
@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import SearchResultListItem from "./SearchResultListItem";
+import MovieListItem from "../reusable/MovieListItem";
 import SearchHeading from "./SearchHeading";
 export default {
   components: {
-    SearchResultListItem,
+    MovieListItem,
     SearchHeading
   },
   props: {

@@ -1,7 +1,7 @@
 <template>
   <div class="movie-list-wrapper">
-    <div style="color: #fff; display:flex; justify-content: center; font-size: 2.2rem;">
-      <div class="movie-list-title" :data-test="caroID">{{title}}</div>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="heading-2" :data-test="caroID">{{title}}</div>
     </div>
     <div :id="caroID" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -93,10 +93,5 @@ export default {
 <style lang='scss'>
 .movie-list-wrapper:first-child {
   margin-top: 2rem;
-}
-.movie-list-title {
-  padding: 0.4rem 1rem;
-  font-weight: bold;
-  border: 1px solid $secondary;
 }
 </style>

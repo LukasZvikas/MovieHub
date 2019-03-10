@@ -3,8 +3,16 @@ $theme-colors: (
 );
 
 $primary: #191414;
-$secondary: #f2005b;
+$secondary: #d60e59;
+$secondary-dark: #9e1144;
+$secondary-gradient-regular: linear-gradient(
+  95deg,
+  $secondary 0,
+  $secondary-dark 77%
+);
+
 $grey: #2e3138;
+$light-grey: #a2a2a2;
 $border-radius: 10rem;
 
 $body-bg: $secondary;
@@ -36,3 +44,4 @@ html {
 
 ///CUSTOMS
 @import "./custom/movieList";
+@import "./custom/movieDescription";
