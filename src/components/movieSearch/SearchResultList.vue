@@ -1,10 +1,19 @@
 <template>
-  <div data-test="movie-search-background-image" :class="showBackgoundImage">
-    <div v-if="searchResult.length !== 0 || searchResult === undefined">
+  <div data-test="movie-search-background-image" class="p-2" :class="showBackgoundImage">
+    <div v-if="searchResult.length !== 0 && this.searchQuery.length">
       <div
         class="search-term"
         data-test="movie-search-query-result-heading"
       >Movies matching: "{{searchQuery}}"</div>
+      <div class="row">
+        <movie-list-item v-for="(item, index) in searchResult" :key="index" :movie="item"/>
+      </div>
+    </div>
+    <div v-else-if="isFilterByDate && this.searchResult.length > 0" :class="showBackgoundImage">
+      <div class="search-term" data-test="movie-search-query-result-heading">
+        <div class="font-weight-bold">{{displayDate.year}}</div>
+        <div class="text-center heading-1 p-0" style="font-size: 2.5rem;">{{displayDate.month}}</div>
+      </div>
       <div class="row">
         <movie-list-item v-for="(item, index) in searchResult" :key="index" :movie="item"/>
       </div>
@@ -30,6 +39,8 @@
 <script>
 import MovieListItem from "../reusable/MovieListItem";
 import SearchHeading from "./SearchHeading";
+import { months } from "../../utilities/months";
+import { mapGetters } from "vuex";
 export default {
   components: {
     MovieListItem,
@@ -37,16 +48,25 @@ export default {
   },
   props: {
     searchResult: Array,
-    searchQuery: String
+    searchQuery: String,
+    isFilterByDate: Boolean
   },
   computed: {
+    ...mapGetters(["getSearchDate"]),
     showBackgoundImage() {
       if (this.searchQuery.length !== 0 && this.searchResult.length === 0) {
         return "image back-img-not-found";
       }
-      return this.searchQuery.length === 0
+      return this.searchResult.length === 0
         ? "image back-img-initial"
         : "movie-list";
+    },
+    displayDate() {
+      const date = this.getSearchDate;
+      const year = date.slice(0, 4);
+      const elements = date.split("");
+      const month = months(elements[elements.length - 1]);
+      return { year, month };
     }
   }
 };
@@ -56,7 +76,7 @@ export default {
 .search-term {
   font-size: 1.4rem;
   text-align: center;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .search-text-wrap {
   position: relative;

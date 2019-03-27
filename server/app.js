@@ -2,24 +2,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const bodyParser = require("body-parser");
-const passport = require("passport");
+const { isAuth } = require("./services/isAuth");
 const cors = require("cors");
 
-require("./services/regularAuth");
-require("./services/googleAuth");
-
-mongoose.connect(
-  keys.MONGO_KEY,
-  { useNewUrlParser: true }
-);
+mongoose.connect(keys.MONGO_KEY, { useNewUrlParser: true });
 
 const app = express();
 
 app.use(cors());
 
-app.use(bodyParser.json());
+app.use(isAuth);
 
-app.use(passport.initialize());
+app.use(bodyParser.json());
 
 require("./routes/authRoutes")(app);
 require("./routes/movieRoutes")(app);

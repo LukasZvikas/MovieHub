@@ -1,54 +1,13 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const FavoritesSchema = require("./favoritesSchema");
-const bcrypt = require("bcrypt-nodejs");
-
-const saltRounds = 10;
 
 const userSchema = new Schema({
-  username: { type: String, unique: true, lowercase: true },
-  password: String,
-  confirmed: { type: Boolean, default: false },
-  resetPassToken: { type: String, default: null },
-  points: { type: Number, default: 0 },
-  referral_code: String,
-  referred_by: { type: String, default: null },
+  email: { type: String, unique: true, lowercase: true },
+  password: { type: String, unique: true },
   favorites: [],
   watchlist: [],
   watched: Array
-  // resetPassExp: { type: Date, default: undefined }
 });
-
-userSchema.pre("save", function(next) {
-  const user = this;
-
-  if (!user.isModified("password")) {
-    return next();
-  }
-
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    if (err) {
-      next(err);
-    }
-
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) {
-        return next(err);
-      }
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-userSchema.methods.verifyPassword = function(candidatePassword, callback) {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, isMatch);
-  });
-};
 
 const authSchema = mongoose.model("users", userSchema);
 module.exports = authSchema;

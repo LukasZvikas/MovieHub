@@ -5,13 +5,14 @@
       @selected="onDateChange"
       v-model="selectedMonth"
       :monthLabels="months"
-      placeHolder="Select a month"
+      placeholder="Select a month"
     ></vue-monthly-picker>
   </div>
 </template>
 
 <script>
 import VueMonthlyPicker from "vue-monthly-picker";
+import { mapMutations } from "vuex";
 export default {
   components: {
     VueMonthlyPicker
@@ -36,8 +37,10 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setSearchDate"]),
     onDateChange() {
       this.$emit("dateChange", this.selectedMonth);
+      this.setSearchDate(this.selectedMonth);
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center align-items-center auth image back-image">
-    <form @submit.prevent="handleSubmit" class="form col-md-4 col-xs-12 p-4">
-      <div class="h3" style="margin-bottom: 2rem">Create new account</div>
+    <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-5">
+      <h2 class="text-center mb-2">Login to your account</h2>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
@@ -99,7 +99,7 @@ export default {
 
 <style lang="scss">
 .back-image {
-  @include image("../pacific.jpg", rgba(16, 29, 44, 0.7));
+  @include image("../pacific.jpg", rgba(0, 0, 0, 0.7));
 }
 .row {
   margin-left: 0;

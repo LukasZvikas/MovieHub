@@ -10,12 +10,10 @@ const getters = {
 
 const mutations = {
   setUserAuth(state) {
-    console.log("state", state);
     state.isLogged = true;
   },
   setUserData(state, data) {
     state.userData = data;
-    console.log(state);
   }
 };
 

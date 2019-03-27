@@ -1,31 +1,13 @@
 const authController = require("../controllers/authController");
 const emailController = require("../controllers/emailController");
-const passport = require("passport");
-const requireSignin = passport.authenticate("local", { session: false });
-const requireAuth = passport.authenticate("jwt", { session: false });
-const googleAuth = passport.authenticate("google", {
-  session: false,
-  scope: ["profile", "email"]
-});
+const { isAuth } = require("../services/isAuth");
 
 module.exports = app => {
   app.post("/user", authController.getUser);
 
-  app.get("/auth/google", googleAuth);
-
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google", {
-      session: false,
-      successRedirect: "/user",
-      failureRedirect: "/signup"
-    }),
-    authController.googleToken
-  );
-
   app.post("/user/signup", authController.signup);
 
-  app.post("/user/signin", requireSignin, authController.signin);
+  app.post("/user/signin", authController.signin);
 
   app.get("/confirmation/:token", emailController.confirmEmail);
 

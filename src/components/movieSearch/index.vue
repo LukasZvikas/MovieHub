@@ -5,7 +5,11 @@
       <DatePicker @dateChange="onDateChange"/>
     </div>
     <div class="col-sm-12 col-md-9" :style="determineClass">
-      <SearchResultList :searchResult="searchResult" :searchQuery="searchQuery"/>
+      <SearchResultList
+        :searchResult="searchResult"
+        :searchQuery="searchQuery"
+        :isFilterByDate="isFilterByDate"
+      />
     </div>
   </div>
 </template>
@@ -25,12 +29,13 @@ export default {
   data() {
     return {
       searchResult: [],
-      searchQuery: ""
+      searchQuery: "",
+      isFilterByDate: true
     };
   },
   computed: {
     determineClass() {
-      return this.searchQuery.length === 0
+      return this.searchResult.length === 0
         ? ""
         : "background: whitesmoke; overflow: auto;";
     }
@@ -55,14 +60,9 @@ export default {
       this.searchResult = response.results;
     },
     async onDateChange(date) {
-      // this.searchQuery = searchTerm;
-      // if (this.searchQuery.length === 0) {
-      //   this.searchResult = [];
-      //   return;
-      // }
       const fromDate = `${date._i}/1`.replace(/\//g, "-");
       const toDate = `${date._i}/28`.replace(/\//g, "-");
-      console.log("HAHAHAHA", fromDate, toDate);
+
       const url = `https://api.themoviedb.org/3/discover/movie`;
       const params = {
         language: "en-US",

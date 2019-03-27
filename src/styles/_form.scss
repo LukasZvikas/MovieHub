@@ -15,16 +15,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #001226;
+  background: $black;
 }
 .form-group {
   width: 100%;
   margin-bottom: 0;
 }
 
-// .form-control {
-//   height: 2.8rem;
-// }
+.form-control {
+  height: 2.6rem;
+}
 
 .form-wrapper {
   display: flex;

@@ -1,15 +1,7 @@
 const User = require("../models/authSchema");
 const JWT = require("jwt-simple");
-const jsonToken = require("jsonwebtoken");
+const bcrypt = require("bcrypt-nodejs");
 const keys = require("../config/keys");
-const sgMail = require("@sendgrid/mail");
-const confirmTemplate = require("../services/confirmEmailTemplate");
-sgMail.setApiKey(keys.SENDGRID_KEY);
-
-function userToken(user) {
-  const timestamp = new Date().getTime();
-  return JWT.encode({ id: user._id, iat: timestamp }, keys.JWT_SECRET);
-}
 
 exports.getUser = async (req, res, next) => {
   const token = req.body.token;
@@ -28,67 +20,60 @@ exports.getUser = async (req, res, next) => {
 exports.signup = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-
-  if (!email || !password) {
-    return res
-      .status(422)
-      .send({ error: "You must provide email and password" });
-  }
-
-  await User.findOne({ username: email }, async (err, existingUser) => {
-    if (err) {
-      return next(err);
-    }
-
+  console.log(email, password);
+  try {
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(422).send({ error: "This email is in use" });
+      res.status(401).send({ error: "User with this email already exists" });
     }
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = User({
-      username: email,
-      password: password
+    const user = new User({
+      email,
+      password: hashedPassword
     });
 
-    await newUser.save(err => {
-      if (err) {
-        return next(err);
-      }
+    const result = await user.save();
 
-      const emailJWT = jsonToken.sign({ id: newUser._id }, keys.EMAIL_SECRET, {
-        expiresIn: "1d"
+    if (result) {
+      res.json({
+        success: "You account was created successfully. You can login now"
       });
-
-      const url = `http://localhost:5000/confirmation/${emailJWT}`;
-
-      const msg = {
-        to: email,
-        from: "lzvikas1@gmail.com",
-        subject: "Confirm Your Email",
-        text: "and easy to do anywhere, even with Node.js",
-        html: confirmTemplate(url)
-      };
-      sgMail.send(msg);
-      res.json({ token: userToken(newUser) });
-    });
-  });
+    }
+  } catch (err) {
+    res
+      .status(404)
+      .send({
+        error:
+          "An error occured trying to create your account. Please try again"
+      });
+  }
 };
 
 exports.signin = async (req, res, next) => {
-  await User.findById({ _id: req.user.id }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
+  try {
+    const user = await User.findOne({ userName });
 
     if (!user) {
-      return res.status(422).send({ error: "User was not found" });
+      throw new Error("User was not found");
     }
 
-    if (!user.confirmed) {
-      return res.status(401).send({ error: "Please confirm your account" });
+    const passwordCheck = await bcrypt.compare(password, user.password);
+
+    if (!passwordCheck) {
+      throw new Error("User was not found");
     }
 
-    res.json({ token: userToken(req.user) });
-  });
+    const token = await jwt.sign(
+      { userId: user.id, email: user.email },
+      keys.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    return res.send({ token });
+  } catch (error) {
+    res.status(401).send({ error: "User could not be authenticated" });
+  }
 };
 
 exports.updateUserData = async (req, res, next) => {
@@ -116,10 +101,4 @@ exports.updateUserData = async (req, res, next) => {
       res.send({ success: "User data was updated successfully" });
     });
   });
-};
-
-exports.googleToken = function(req, res, next) {
-  const token = userToken(req.user);
-  console.log("TOKEN", req.user);
-  res.json({ token: userToken(req.user) });
 };

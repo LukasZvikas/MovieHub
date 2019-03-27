@@ -1,17 +1,17 @@
-import { stat } from "fs";
-
 const state = {
   isMovieFavorited: false,
   isMovieWatchlisted: false,
   isMovieWatched: false,
-  isTrailerOpen: false
+  isTrailerOpen: false,
+  searchDate: ""
 };
 
 const getters = {
   isFavorite: state => state.isMovieFavorited,
   isInWatchlist: state => state.isMovieWatchlisted,
   isWatched: state => state.isMovieWatched,
-  isTrailerShown: state => state.isTrailerOpen
+  isTrailerShown: state => state.isTrailerOpen,
+  getSearchDate: state => state.searchDate
 };
 
 const mutations = {
@@ -38,6 +38,9 @@ const mutations = {
   },
   closeTrailer(state) {
     state.isTrailerOpen = false;
+  },
+  setSearchDate(state, date) {
+    state.searchDate = date._i;
   }
 };
 
