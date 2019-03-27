@@ -1,6 +1,6 @@
 const User = require("../models/authSchema");
 const JWT = require("jwt-simple");
-const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcrypt");
 const keys = require("../config/keys");
 
 exports.getUser = async (req, res, next) => {
@@ -20,18 +20,29 @@ exports.getUser = async (req, res, next) => {
 exports.signup = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  console.log(email, password);
+
   try {
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: email }, (err, user) => {
+      console.log("err", err, "user", user);
+      if (err) return next();
+
+      if (!user) return false;
+
+      return true;
+    });
+
     if (existingUser) {
       res.status(401).send({ error: "User with this email already exists" });
     }
+
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const user = new User({
       email,
       password: hashedPassword
     });
+
+    console.log("USER", user);
 
     const result = await user.save();
 
@@ -41,12 +52,9 @@ exports.signup = async (req, res, next) => {
       });
     }
   } catch (err) {
-    res
-      .status(404)
-      .send({
-        error:
-          "An error occured trying to create your account. Please try again"
-      });
+    res.status(404).send({
+      error: "An error occured trying to create your account. Please try again"
+    });
   }
 };
 

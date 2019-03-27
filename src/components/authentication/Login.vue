@@ -1,5 +1,11 @@
 <template>
   <div class="row justify-content-center align-items-center auth image back-image">
+    <div class="auth-message-modal">
+      <div
+        class="d-flex justify-content-center align-items-center h-100 text-center p-2"
+      >An error occured trying to create your account. Please try again</div>
+    </div>
+
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-5">
       <h2 class="text-center mb-2">Login to your account</h2>
       <div class="form-group">
@@ -46,7 +52,7 @@ export default {
     return {
       email: "",
       password: "",
-      errors: {},
+      errors: [],
       successMessage: ""
     };
   },
@@ -64,6 +70,10 @@ export default {
     onPasswordChange(e) {
       this.password = e.target.value;
     },
+    handleError() {
+      this.errors.auth =
+        "An error occured trying to create your account. Please try again";
+    },
     handleSuccess(token) {
       if (!token) return;
       setAuthToken(token);
@@ -75,8 +85,7 @@ export default {
     handleSubmit() {
       const url = new URL("http://localhost:5000/user/signin");
       if (!validateEmail(this.email)) {
-        const err = { email: "Please, enter a valid email" };
-        this.errors = { ...err };
+        this.errors.push({ email: "Please, enter a valid email" });
       } else {
         fetch(url, {
           method: "POST",
@@ -103,5 +112,13 @@ export default {
 }
 .row {
   margin-left: 0;
+}
+
+.auth-message-modal {
+  position: absolute;
+  background-color: rgba(220, 20, 60, 0.8);
+  top: 110px;
+  color: $white;
+  border-radius: 5px;
 }
 </style>

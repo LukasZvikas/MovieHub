@@ -1,7 +1,18 @@
 <template>
   <div class="row justify-content-center align-items-center auth image back-image">
+    <template v-if="errors.length">
+      <div class="auth-message-modal">
+        <template v-for="(error, index) in errors">
+          <div
+            :key="index"
+            class="d-flex justify-content-center align-items-center h-100 text-center p-2"
+          >{{ error }}</div>
+        </template>
+      </div>
+    </template>
+
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-4">
-      <h2 class="p-2 d-flex text-center">Create new account</h2>
+      <h2 class="pb-2 d-flex text-center">Create a new account</h2>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
@@ -15,7 +26,7 @@
           class="text-center text-danger"
           style="height: 1.5rem; margin-top: 0.4rem
 "
-        >{{errors.email}}</div>
+        >{{ errors.email }}</div>
       </div>
 
       <div class="form-group">
@@ -31,7 +42,7 @@
         <div
           class="text-center text-danger"
           style="height: 1.5rem; margin: 0.4rem"
-        >{{errors.password}}</div>
+        >{{ errors.password }}</div>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password Confirm</label>
@@ -46,7 +57,7 @@
           class="text-center text-danger"
           style="height: 1.5rem; margin: 0.4rem
 "
-        >{{errors.password}}</div>
+        >{{ errors.password }}</div>
       </div>
 
       <button :disabled="passwordMatchValidation" class="btn btn-primary">Submit</button>
@@ -62,7 +73,7 @@ export default {
       email: "",
       password: "",
       passwordConfirm: "",
-      errors: {}
+      errors: []
     };
   },
   computed: {
@@ -89,13 +100,9 @@ export default {
       this.passwordConfirm = e.target.value;
     },
     handleSubmit() {
-      if (!validateEmail(this.email)) {
-        const err = { email: "Please, enter a valid email" };
-        this.errors = { ...err };
-      }
       if (!validatePassword(this.password)) {
-        const err = { password: "Password must at least 5 characters long" };
-        this.errors = { ...this.errors, ...err };
+        this.errors = [];
+        this.errors.push("Password must at least 5 characters long");
       } else {
         const url = new URL("http://localhost:5000/user/signup");
 
@@ -112,10 +119,13 @@ export default {
                 const err = { email: res.error };
                 this.errors = { ...err };
               }
-              console.log("RES", res);
+              this.errors = [];
+              this.errors.push(res.error);
             })
           )
-          .catch(error => console.log("ERROR", error));
+          .catch(error => {
+            console.log("ERR", error);
+          });
       }
     }
   }
@@ -134,6 +144,3 @@ export default {
   margin-left: 0;
 }
 </style>
-
-
-
