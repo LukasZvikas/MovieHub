@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="search-text-heading" data-test="movie-search-heading">{{heading}}</div>
+  <div class="heading-2 p-2 heading-bg-color">
+    <div class="text-center font-weight-bold pb-2" data-test="movie-search-heading">{{heading}}</div>
     <div class="search-text-body" data-test="movie-search-body">{{textBody}}</div>
   </div>
 </template>
@@ -21,10 +21,13 @@ export default {
   text-align: center;
 }
 
+.heading-bg-color {
+  background-color: rgba(25, 20, 20, 0.7);
+}
+
 .search-text-body {
   color: #fff;
   font-size: 1.6rem;
   text-align: center;
-  margin: 1.6rem 5rem;
 }
 </style>

@@ -22,6 +22,14 @@
         class="user-movie-list-item card w-100 justify-content-start align-items-start p-2"
         :style="setBackgroundImage(movie.backdrop_path)"
       >
+        <template v-if="!getPosterPath(movie.backdrop_path)">
+          <div
+            class="d-flex justify-content-center align-items-center flex-column position-absolute h-100 w-100"
+            style="top: 0; left:0;"
+          >
+            <image-icon/>
+          </div>
+        </template>
         <watch-list-item
           :title="movie.title"
           :vote_average="movie.vote_average"
@@ -35,12 +43,14 @@
 <script>
 import WatchListItem from "./WatchListItem";
 import Clock from "../svg/Clock";
+import ImageIcon from "../svg/ImageIcon";
 import { months } from "../../utilities/months";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 export default {
   components: {
     WatchListItem,
-    Clock
+    Clock,
+    ImageIcon
   },
   props: {
     movies: Array,
@@ -51,14 +61,14 @@ export default {
       return generatePosterPath(path);
     },
     setBackgroundImage(path) {
-      return {
+      return path ? {
         "background-image": `linear-gradient(59deg, rgba(0, 0, 0,0.6), rgba(0, 0, 0, 0.6)), url(${this.getPosterPath(
           path
         )})`,
         "background-repeat": "no repeat",
         "background-position": "center",
         "background-size": "cover"
-      };
+      } : "background-color: #000";
     },
     showMovieDetails(id) {
       this.$router.push({ path: `/movie/${id}` });

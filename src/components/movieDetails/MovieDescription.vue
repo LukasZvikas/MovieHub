@@ -132,12 +132,12 @@ export default {
     },
     async addMovieToUsersList(type) {
       const { id } = this.movie_details;
-      const movieDetails = {  movie_id: id, type };
+      const movieDetails = { movie_id: id, type };
 
       const response = await postFetchFactory({
         urlPath: `http://localhost:5000/user/add_to_${type}`,
-        movieDetails}
-      );
+        movieDetails
+      });
 
       if (type === "watchlist") {
         response.status === "added"

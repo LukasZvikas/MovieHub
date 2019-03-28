@@ -20,7 +20,7 @@ $body-bg: $secondary;
 body,
 html {
   background: $primary;
-  font-family: "sans-serif";
+  font-family: "Open Sans", sans-serif !important;
 }
 
 @import "../../node_modules/bootstrap/scss/functions";
