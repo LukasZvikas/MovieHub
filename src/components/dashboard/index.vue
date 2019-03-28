@@ -24,14 +24,14 @@ export default {
   },
   methods: {
     async getPopularMovies(listType) {
-      const url = `https://api.themoviedb.org/3/movie/${listType}`;
+      const urlPath = `https://api.themoviedb.org/3/movie/${listType}`;
 
       const params = {
         sort_by: "popularity.desc",
         region: "US"
       };
 
-      const response = await fetchFactory(url, params);
+      const response = await fetchFactory({ urlPath, params });
       switch (listType) {
         case "popular":
           this.popularMovies = response.results;

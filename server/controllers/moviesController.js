@@ -9,12 +9,12 @@ exports.addToList = (req, res, next) => {
   if (!movieId)
     res.status(422).send({ error: "No movie details were provided" });
 
-  if (!req.isAuth) res.status(422).send({ error: "User is not authenticated" });
+  if (!req.isAuth) res.status(401).send({ error: "User is not authenticated" });
 
   User.findById(req.userId, async (err, user) => {
     if (err) next(err);
 
-    if (!user) res.status(422).send({ error: "User was not found" });
+    if (!user) res.status(401).send({ error: "User was not found" });
 
     let model;
 
@@ -59,24 +59,19 @@ exports.addToList = (req, res, next) => {
 };
 
 exports.getList = (req, res, next) => {
-  const token = req.body.token;
+  const type = req.query.type;
+  if (!req.isAuth) res.status(401).send({ error: "User is not authenticated" });
 
-  const type = req.body.type;
-
-  if (!token) res.status(422).send({ error: "No token was provided" });
-
-  const decoded = JWT.decode(token, keys.JWT_SECRET);
-
-  User.findById({ _id: decoded.id }, async (err, user) => {
+  User.findById(req.userId, async (err, user) => {
     if (err) next(err);
-
+    console.log("USER IS", user);
     if (!user) res.status(422).send({ error: "User was not found" });
 
     let model;
 
     if (type === "favorites") model = user.favorites;
     else if (type === "watchlist") model = user.watchlist;
-
+    console.log("userMODE", user);
     res.send({
       data: model
     });

@@ -7,7 +7,6 @@
 
 <script>
 import FavoritesList from "./FavoritesList";
-import postFetchFactory from "../../utilities/postFetch";
 import fetchFactory from "../../utilities/fetch";
 
 export default {
@@ -20,9 +19,11 @@ export default {
   },
   async created() {
     const response = await this.findUsersFavoriteMovies();
+
     await response.forEach(async movie_id => {
       const movieDetails = await fetchFactory({
-        urlPath: `https://api.themoviedb.org/3/movie/${movie_id}`
+        urlPath: `https://api.themoviedb.org/3/movie/${movie_id}`,
+        toApi: true
       });
 
       this.movies.push(movieDetails);
@@ -30,7 +31,7 @@ export default {
   },
   methods: {
     async findUsersFavoriteMovies() {
-      const url = "http://localhost:5000/user/get_user_favorites";
+      const urlPath = "http://localhost:5000/user/get_user_favorites";
 
       const response = await fetchFactory({
         urlPath,
@@ -38,7 +39,6 @@ export default {
           type: "favorites"
         }
       });
-
       return response.data;
     }
   }

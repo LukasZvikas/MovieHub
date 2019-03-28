@@ -1,9 +1,20 @@
 <template>
   <div class="input-group mb-3 search-bar">
     <div class="search-bar items-wrap">
-      <input class="form-control" @input="onInputChange" placeholder="Search movies">
-      <div class="search-bar circle d-flex justify-content-center align-items-center">
-        <magnifying-glass/>
+      <input
+        class="form-control"
+        @input="onInputChange"
+        placeholder="Search movies"
+        @focus="onInputFocusChange"
+        @blur="onInputFocusChange"
+      >
+      <div class="search-icon position-absolute d-flex justify-content-center align-items-center">
+        <template v-if="isFocused">
+          <magnifying-glass :fill="'#dc143c'"/>
+        </template>
+        <template v-else>
+          <magnifying-glass :fill="'#a2a2a2'"/>
+        </template>
       </div>
     </div>
   </div>
@@ -15,7 +26,15 @@ export default {
   components: {
     MagnifyingGlass
   },
+  data() {
+    return {
+      isFocused: false
+    };
+  },
   methods: {
+    onInputFocusChange() {
+      this.isFocused = !this.isFocused;
+    },
     onInputChange(e) {
       this.$emit("termChange", e.target.value);
     }
@@ -30,16 +49,6 @@ export default {
   justify-content: center;
   background: $primary;
 
-  &.circle {
-    border-radius: 50%;
-    background-color: $secondary;
-    width: 3.2rem;
-    height: 3.2rem;
-    position: absolute;
-    right: 0;
-    box-shadow: 0 2rem 3rem rgba(0, 0, 0, 1);
-  }
-
   &.items-wrap {
     height: 3rem;
     width: 17rem;
@@ -48,6 +57,10 @@ export default {
     justify-content: center;
     align-items: center;
     margin: 2rem 0;
+  }
+
+  .search-icon {
+    right: 5px;
   }
 }
 </style>

@@ -1,5 +1,3 @@
-
-
 $primary: #191414;
 $secondary: #dc143c;
 $secondary-dark: #9e1144;
@@ -22,7 +20,7 @@ $body-bg: $secondary;
 body,
 html {
   background: $primary;
-  font-family: "Oswald-Regular";
+  font-family: "sans-serif";
 }
 
 @import "../../node_modules/bootstrap/scss/functions";

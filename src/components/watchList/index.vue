@@ -7,7 +7,6 @@
 
 <script>
 import WatchList from "./WatchList";
-import postFetchFactory from "../../utilities/postFetch";
 import fetchFactory from "../../utilities/fetch";
 import { getAuthToken } from "../../utilities/localStorage";
 
@@ -22,24 +21,27 @@ export default {
   },
   async created() {
     const response = await this.findUsersWatchlistMovies();
-    
+
     await response.forEach(async movie_id => {
-      const movieDetails = await fetchFactory(
-        `https://api.themoviedb.org/3/movie/${movie_id}`
-      );
+      const movieDetails = await fetchFactory({
+        urlPath: `https://api.themoviedb.org/3/movie/${movie_id}`,
+        toApi: true
+      });
 
       this.movies.push(movieDetails);
     });
   },
   methods: {
     async findUsersWatchlistMovies() {
-      const url = "http://localhost:5000/user/get_user_watchlist";
+      const urlPath = "http://localhost:5000/user/get_user_watchlist";
 
       const token = getAuthToken();
 
-      const response = await postFetchFactory(url, {
-        token,
-        type: "watchlist"
+      const response = await fetchFactory({
+        urlPath,
+        parameters: {
+          type: "watchlist"
+        }
       });
 
       return response.data;

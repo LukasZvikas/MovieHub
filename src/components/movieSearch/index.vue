@@ -49,22 +49,23 @@ export default {
         return;
       }
 
-      const url = "https://api.themoviedb.org/3/search/movie";
-      const params = {
+      const urlPath = "https://api.themoviedb.org/3/search/movie";
+      const parameters = {
         language: "en-US",
         query: searchTerm,
         page: 1,
         include_adult: false
       };
-      const response = await fetchFactory(url, params);
+      const response = await fetchFactory({ urlPath, parameters, toApi: true });
+      console.log("this.reposne", response);
       this.searchResult = response.results;
     },
     async onDateChange(date) {
       const fromDate = `${date._i}/1`.replace(/\//g, "-");
       const toDate = `${date._i}/28`.replace(/\//g, "-");
 
-      const url = `https://api.themoviedb.org/3/discover/movie`;
-      const params = {
+      const urlPath = `https://api.themoviedb.org/3/discover/movie`;
+      const parameters = {
         language: "en-US",
         region: "US",
         page: 1,
@@ -72,7 +73,7 @@ export default {
         "primary_release_date.gte": fromDate,
         "primary_release_date.lte": toDate
       };
-      const response = await fetchFactory(url, params);
+      const response = await fetchFactory({ urlPath, parameters, toApi: true });
       console.log("RESPONSE", response.results);
       this.searchResult = response.results;
     }
