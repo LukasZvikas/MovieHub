@@ -1,10 +1,15 @@
 <template>
   <div class="row justify-content-center align-items-center auth image back-image">
-    <div class="auth-message-modal">
-      <div
-        class="d-flex justify-content-center align-items-center h-100 text-center p-2"
-      >An error occured trying to create your account. Please try again</div>
-    </div>
+    <template v-if="errors.length">
+      <div class="auth-message-modal bg-danger">
+        <template v-for="(error, index) in errors">
+          <div
+            :key="index"
+            class="d-flex justify-content-center align-items-center h-100 text-center p-2"
+          >{{ error }}</div>
+        </template>
+      </div>
+    </template>
 
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-5">
       <h2 class="text-center mb-2">Login to your account</h2>
@@ -52,8 +57,7 @@ export default {
     return {
       email: "",
       password: "",
-      errors: [],
-      successMessage: ""
+      errors: []
     };
   },
   mounted() {
@@ -78,9 +82,7 @@ export default {
       if (!token) return;
       setAuthToken(token);
       this.setUserAuth();
-      this.$router.push("/", () => {
-        this.successMessage = "You have logged in successfully";
-      });
+      this.$router.push("/");
     },
     handleSubmit() {
       const url = new URL("http://localhost:5000/user/signin");
@@ -96,7 +98,10 @@ export default {
         })
           .then(res =>
             res.json().then(res => {
-              this.handleSuccess(res.token);
+              if (res.error) {
+                this.errors = [];
+                this.errors.push(res.error);
+              } else this.handleSuccess(res.token);
             })
           )
           .catch(error => console.log("ERROR", error));
@@ -116,8 +121,7 @@ export default {
 
 .auth-message-modal {
   position: absolute;
-  background-color: rgba(220, 20, 60, 0.8);
-  top: 110px;
+  top: 105px;
   color: $white;
   border-radius: 5px;
 }

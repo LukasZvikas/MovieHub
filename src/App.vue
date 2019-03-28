@@ -40,10 +40,10 @@ export default {
 
       if (!token) return;
       fetch(url, {
-        method: "POST",
-        body: JSON.stringify({ token }),
+        method: "GET",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         }
       })
         .then(res =>

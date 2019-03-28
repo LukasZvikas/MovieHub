@@ -3,18 +3,15 @@ const JWT = require("jwt-simple");
 const keys = require("../config/keys");
 
 exports.addToList = (req, res, next) => {
-  const token = req.body.token;
   const movieId = req.body.movie_id;
   const type = req.body.type;
   console.log("typeis", type);
   if (!movieId)
     res.status(422).send({ error: "No movie details were provided" });
 
-  if (!token) res.status(422).send({ error: "No token was provided" });
+  if (!req.isAuth) res.status(422).send({ error: "User is not authenticated" });
 
-  const decoded = JWT.decode(token, keys.JWT_SECRET);
-
-  User.findById({ _id: decoded.id }, async (err, user) => {
+  User.findById(req.userId, async (err, user) => {
     if (err) next(err);
 
     if (!user) res.status(422).send({ error: "User was not found" });
@@ -87,19 +84,14 @@ exports.getList = (req, res, next) => {
 };
 
 exports.checkIfListed = (req, res, next) => {
-  const token = req.body.token;
-
   const movieId = req.body.movie_id;
-
   const type = req.body.type;
 
-  if (!movieId) res.status(422).send({ error: "No movie ID was provided" });
+  if (!movieId) res.status(422).send({ error: "User is not authenticated" });
 
-  if (!token) res.status(422).send({ error: "No token was provided" });
+  if (!req.isAuth) res.status(422).send({ error: "No token was provided" });
 
-  const decoded = JWT.decode(token, keys.JWT_SECRET);
-
-  User.findById({ _id: decoded.id }, async (err, user) => {
+  User.findById(req.userId, async (err, user) => {
     if (err) next(err);
 
     if (!user) res.status(422).send({ error: "User was not found" });

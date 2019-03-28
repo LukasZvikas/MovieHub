@@ -34,9 +34,9 @@ export default {
       return Math.abs(Math.floor(Math.random() * arr.length - 1));
     },
     async getRecommendedMovies(movie_id) {
-      const url = `https://api.themoviedb.org/3/movie/${movie_id}/recommendations`;
+      const urlPath = `https://api.themoviedb.org/3/movie/${movie_id}/recommendations`;
 
-      const response = await fetchFactory(url);
+      const response = await fetchFactory({ urlPath, toApi: true });
 
       console.log(response);
 

@@ -32,15 +32,17 @@ export default {
   },
   async created() {
     const urlId = this.getIdFromUrl();
-    const movieDetails = await fetchFactory(
-      `https://api.themoviedb.org/3/movie/${urlId}`
-    );
+    const movieDetails = await fetchFactory({
+      urlPath: `https://api.themoviedb.org/3/movie/${urlId}`,
+      toApi: true
+    });
 
     this.movie_details = movieDetails;
 
-    const castDetails = await fetchFactory(
-      `https://api.themoviedb.org/3/movie/${urlId}/credits`
-    );
+    const castDetails = await fetchFactory({
+      urlPath: `https://api.themoviedb.org/3/movie/${urlId}/credits`,
+      toApi: true
+    });
     this.cast = castDetails.cast.slice(0, 4);
 
     const favoritesURL = "http://localhost:5000/user/check_if_favorited";
@@ -80,26 +82,22 @@ export default {
       "addToWatched",
       "removeFromWatched"
     ]),
-    async getDetails(movieId) {
-      this.movie_details = await fetchMovieDetails(movieId);
-    },
-    async getUsersMovieData(type, url, fn) {
-      const token = getAuthToken();
-      const movieData = {
-        token,
+
+    async getUsersMovieData(type, urlPath, fn) {
+      const movieDetails = {
         movie_id: this.movie_details.id,
         type
       };
 
-      const response = await postFetchFactory(url, movieData);
+      const response = await postFetchFactory({ urlPath, movieDetails });
       if (response.data.isFavorited) {
         fn();
       }
     },
     async getVideoTrailerData(movie_id) {
-      const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos`;
+      const urlPath = `https://api.themoviedb.org/3/movie/${movie_id}/videos`;
 
-      const response = await fetchFactory(url);
+      const response = await fetchFactory({ urlPath, toApi: true });
 
       this.trailer_id = response.results[0].key;
     },

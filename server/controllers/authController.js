@@ -1,21 +1,18 @@
 const User = require("../models/authSchema");
-const JWT = require("jwt-simple");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const keys = require("../config/keys");
 
 exports.getUser = async (req, res, next) => {
-  const token = req.body.token;
-
-  if (!token) res.status(422).send({ error: "No token was provided" });
-
-  const decoded = JWT.decode(token, keys.JWT_SECRET);
-
-  await User.findById(decoded.id, (err, user) => {
-    if (err) {
-      res.status(401).send({ error: "Token was not found" });
-    }
-    res.send(user);
-  });
+  const authenticated = req.isAuth;
+  if (authenticated) {
+    await User.findById(req.userId, (err, user) => {
+      if (err) {
+        res.status(401).send({ error: "Token was not found" });
+      }
+      res.send(user);
+    });
+  }
 };
 exports.signup = async (req, res, next) => {
   const email = req.body.email;
@@ -23,7 +20,6 @@ exports.signup = async (req, res, next) => {
 
   try {
     const existingUser = await User.findOne({ email: email }, (err, user) => {
-      console.log("err", err, "user", user);
       if (err) return next();
 
       if (!user) return false;
@@ -41,14 +37,11 @@ exports.signup = async (req, res, next) => {
       email,
       password: hashedPassword
     });
-
-    console.log("USER", user);
-
     const result = await user.save();
 
     if (result) {
       res.json({
-        success: "You account was created successfully. You can login now"
+        success: "You account was created successfully."
       });
     }
   } catch (err) {
@@ -59,28 +52,37 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.signin = async (req, res, next) => {
-  try {
-    const user = await User.findOne({ userName });
+  const email = req.body.email;
+  const password = req.body.password;
 
+  try {
+    const user = await User.findOne({ email });
+    console.log("user", user, email, password);
     if (!user) {
-      throw new Error("User was not found");
+      res.status(401).send({
+        error: "Your email or password is incorrect. Please try again"
+      });
     }
 
     const passwordCheck = await bcrypt.compare(password, user.password);
-
+    console.log("PASSCH", passwordCheck);
     if (!passwordCheck) {
-      throw new Error("User was not found");
+      res.status(401).send({
+        error: "Your email or password is incorrect. Please try again"
+      });
     }
 
     const token = await jwt.sign(
       { userId: user.id, email: user.email },
       keys.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "24h" }
     );
-
-    return res.send({ token });
+    console.log("TOKEN", token);
+    res.send({ token });
   } catch (error) {
-    res.status(401).send({ error: "User could not be authenticated" });
+    res
+      .status(401)
+      .send({ error: "Your email or password is incorrect. Please try again" });
   }
 };
 

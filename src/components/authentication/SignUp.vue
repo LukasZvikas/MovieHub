@@ -1,13 +1,21 @@
 <template>
   <div class="row justify-content-center align-items-center auth image back-image">
     <template v-if="errors.length">
-      <div class="auth-message-modal">
+      <div class="auth-message-modal bg-danger">
         <template v-for="(error, index) in errors">
           <div
             :key="index"
             class="d-flex justify-content-center align-items-center h-100 text-center p-2"
           >{{ error }}</div>
         </template>
+      </div>
+    </template>
+    <template v-else-if="successMessage">
+      <div class="auth-message-modal bg-success">
+        <div class="d-flex justify-content-center align-items-center h-100 text-center p-2">
+          {{ successMessage }} You can
+          <router-link to="/login" class="nav-link text-black font-weight-bold px-2"> Login </router-link>now
+        </div>
       </div>
     </template>
 
@@ -73,7 +81,8 @@ export default {
       email: "",
       password: "",
       passwordConfirm: "",
-      errors: []
+      errors: [],
+      successMessage: ""
     };
   },
   computed: {
@@ -102,7 +111,7 @@ export default {
     handleSubmit() {
       if (!validatePassword(this.password)) {
         this.errors = [];
-        this.errors.push("Password must at least 5 characters long");
+        this.errors.push("Password must be at least 5 characters long");
       } else {
         const url = new URL("http://localhost:5000/user/signup");
 
@@ -115,12 +124,10 @@ export default {
         })
           .then(res =>
             res.json().then(res => {
-              if (res.error === "This email is in use") {
-                const err = { email: res.error };
-                this.errors = { ...err };
-              }
-              this.errors = [];
-              this.errors.push(res.error);
+              if (res.error) {
+                this.errors = [];
+                this.errors.push(res.error);
+              } else this.successMessage = res.success;
             })
           )
           .catch(error => {

@@ -1,9 +1,14 @@
-export default async (urlPath, movieDetails, parameters = {}) => {
+import { getAuthToken } from "./localStorage";
+
+export default async ({ urlPath, movieDetails, parameters = {} }) => {
   const url = new URL(urlPath);
 
   console.log("deee", movieDetails);
 
-  console.log("url", url);
+  const token = getAuthToken();
+
+  console.log("token", token)
+
   const params = {
     ...parameters
   };
@@ -14,7 +19,8 @@ export default async (urlPath, movieDetails, parameters = {}) => {
       method: "POST",
       body: JSON.stringify({ ...movieDetails }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       }
     });
     const data = await result.json();

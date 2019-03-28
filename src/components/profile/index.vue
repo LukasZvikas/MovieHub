@@ -26,7 +26,8 @@ export default {
   computed: {
     ...mapGetters(["getUserData"]),
     getUserInitials() {
-      return this.getUserData.username.slice(0, 1).toUpperCase();
+      console.log("GET", this.getUserData);
+      return this.getUserData.email.slice(0, 1).toUpperCase();
     },
     getUserWatchedCount() {
       return this.getUserData.watched.length;

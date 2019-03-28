@@ -41,6 +41,14 @@
   border-radius: 0;
 }
 
+.bg-danger {
+  background-color: rgba(220, 20, 60, 0.8) !important;
+}
+
+.bg-success {
+  background-color: rgba(40, 167, 69, 0.8) !important;
+}
+
 .heading-1 {
   background: $secondary-gradient-regular;
 

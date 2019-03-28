@@ -9,7 +9,6 @@
 import FavoritesList from "./FavoritesList";
 import postFetchFactory from "../../utilities/postFetch";
 import fetchFactory from "../../utilities/fetch";
-import { getAuthToken } from "../../utilities/localStorage";
 
 export default {
   components: { FavoritesList },
@@ -22,9 +21,9 @@ export default {
   async created() {
     const response = await this.findUsersFavoriteMovies();
     await response.forEach(async movie_id => {
-      const movieDetails = await fetchFactory(
-        `https://api.themoviedb.org/3/movie/${movie_id}`
-      );
+      const movieDetails = await fetchFactory({
+        urlPath: `https://api.themoviedb.org/3/movie/${movie_id}`
+      });
 
       this.movies.push(movieDetails);
     });
@@ -33,11 +32,11 @@ export default {
     async findUsersFavoriteMovies() {
       const url = "http://localhost:5000/user/get_user_favorites";
 
-      const token = getAuthToken();
-
-      const response = await postFetchFactory(url, {
-        token,
-        type: "favorites"
+      const response = await fetchFactory({
+        urlPath,
+        parameters: {
+          type: "favorites"
+        }
       });
 
       return response.data;

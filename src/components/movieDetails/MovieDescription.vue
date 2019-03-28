@@ -131,13 +131,12 @@ export default {
       return generatePosterPath(path);
     },
     async addMovieToUsersList(type) {
-      const token = getAuthToken();
       const { id } = this.movie_details;
-      const movieData = { token, movie_id: id, type };
+      const movieDetails = {  movie_id: id, type };
 
-      const response = await postFetchFactory(
-        `http://localhost:5000/user/add_to_${type}`,
-        movieData
+      const response = await postFetchFactory({
+        urlPath: `http://localhost:5000/user/add_to_${type}`,
+        movieDetails}
       );
 
       if (type === "watchlist") {
