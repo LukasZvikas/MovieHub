@@ -5,16 +5,19 @@
     <div style="margin-top: 6rem">
       <router-view></router-view>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import { getAuthToken, removeAuthToken } from "./utilities/localStorage";
 import { mapMutations } from "vuex";
 export default {
   components: {
-    Header
+    Header,
+    Footer
   },
   created() {
     this.getUser();

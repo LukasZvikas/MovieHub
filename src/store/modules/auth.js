@@ -15,7 +15,7 @@ const mutations = {
   setUserData(state, data) {
     state.userData = data;
   },
-  logout(state){
+  logout(state) {
     state.isLogged = false;
   }
 };
