@@ -14,18 +14,24 @@
         <div class="row d-flex justify-content-start align-items-center">
           <user-score :vote_average="movie_details.vote_average"/>
           <div
-            class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center mr-1"
+            class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center mr-1 tooltip"
             @click="addMovieToUsersList('watchlist')"
             :style="`border-color: ${determineWatchlistFill}`"
           >
+            <span
+              class="tooltiptext"
+            >{{isInWatchlist ? "Remove movie from your watchlist": "Add movie to your watchlist"}}</span>
             <Bookmark class="svgclass" :fill="determineWatchlistFill"/>
           </div>
           <div
-            class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center"
+            class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center tooltip"
             @click="addMovieToUsersList('favorites')"
             data-test="movie-overview-favorites-button"
             :style="`border-color: ${determineFavoritesFill}`"
           >
+            <span
+              class="tooltiptext"
+            >{{isFavorite ? "Remove movie from your favorites": "Add movie to your favorites"}}</span>
             <Favorite class="svgclass" :fill="determineFavoritesFill"/>
           </div>
           <div
@@ -41,10 +47,13 @@
           <div class="d-flex mt-2 align-items-center">
             <h3 class="font-weight-bold mr-1">Overview</h3>
             <div
-              class="movie-overview__watched-mark d-flex justify-content-center align-items-center flex-column"
+              class="movie-overview__watched-mark d-flex justify-content-center align-items-center flex-column tooltip"
               :style="`border-color: ${determineWatchedFill}`"
               @click="addMovieToUsersList('watched')"
             >
+              <span
+                class="tooltiptext"
+              >{{isWatched ? "Remove from your watched movies": "Mark as watched"}}</span>
               <check-mark class="svgclass" :fill="determineWatchedFill"/>
             </div>
           </div>

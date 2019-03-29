@@ -3,11 +3,7 @@ import { getAuthToken } from "./localStorage";
 export default async ({ urlPath, movieDetails, parameters = {} }) => {
   const url = new URL(urlPath);
 
-  console.log("deee", movieDetails);
-
   const token = getAuthToken();
-
-  console.log("token", token)
 
   const params = {
     ...parameters
@@ -25,7 +21,6 @@ export default async ({ urlPath, movieDetails, parameters = {} }) => {
     });
     const data = await result.json();
 
-    console.log("data", data);
     return data;
   } catch (err) {
     console.log(err);

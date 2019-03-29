@@ -4,8 +4,6 @@ import { getAuthToken } from "./localStorage";
 export default async ({ urlPath, parameters = {}, toApi = false }) => {
   const url = new URL(urlPath);
 
-  console.log("URL", url);
-
   const params = {
     api_key: keys.TMDB_API_KEY,
     ...parameters

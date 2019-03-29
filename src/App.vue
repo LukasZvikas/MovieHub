@@ -48,7 +48,6 @@ export default {
       })
         .then(res =>
           res.json().then(res => {
-            console.log("ressss", res);
             this.handleSuccess(res);
           })
         )

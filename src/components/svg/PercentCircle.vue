@@ -34,7 +34,10 @@
           text-anchor="middle"
           font-size="8"
           fill="#fff"
-        >{{this.formatAverage(vote_average)}}%</text>
+        >
+          <template v-if="vote_average">{{this.formatAverage(vote_average)}}%</template>
+          <template v-else>NR</template>
+        </text>
       </g>
     </svg>
   </div>
@@ -47,7 +50,9 @@ export default {
   },
   methods: {
     determineColor() {
-      if (this.vote_average < 5.0) {
+      if (this.vote_average === 0) {
+        return "#48AE48";
+      } else if (this.vote_average < 5.0) {
         return "#f70963";
       }
       return "#48AE48";
