@@ -14,7 +14,6 @@
           style="top: 0; left:0;"
         >
           <image-icon/>
-
         </div>
       </template>
       <favorites-list-item :title="movie.title" :vote_average="movie.vote_average"/>

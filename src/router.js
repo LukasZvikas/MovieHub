@@ -8,9 +8,9 @@ import store from "./store";
 
 Vue.use(VueRouter);
 
-function ifAuthenticated(to, from, next) {
+function requireAuth(to, from, next) {
   if (!store.getters.isLoggedIn) {
-    next({ path: "/" });
+    next({ path: "/login" });
     return;
   }
   next();
@@ -35,11 +35,13 @@ export const routes = [
   },
   {
     path: "/watchlist",
-    component: () => import("./components/watchList")
+    component: () => import("./components/watchList"),
+    beforeEnter: requireAuth
   },
   {
     path: "/favorites",
-    component: () => import("./components/favorites")
+    component: () => import("./components/favorites"),
+    beforeEnter: requireAuth
   },
   {
     path: "/movie/:id",
@@ -47,8 +49,10 @@ export const routes = [
   },
   {
     path: "/profile",
-    component: () => import("./components/profile")
-  }
+    component: () => import("./components/profile"),
+    beforeEnter: requireAuth
+  },
+  { path: "*", component: Dashboard },
 ];
 
 export default new VueRouter({

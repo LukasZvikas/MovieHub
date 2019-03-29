@@ -1,6 +1,4 @@
 /* eslint-disable */
-// v-bind:videos="videos" also valid
-
 <template>
   <div class="container-fluid">
     <Header/>
@@ -22,7 +20,7 @@ export default {
     this.getUser();
   },
   methods: {
-    ...mapMutations(["setUserAuth", "setUserData"]),
+    ...mapMutations(["setUserAuth", "setUserData", "logout"]),
     handleSuccess(data) {
       const checkToken = getAuthToken();
       if (checkToken) {
@@ -32,6 +30,7 @@ export default {
     },
     handleError(error) {
       removeAuthToken();
+      this.logout();
       this.$router.push("/");
     },
     getUser() {
