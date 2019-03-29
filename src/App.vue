@@ -51,7 +51,7 @@ export default {
             this.handleSuccess(res);
           })
         )
-        .catch(error => handleError(error));
+        .catch(error => this.handleError(error));
     }
   }
 };

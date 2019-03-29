@@ -14,7 +14,7 @@
       <div class="auth-message-modal bg-success">
         <div class="d-flex justify-content-center align-items-center h-100 text-center p-2">
           {{ successMessage }} You can
-          <router-link to="/login" class="nav-link text-black font-weight-bold px-2"> Login </router-link>now
+          <router-link to="/login" class="nav-link text-black font-weight-bold px-2">Login</router-link>now
         </div>
       </div>
     </template>
@@ -30,11 +30,6 @@
           placeholder="Enter email"
           @input="onEmailChange"
         >
-        <div
-          class="text-center text-danger"
-          style="height: 1.5rem; margin-top: 0.4rem
-"
-        >{{ errors.email }}</div>
       </div>
 
       <div class="form-group">
@@ -47,10 +42,6 @@
           placeholder="Password"
           @input="onPasswordChange"
         >
-        <div
-          class="text-center text-danger"
-          style="height: 1.5rem; margin: 0.4rem"
-        >{{ errors.password }}</div>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password Confirm</label>
@@ -61,11 +52,6 @@
           placeholder="Password Confirm"
           @input="onPasswordConfirmChange"
         >
-        <div
-          class="text-center text-danger"
-          style="height: 1.5rem; margin: 0.4rem
-"
-        >{{ errors.password }}</div>
       </div>
 
       <button :disabled="passwordMatchValidation" class="btn btn-primary">Submit</button>

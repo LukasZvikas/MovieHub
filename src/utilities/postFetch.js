@@ -1,6 +1,6 @@
 import { getAuthToken } from "./localStorage";
 
-export default async ({ urlPath, movieDetails, parameters = {} }) => {
+export default async ({ urlPath, body, parameters = {} }) => {
   const url = new URL(urlPath);
 
   const token = getAuthToken();
@@ -13,7 +13,7 @@ export default async ({ urlPath, movieDetails, parameters = {} }) => {
   try {
     const result = await fetch(url, {
       method: "POST",
-      body: JSON.stringify({ ...movieDetails }),
+      body: JSON.stringify({ ...body }),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`

@@ -84,12 +84,12 @@ export default {
     ]),
 
     async getUsersMovieData(type, urlPath, fn) {
-      const movieDetails = {
+      const body = {
         movie_id: this.movie_details.id,
         type
       };
 
-      const response = await postFetchFactory({ urlPath, movieDetails });
+      const response = await postFetchFactory({ urlPath, body });
       if (response.data.isFavorited) {
         fn();
       }

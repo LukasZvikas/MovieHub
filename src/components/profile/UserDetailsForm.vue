@@ -1,5 +1,22 @@
 <template>
   <div class="row w-100">
+    <template v-if="errors.length">
+      <div class="auth-message-modal bg-danger">
+        <template v-for="(error, index) in errors">
+          <div
+            :key="index"
+            class="d-flex justify-content-center align-items-center h-100 text-center p-2"
+          >{{ error }}</div>
+        </template>
+      </div>
+    </template>
+    <template v-else-if="successMessage">
+      <div class="auth-message-modal bg-success">
+        <div
+          class="d-flex justify-content-center align-items-center h-100 text-center p-2"
+        >{{ successMessage }}</div>
+      </div>
+    </template>
     <form
       @submit.prevent="handleSubmit"
       class="col-8 col-md-3 d-flex flex-column justify-content-center align-items-center"
@@ -13,8 +30,6 @@
           placeholder="Enter email"
           @input="onEmailChange"
         >
-        <div class="text-center text-danger" style="height: 1.5rem; margin-top: 0.4rem
-"></div>
       </div>
 
       <div class="form-group">
@@ -26,8 +41,6 @@
           placeholder="Password"
           @input="onPasswordChange"
         >
-        <div class="text-center text-danger" style="height: 1.5rem; margin-top: 0.4rem
-"></div>
       </div>
 
       <div class="form-group">
@@ -37,9 +50,8 @@
           class="form-control"
           id="exampleInputPassword1"
           placeholder="Password Confirm"
+          @input="onPasswordConfirmChange"
         >
-        <div class="text-center text-danger" style="height: 1.5rem; margin: 0.4rem
-"></div>
       </div>
       <button class="btn btn-primary">Save</button>
     </form>
@@ -50,13 +62,15 @@
 import { validateEmail } from "../authentication/validations";
 import { mapMutations } from "vuex";
 import { setAuthToken, getAuthToken } from "../../utilities/localStorage";
+import postFetchFactory from "../../utilities/postFetch";
 
 export default {
   data() {
     return {
       email: "",
       password: "",
-      errors: {},
+      passwordConfirm: "",
+      errors: [],
       successMessage: ""
     };
   },
@@ -69,35 +83,33 @@ export default {
     onPasswordChange(e) {
       this.password = e.target.value;
     },
+    onPasswordConfirmChange(e) {
+      this.passwordConfirm = e.target.value;
+    },
     handleSuccess(token) {
       if (!token) return;
       setAuthToken(token);
       this.setUserAuth();
     },
-    handleSubmit() {
-      const url = new URL("http://localhost:5000/update");
-      if (!validateEmail(this.email)) {
-        const err = { email: "Please, enter a valid email" };
-        this.errors = { ...err };
+    async handleSubmit() {
+      const urlPath = new URL("http://localhost:5000/update");
+      if (!this.email || !this.password) {
+        this.errors = [];
+        this.errors.push("Please fill up all of the fields");
+      } else if (!validateEmail(this.email)) {
+        this.errors = [];
+        this.errors.push("Please enter a valid email");
+      } else if (this.password !== this.passwordConfirm) {
+        this.errors = [];
+        this.errors.push("Your passwords must match");
       } else {
-        fetch(url, {
-          method: "POST",
-          body: JSON.stringify({
-            email: this.email,
-            password: this.password,
-            token: getAuthToken()
-          }),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-          .then(res =>
-            res.json().then(res => {
-              console.log("RESSSS", res);
-              //this.handleSuccess(res.token);
-            })
-          )
-          .catch(error => console.log("ERROR", error));
+        const body = { email: this.email, password: this.password };
+
+        const response = await postFetchFactory({
+          urlPath,
+          body
+        });
+        this.successMessage = response.success;
       }
     }
   }

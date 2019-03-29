@@ -1,5 +1,4 @@
 const authController = require("../controllers/authController");
-const emailController = require("../controllers/emailController");
 const { isAuth } = require("../services/isAuth");
 
 module.exports = app => {
@@ -9,5 +8,5 @@ module.exports = app => {
 
   app.post("/user/signin", authController.signin);
 
-  app.post("/update", authController.updateUserData);
+  app.post("/update", isAuth, authController.updateUserData);
 };
