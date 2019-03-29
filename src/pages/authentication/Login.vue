@@ -12,7 +12,10 @@
     </template>
 
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-5">
-      <h2 class="text-center mb-2">Login to your account</h2>
+      <h2
+        class="text-center mb-2 heading-1"
+        style="padding-bottom: 1!important; font-size: 2.6rem;"
+      >Login to your account</h2>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
@@ -22,11 +25,6 @@
           placeholder="Enter email"
           @input="onEmailChange"
         >
-        <div
-          class="text-center text-danger"
-          style="height: 1.5rem; margin-top: 0.4rem
-"
-        >{{errors.email}}</div>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
@@ -37,11 +35,6 @@
           placeholder="Password"
           @input="onPasswordChange"
         >
-        <div
-          class="text-center text-danger"
-          style="height: 1.5rem; margin-top: 0.4rem
-"
-        >{{errors.password}}</div>
       </div>
       <button class="btn btn-primary">Submit</button>
     </form>
@@ -113,16 +106,6 @@ export default {
 
 <style lang="scss">
 .back-image {
-  @include image("../pacific.jpg", rgba(0, 0, 0, 0.7));
-}
-.row {
-  margin-left: 0;
-}
-
-.auth-message-modal {
-  position: absolute;
-  top: 105px;
-  color: $white;
-  border-radius: 5px;
+  @include image("../../assets/images/pacific.jpg", rgba(0, 0, 0, 0.7));
 }
 </style>

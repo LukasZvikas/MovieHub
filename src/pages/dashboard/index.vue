@@ -1,16 +1,19 @@
 <template>
   <div class="dashboard-wrap">
-    <CarouselList :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
-    <CarouselList :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
+    <image-heading/>
+    <carousel-list :movies="popularMovies" :title="'Popular Movies'" :caroID="'carousel-1'"/>
+    <carousel-list :movies="comingSoon" :title="'Coming Soon'" :caroID="'carousel-2'"/>
   </div>
 </template>
 
 <script>
 import CarouselList from "./CarouselList";
+import ImageHeading from "./ImageHeading";
 import fetchFactory from "../../utilities/fetch";
 export default {
   components: {
-    CarouselList
+    CarouselList,
+    ImageHeading
   },
   data: function() {
     return {

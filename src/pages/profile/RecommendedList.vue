@@ -6,7 +6,7 @@
 <script>
 import fetchFactory from "../../utilities/fetch";
 import { mapGetters } from "vuex";
-import MovieListItem from "../reusable/MovieListItem";
+import MovieListItem from "../../components/MovieListItem";
 
 export default {
   components: {

@@ -21,7 +21,7 @@
             <span
               class="tooltiptext"
             >{{isInWatchlist ? "Remove movie from your watchlist": "Add movie to your watchlist"}}</span>
-            <Bookmark class="svgclass" :fill="determineWatchlistFill"/>
+            <Bookmark class="../components/svgclass" :fill="determineWatchlistFill"/>
           </div>
           <div
             class="movie-overview__add-to-user-list d-flex justify-content-center align-items-center tooltip"
@@ -32,7 +32,7 @@
             <span
               class="tooltiptext"
             >{{isFavorite ? "Remove movie from your favorites": "Add movie to your favorites"}}</span>
-            <Favorite class="svgclass" :fill="determineFavoritesFill"/>
+            <Favorite class="../components/svgclass" :fill="determineFavoritesFill"/>
           </div>
           <div
             class="movie-overview__trailer-btn d-flex justify-content-center align-items-center ml-1 flex-column"
@@ -54,7 +54,7 @@
               <span
                 class="tooltiptext"
               >{{isWatched ? "Remove from your watched movies": "Mark as watched"}}</span>
-              <check-mark class="svgclass" :fill="determineWatchedFill"/>
+              <check-mark class="../components/svgclass" :fill="determineWatchedFill"/>
             </div>
           </div>
           <div data-test="movie-overview-body">{{movie_details.overview}}</div>
@@ -73,16 +73,17 @@
 </template>
 
 <script>
-import UserScore from "../reusable/UserScore";
+import UserScore from "../../components/UserScore";
 import Heading from "./Heading";
-import Bookmark from "../svg/Bookmark";
-import Favorite from "../svg/Favorite";
-import PlayVideo from "../svg/PlayVideo";
-import CheckMark from "../svg/CheckMark";
+import Bookmark from "../../components/svg/Bookmark";
+import Favorite from "../../components/svg/Favorite";
+import PlayVideo from "../../components/svg/PlayVideo";
+import CheckMark from "../../components/svg/CheckMark";
 import { getAuthToken } from "../../utilities/localStorage";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 import postFetchFactory from "../../utilities/postFetch";
 import { mapGetters, mapMutations } from "vuex";
+
 export default {
   components: {
     UserScore,

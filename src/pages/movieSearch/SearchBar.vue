@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group mb-3 search-bar">
+  <div class="input-group mb-1 search-bar">
     <div class="search-bar items-wrap">
       <input
         class="form-control"
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import MagnifyingGlass from "../svg/MagnifyingGlass";
+import MagnifyingGlass from "../../components/svg/MagnifyingGlass";
 export default {
   components: {
     MagnifyingGlass

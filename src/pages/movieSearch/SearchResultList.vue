@@ -1,5 +1,5 @@
 <template>
-  <div data-test="movie-search-background-image" class="p-2" :class="showBackgoundImage">
+  <div data-test="movie-search-background-image" class="p-2 w-100" :class="showBackgoundImage">
     <div v-if="searchResult.length !== 0 && this.searchQuery.length">
       <div
         class="search-term"
@@ -29,15 +29,15 @@
     </div>
     <div v-else class="search-text-wrap">
       <SearchHeading
-        :heading="'Discover movies here!'"
-        :textBody="'Our database stores pretty much every movie ever made. Give it a shot and you will see!'"
+        :heading="'Discover movies here'"
+        :textBody="'Our database stores pretty much every movie ever made. Give it a shot!'"
       />
     </div>
   </div>
 </template>
 
 <script>
-import MovieListItem from "../reusable/MovieListItem";
+import MovieListItem from "../../components/MovieListItem";
 import SearchHeading from "./SearchHeading";
 import { months } from "../../utilities/months";
 import { mapGetters } from "vuex";
@@ -84,10 +84,10 @@ export default {
 }
 
 .back-img-not-found {
-  @include image("../homeAlone.jpg", rgba(255, 47, 47, 0.6));
+  @include image("../../assets/images/homeAlone.jpg", rgba(255, 47, 47, 0.6));
 }
 .back-img-initial {
-  @include image("../revenant.jpg", rgba(25, 20, 20, 0.6));
+  @include image("../../assets/images/revenant.jpg", rgba(25, 20, 20, 0.6));
 }
 .movie-list {
   width: 100%;

@@ -4,7 +4,7 @@
       <SearchBar @termChange="onTermChange"/>
       <DatePicker @dateChange="onDateChange"/>
     </div>
-    <div class="col-sm-12 col-md-9" :style="determineClass">
+    <div class="col-sm-12 col-md-9 w-100" :style="determineClass">
       <SearchResultList
         :searchResult="searchResult"
         :searchQuery="searchQuery"

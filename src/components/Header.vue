@@ -23,11 +23,11 @@
             <li class="navigation__item" @click="changeCheckBoxState">{{item.name}}</li>
           </router-link>
         </template>
-        <div v-if="isUserLoggedIn">
+        <template v-if="isUserLoggedIn">
           <router-link to="/" style="color: #fff">
             <li class="navigation__item" @click="logoutUser">Logout</li>
           </router-link>
-        </div>
+        </template>
       </ul>
     </nav>
   </div>

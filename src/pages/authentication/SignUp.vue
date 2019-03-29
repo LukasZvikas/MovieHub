@@ -20,7 +20,10 @@
     </template>
 
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-4">
-      <h2 class="pb-2 d-flex text-center">Create a new account</h2>
+      <h2
+        class="pb-2 d-flex text-center heading-1"
+        style="padding-bottom: 1rem!important; font-size: 2.6rem;"
+      >Create a new account</h2>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
@@ -127,13 +130,6 @@ export default {
 
 <style lang="scss">
 .back-image {
-  @include image("../pacific.jpg", rgba(0, 0, 0, 0.7));
-}
-.auth {
-  width: 100%;
-  height: 100vh;
-}
-.row {
-  margin-left: 0;
+  @include image("../../assets/images/pacific.jpg", rgba(0, 0, 0, 0.7));
 }
 </style>

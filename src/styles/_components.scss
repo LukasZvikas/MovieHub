@@ -51,10 +51,9 @@
 
 .heading-1 {
   background: $secondary-gradient-regular;
-
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 3.5rem;
+  font-size: 3rem;
   padding: 2rem 0;
 }
 
@@ -83,4 +82,15 @@ a {
 
 .radio-primary {
   background-color: $secondary !important;
+}
+
+.auth-message-modal {
+  position: absolute;
+  top: 105px;
+  color: $white;
+  border-radius: 5px;
+}
+
+.image {
+  background-size: cover !important;
 }

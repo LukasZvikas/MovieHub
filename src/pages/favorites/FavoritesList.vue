@@ -24,7 +24,7 @@
 <script>
 import FavoritesListItem from "./FavoritesListItem";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
-import ImageIcon from "../svg/ImageIcon";
+import ImageIcon from "../../components/svg/ImageIcon";
 export default {
   components: {
     FavoritesListItem,

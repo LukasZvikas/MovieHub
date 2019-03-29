@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import PercentCircle from "../svg/PercentCircle";
+import PercentCircle from "../../components/svg/PercentCircle";
 export default {
   components: {
     PercentCircle

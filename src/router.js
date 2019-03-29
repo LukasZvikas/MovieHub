@@ -1,9 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Dashboard from "./components/dashboard/";
-import MovieSearch from "./components/movieSearch";
-import Login from "./components/authentication/Login";
-import SignUp from "./components/authentication/SignUp";
 import store from "./store";
 
 Vue.use(VueRouter);
@@ -19,40 +15,40 @@ function requireAuth(to, from, next) {
 export const routes = [
   {
     path: "/",
-    component: Dashboard
+    component: () => import("./pages/dashboard")
   },
   {
     path: "/login",
-    component: Login
+    component: () => import("./pages/authentication/Login")
   },
   {
     path: "/signup",
-    component: SignUp
+    component: () => import("./pages/authentication/SignUp")
   },
   {
     path: "/search",
-    component: MovieSearch
+    component: () => import("./pages/movieSearch")
   },
   {
     path: "/watchlist",
-    component: () => import("./components/watchList"),
+    component: () => import("./pages/watchList"),
     beforeEnter: requireAuth
   },
   {
     path: "/favorites",
-    component: () => import("./components/favorites"),
+    component: () => import("./pages/favorites"),
     beforeEnter: requireAuth
   },
   {
     path: "/movie/:id",
-    component: () => import("./components/movieDetails")
+    component: () => import("./pages/movieDetails")
   },
   {
     path: "/profile",
-    component: () => import("./components/profile"),
+    component: () => import("./pages/profile"),
     beforeEnter: requireAuth
   },
-  { path: "*", component: Dashboard },
+  { path: "*", component: () => import("./pages/dashboard") }
 ];
 
 export default new VueRouter({

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import UserScore from "../reusable/UserScore";
+import UserScore from "../../components/UserScore";
 export default {
   components: {
     UserScore

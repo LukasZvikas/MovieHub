@@ -42,8 +42,8 @@
 
 <script>
 import WatchListItem from "./WatchListItem";
-import Clock from "../svg/Clock";
-import ImageIcon from "../svg/ImageIcon";
+import Clock from "../../components/svg/Clock";
+import ImageIcon from "../../components/svg/ImageIcon";
 import { months } from "../../utilities/months";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
 export default {

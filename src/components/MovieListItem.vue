@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { generatePosterPath } from "../../utilities/tmdbPosterPath";
-import ImageIcon from "../svg/ImageIcon";
+import { generatePosterPath } from "../utilities/tmdbPosterPath";
+import ImageIcon from "./svg/ImageIcon";
 export default {
   components: {
     ImageIcon

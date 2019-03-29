@@ -1,6 +1,10 @@
 <template>
   <div class="heading-2 p-2 heading-bg-color">
-    <div class="text-center font-weight-bold pb-2" data-test="movie-search-heading">{{heading}}</div>
+    <div
+      class="text-center font-weight-bold pb-1 heading-1"
+      data-test="movie-search-heading"
+      style="padding-top: 0!important"
+    >{{heading}}</div>
     <div class="search-text-body" data-test="movie-search-body">{{textBody}}</div>
   </div>
 </template>

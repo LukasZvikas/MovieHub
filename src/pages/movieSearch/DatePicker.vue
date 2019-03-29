@@ -1,6 +1,9 @@
 <template>
   <div class="input-group date-picker d-flex justify-content-center mb-2">
-    <div class="date-picker__heading text-light">Look for movies by their release date month</div>
+    <div
+      class="date-picker__heading heading-1"
+      style="font-size: 1.6rem; padding-bottom: 1rem!important; padding-top: 0!important;"
+    >Look for movies by month</div>
     <vue-monthly-picker
       @selected="onDateChange"
       v-model="selectedMonth"
