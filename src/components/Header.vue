@@ -24,7 +24,9 @@
           </router-link>
         </template>
         <div v-if="isUserLoggedIn">
-          <li class="navigation__item">Logout</li>
+          <router-link to="/" style="color: #fff">
+            <li class="navigation__item" @click="logoutUser">Logout</li>
+          </router-link>
         </div>
       </ul>
     </nav>
@@ -33,8 +35,10 @@
 
 <script>
 import { keys } from "../keys";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import Logo from "./svg/Logo";
+import { removeAuthToken } from "../utilities/localStorage";
+
 export default {
   components: {
     Logo
@@ -77,9 +81,14 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["logout"]),
     changeCheckBoxState() {
       this.headerState = !this.headerState;
-      console.log(this.headerState);
+    },
+    logoutUser() {
+      removeAuthToken();
+      this.logout();
+      this.changeCheckBoxState();
     }
   }
 };
@@ -182,7 +191,7 @@ export default {
       transparent 50%,
       $white 50%
     );
-    background-size: 220%;
+    background-size: 250%;
     transition: all 0.4s;
 
     &:hover,

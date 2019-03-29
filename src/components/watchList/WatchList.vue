@@ -61,14 +61,16 @@ export default {
       return generatePosterPath(path);
     },
     setBackgroundImage(path) {
-      return path ? {
-        "background-image": `linear-gradient(59deg, rgba(0, 0, 0,0.6), rgba(0, 0, 0, 0.6)), url(${this.getPosterPath(
-          path
-        )})`,
-        "background-repeat": "no repeat",
-        "background-position": "center",
-        "background-size": "cover"
-      } : "background-color: #000";
+      return path
+        ? {
+            "background-image": `linear-gradient(59deg, rgba(0, 0, 0,0.6), rgba(0, 0, 0, 0.6)), url(${this.getPosterPath(
+              path
+            )})`,
+            "background-repeat": "no repeat",
+            "background-position": "center",
+            "background-size": "cover"
+          }
+        : "background-color: #000";
     },
     showMovieDetails(id) {
       this.$router.push({ path: `/movie/${id}` });
