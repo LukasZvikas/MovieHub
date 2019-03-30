@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { keys } from "../keys";
 import { mapGetters, mapMutations } from "vuex";
 import Logo from "./svg/Logo";
 import { removeAuthToken } from "../utilities/localStorage";

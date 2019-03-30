@@ -18,7 +18,6 @@
 import SearchBar from "./SearchBar";
 import DatePicker from "./DatePicker";
 import SearchResultList from "./SearchResultList";
-import { keys } from "../../keys";
 import fetchFactory from "../../utilities/fetch";
 export default {
   components: {
