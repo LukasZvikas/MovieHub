@@ -1,11 +1,10 @@
-const keys = require("../../server/config/keys");
+
 import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, parameters = {}, toApi = false }) => {
   const url = new URL(urlPath);
 
   const params = {
-    api_key: keys.TMDB_API_KEY,
     ...parameters
   };
   url.search = new URLSearchParams(params);
