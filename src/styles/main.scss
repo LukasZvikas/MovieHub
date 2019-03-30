@@ -39,8 +39,8 @@ html {
 @import "fonts";
 
 ///CUSTOMS
-@import "./custom/_movieList";
-@import "./custom/movieDescription";
-@import "./custom/toolTip";
-@import "./custom/header";
-@import "./custom/spinner";
+@import "custom/movieList";
+@import "custom/movieDescription";
+@import "custom/toolTip";
+@import "custom/header";
+@import "custom/spinner";
