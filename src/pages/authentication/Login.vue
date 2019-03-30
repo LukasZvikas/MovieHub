@@ -105,7 +105,7 @@ export default {
 </script>
 
 <style lang="scss">
-.back-image {
-  @include image("../../assets/images/pacific.jpg", rgba(0, 0, 0, 0.7));
-}
+// .back-image {
+//   @include image("../../assets/images/pacific.jpg", rgba(0, 0, 0, 0.7));
+// }
 </style>
