@@ -83,12 +83,12 @@ export default {
   top: 4rem;
 }
 
-.back-img-not-found {
-  @include image("../../assets/images/homeAlone.jpg", rgba(255, 47, 47, 0.6));
-}
-.back-img-initial {
-  @include image("../../assets/images/revenant.jpg", rgba(25, 20, 20, 0.6));
-}
+// .back-img-not-found {
+//   @include image("../../assets/images/homeAlone.jpg", rgba(255, 47, 47, 0.6));
+// }
+// .back-img-initial {
+//   @include image("../../assets/images/revenant.jpg", rgba(25, 20, 20, 0.6));
+// }
 .movie-list {
   width: 100%;
   height: 100%;
