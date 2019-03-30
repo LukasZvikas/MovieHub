@@ -1,4 +1,4 @@
-import { keys } from "../keys";
+import  keys from "../../server/config/keys";
 import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, parameters = {}, toApi = false }) => {

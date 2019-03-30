@@ -16,8 +16,6 @@ app.use(cors());
 
 app.use(isAuth);
 
-
-
 app.use(bodyParser.json());
 
 require("./routes/authRoutes")(app);

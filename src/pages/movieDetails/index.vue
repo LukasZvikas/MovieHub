@@ -20,7 +20,6 @@ import fetchFactory from "../../utilities/fetch";
 import postFetchFactory from "../../utilities/postFetch";
 import { getAuthToken } from "../../utilities/localStorage";
 import { generatePosterPath } from "../../utilities/tmdbPosterPath";
-import { keys } from "../../keys";
 import { mapMutations } from "vuex";
 
 export default {
