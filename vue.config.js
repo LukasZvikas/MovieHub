@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   devServer: {
     disableHostCheck: true,
@@ -13,7 +15,8 @@ module.exports = {
       sass: {
         data: `
           @import "@/styles/main.scss";
-        `
+        `,
+        includePaths: [path.resolve(__dirname, "node_modules")]
       }
     }
   }
