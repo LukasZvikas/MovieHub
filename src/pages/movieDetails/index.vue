@@ -1,8 +1,13 @@
 <template>
   <div class="movie-overview h-100">
-    <movie-description :movie_details="movie_details"/>
-    <cast-list :cast="cast"/>
-    <trailer-modal :trailer_id="trailer_id"/>
+    <template v-if="!movie_details">
+      <spinner/>
+    </template>
+    <template v-else>
+      <movie-description :movie_details="movie_details"/>
+      <cast-list :cast="cast"/>
+      <trailer-modal :trailer_id="trailer_id"/>
+    </template>
   </div>
 </template>
 
@@ -10,6 +15,7 @@
 import MovieDescription from "./MovieDescription";
 import TrailerModal from "./TrailerModal";
 import CastList from "./CastList";
+import Spinner from "../../components/Spinner";
 import fetchFactory from "../../utilities/fetch";
 import postFetchFactory from "../../utilities/postFetch";
 import { getAuthToken } from "../../utilities/localStorage";
@@ -21,7 +27,8 @@ export default {
   components: {
     MovieDescription,
     CastList,
-    TrailerModal
+    TrailerModal,
+    Spinner
   },
   data() {
     return {

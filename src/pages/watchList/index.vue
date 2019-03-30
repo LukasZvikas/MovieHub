@@ -1,18 +1,25 @@
 <template>
   <div class="bg-dark h-100">
-    <div class="text-center font-weight-bold heading-1">Your Watchlist</div>
-    <watch-list :movies="movies"/>
+    <template v-if="!movies">
+      <spinner/>
+    </template>
+    <template v-else>
+      <div class="text-center font-weight-bold heading-1">Your Watchlist</div>
+      <watch-list :movies="movies"/>
+    </template>
   </div>
 </template>
 
 <script>
 import WatchList from "./WatchList";
+import Spinner from "../../components/Spinner";
 import fetchFactory from "../../utilities/fetch";
 import { getAuthToken } from "../../utilities/localStorage";
 
 export default {
   components: {
-    WatchList
+    WatchList,
+    Spinner
   },
   data() {
     return {

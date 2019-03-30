@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import WatchList from "../";
-import PercentCircle from "../../svg/PercentCircle";
-import Clock from "../../svg/Clock";
+import PercentCircle from "../../../components/svg/PercentCircle";
+import Clock from "../../../components/svg/Clock";
 import Vuex from "vuex";
 import { movie_data } from "../../../utilities/movieMockData";
 

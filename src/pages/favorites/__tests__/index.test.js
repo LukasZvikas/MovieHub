@@ -1,6 +1,6 @@
 import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
 import Favorites from "../";
-import PercentCircle from "../../svg/PercentCircle";
+import PercentCircle from "../../../components/svg/PercentCircle";
 import Vuex from "vuex";
 import { movie_data } from "../../../utilities/movieMockData";
 

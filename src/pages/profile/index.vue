@@ -1,22 +1,26 @@
 <template>
-  <div class="profile d-flex flex-column justify-content-center align-items-center">
-    <div class="profile__circle d-flex justify-content-center align-items-center mt-2">
-      <template v-if="!getUserData">
-        <div></div>
-      </template>
-      <template v-else>{{getUserInitials}}</template>
-    </div>
-    <div class="text-center font-weight-bold heading-1">Update your account</div>
-    <user-details-form/>
-    <div class="text-center font-weight-bold heading-1">
-      Total movies watched:
-      <template v-if="!getUserData">
-        <div></div>
-      </template>
-      <template v-else>{{getUserWatchedCount}}</template>
-    </div>
-    <div class="heading-2 m-2">Movies you might also like</div>
-    <recommended-list/>
+  <div>
+    <template v-if="!getUserData">
+      <spinner/>
+    </template>
+    <template v-else>
+      <div class="profile d-flex flex-column justify-content-center align-items-center">
+        <div
+          class="profile__circle d-flex justify-content-center align-items-center mt-2"
+        >{{getUserInitials}}</div>
+        <div class="text-center font-weight-bold heading-1">Update your account</div>
+        <user-details-form/>
+        <div class="text-center font-weight-bold heading-1">
+          Total movies watched:
+          <template v-if="!getUserData">
+            <div></div>
+          </template>
+          <template v-else>{{getUserWatchedCount}}</template>
+        </div>
+        <div class="heading-2 m-2">Movies you might also like</div>
+        <recommended-list/>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -24,11 +28,13 @@
 import { mapGetters } from "vuex";
 import RecommendedList from "./RecommendedList";
 import UserDetailsForm from "./UserDetailsForm";
+import Spinner from "../../components/Spinner";
 
 export default {
   components: {
     RecommendedList,
-    UserDetailsForm
+    UserDetailsForm,
+    Spinner
   },
   computed: {
     ...mapGetters(["getUserData"]),

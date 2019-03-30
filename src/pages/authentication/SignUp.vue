@@ -21,7 +21,7 @@
 
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-4">
       <h2
-        class="pb-2 d-flex text-center heading-1"
+        class="pb-2 d-flex text-center heading-1 font-weight-bold"
         style="padding-bottom: 1rem!important; font-size: 2.6rem;"
       >Create a new account</h2>
       <div class="form-group">

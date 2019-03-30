@@ -8,7 +8,7 @@
       @selected="onDateChange"
       v-model="selectedMonth"
       :monthLabels="months"
-      placeholder="Select a month"
+      placeHolder="Select a month"
     ></vue-monthly-picker>
   </div>
 </template>

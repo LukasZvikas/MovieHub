@@ -1,11 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "./store";
+import { getAuthToken } from "./utilities/localStorage";
 
 Vue.use(VueRouter);
 
 function requireAuth(to, from, next) {
-  if (!store.getters.isLoggedIn) {
+  if (!store.getters.isLoggedIn && !getAuthToken()) {
     next({ path: "/login" });
     return;
   }

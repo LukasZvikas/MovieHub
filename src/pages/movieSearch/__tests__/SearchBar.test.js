@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import SearchBar from "../SearchBar";
-import MagnifyingGlass from "../../svg/MagnifyingGlass";
+import MagnifyingGlass from "../../../components/svg/MagnifyingGlass";
 
 jest.mock("../../../utilities/fetch");
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="heading-2 p-2 heading-bg-color">
+  <div class="heading-2 p-2 heading-bg-color" style="border: none;">
     <div
       class="text-center font-weight-bold pb-1 heading-1"
       data-test="movie-search-heading"

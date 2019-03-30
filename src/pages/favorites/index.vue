@@ -1,7 +1,12 @@
 <template>
   <div class="bg-dark h-100">
-    <div class="text-center font-weight-bold heading-1">Your Favorites</div>
-    <favorites-list :movies="movies"/>
+    <template v-if="!movies">
+      <div></div>
+    </template>
+    <template v-else>
+      <div class="text-center font-weight-bold heading-1">Your Favorites</div>
+      <favorites-list :movies="movies"/>
+    </template>
   </div>
 </template>
 
