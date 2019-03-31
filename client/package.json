@@ -20,9 +20,7 @@
     "vue-monthly-picker": "^0.2.6",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0",    
-    "@vue/cli-service": "^3.5.3"
-  },
-  "devDependencies": {
+    "@vue/cli-service": "^3.5.3",
     "@vue/cli-plugin-babel": "^3.5.3",
     "@vue/cli-plugin-eslint": "^3.5.1",
     "@vue/cli-plugin-unit-jest": "^3.5.3",
@@ -38,6 +36,8 @@
     "sass-loader": "^7.1.0",
     "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.6.10"
+  },
+  "devDependencies": {
   },
   "eslintConfig": {
     "root": true,
