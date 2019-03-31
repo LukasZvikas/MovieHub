@@ -36,13 +36,13 @@ exports.signup = async (req, res, next) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-    console.log("HAS", hashedPassword);
+
     const user = new User({
       email,
       password: hashedPassword
     });
-    console.log("user", user);
-    const result = await user.save((err, user) => {
+
+    await user.save((err, user) => {
       console.log("ERR", err);
       if (err) return next(err);
 
@@ -51,9 +51,7 @@ exports.signup = async (req, res, next) => {
           success: "You account was created successfully."
         });
     });
-    console.log("sssssssssaaaaa", result);
   } catch (err) {
-    console.log("ERROR", err);
     throw new Error("An error occured while creating a new user");
   }
 };
@@ -111,8 +109,6 @@ exports.updateUserData = async (req, res, next) => {
     });
 
     const hashedPassword = await bcrypt.hash(newPassword, 12);
-
-    console.log("HASE", hashedPassword);
 
     if (newEmail !== user.email) user.email = newEmail;
 

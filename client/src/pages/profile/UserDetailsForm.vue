@@ -99,7 +99,7 @@ export default {
       this.setUserAuth();
     },
     async handleSubmit() {
-      const urlPath = new URL("http://localhost:5000/update");
+      const urlPath = "/user/update";
       if (!this.email || !this.password) {
         this.errors = [];
         this.errors.push("Please fill up all of the fields");

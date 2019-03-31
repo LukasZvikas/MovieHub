@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async findUsersFavoriteMovies() {
-      const urlPath = "http://localhost:5000/user/get_user_favorites";
+      const urlPath = "/user/get_user_favorites";
 
       const response = await fetchFactory({
         urlPath,

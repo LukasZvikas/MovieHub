@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async findUsersWatchlistMovies() {
-      const urlPath = "http://localhost:5000/user/get_user_watchlist";
+      const urlPath = "/user/get_user_watchlist";
 
       const token = getAuthToken();
 

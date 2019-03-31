@@ -8,5 +8,5 @@ module.exports = app => {
 
   app.post("/user/signin", authController.signin);
 
-  app.post("/update", isAuth, authController.updateUserData);
+  app.post("/user/update", isAuth, authController.updateUserData);
 };
