@@ -73,6 +73,9 @@ export default {
 </script>
 
 <style lang="scss">
+.footer {
+  margin: 0;
+}
 .search-term {
   font-size: 1.4rem;
   text-align: center;
