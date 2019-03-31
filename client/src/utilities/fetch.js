@@ -2,13 +2,17 @@ const keys = require("../../../config/keys");
 import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, parameters = {}, toApi = false }) => {
-  const url = new URL(urlPath);
+  let url = urlPath;
+  
+  if (toApi) {
+    url = new URL(urlPath);
 
-  const params = {
-    api_key: process.env.VUE_APP_TMDB_API_KEY,
-    ...parameters
-  };
-  url.search = new URLSearchParams(params);
+    const params = {
+      api_key: process.env.VUE_APP_TMDB_API_KEY,
+      ...parameters
+    };
+    url.search = new URLSearchParams(params);
+  }
 
   const headers = determineHeaders(toApi);
 
