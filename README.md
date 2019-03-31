@@ -1,1 +1,0 @@
-Fully functional  Json Web Token authentication starter using Node, Express and Passport libraries. Includes email/password and google+ authentications, email confirmation and email reset functionalities.

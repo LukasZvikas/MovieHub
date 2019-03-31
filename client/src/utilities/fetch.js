@@ -1,4 +1,4 @@
-// const keys = require("../../server/config/keys");
+// const keys = require("../../../config/keys");
 import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, parameters = {}, toApi = false }) => {
