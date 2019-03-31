@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dark h-100">
+  <div class="bg-dark h-100" :style="determineMargin">
     <template v-if="!movies">
       <spinner/>
     </template>
@@ -37,6 +37,14 @@ export default {
 
       this.movies.push(movieDetails);
     });
+  },
+  computed: {
+    determineMargin() {
+      if (this.movies.length) {
+        return "margin-bottom: 2rem";
+      }
+      return "margin-bottom: 21rem";
+    }
   },
   methods: {
     async findUsersWatchlistMovies() {

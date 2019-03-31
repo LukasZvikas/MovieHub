@@ -4,7 +4,7 @@
     <img class="h-100 w-100" style="object-fit: cover;" src="../../assets/images/guardians.jpg">
     <div
       class="position-absolute w-100"
-      style="margin-top: 6rem; top: 31%; left: 50%; transform: translate(-50%, -50%);"
+      style="margin-top: 6rem; top: 32%; left: 50%; transform: translate(-50%, -50%);"
     >
       <div class="text-light text-center mb-1" style="font-size: 3rem; padding-top: 2rem;">
         Welcome to

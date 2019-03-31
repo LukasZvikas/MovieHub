@@ -83,7 +83,7 @@ export default {
         this.errors.push("Please enter a valid email");
       } else {
         this.errors = [];
-        
+
         const url = "/user/signin";
 
         fetch(url, {

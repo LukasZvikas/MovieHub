@@ -1,9 +1,11 @@
 /* eslint-disable */
 <template>
   <div class="container-fluid">
-    <Header/>
-    <div style="margin-top: 6rem">
-      <router-view></router-view>
+    <div>
+      <Header/>
+      <div style="margin-top: 6rem">
+        <router-view></router-view>
+      </div>
     </div>
     <Footer/>
   </div>
