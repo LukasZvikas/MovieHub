@@ -2,8 +2,9 @@ const keys = require("../../../config/keys");
 import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, parameters = {}, toApi = false }) => {
+  
   const url = new URL(urlPath);
-
+  console.log(keys)
   const params = {
     api_key: keys.TMDB_API_KEY,
     ...parameters
