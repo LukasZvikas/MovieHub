@@ -7,6 +7,8 @@ const cors = require("cors");
 
 mongoose.connect(keys.MONGO_KEY, { useNewUrlParser: true });
 
+console.log("KEYSSSSSS", keys.MONGO_KEY)
+
 const app = express();
 
 app.use(cors());
