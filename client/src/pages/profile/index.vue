@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="!getUserData">
+    <template v-if="!userDataCheck">
       <spinner/>
     </template>
     <template v-else>
@@ -12,10 +12,7 @@
         <user-details-form/>
         <div class="text-center font-weight-bold heading-1">
           Total movies watched:
-          <template v-if="!getUserData">
-            <div></div>
-          </template>
-          <template v-else>{{getUserWatchedCount}}</template>
+          <template>{{getUserWatchedCount}}</template>
         </div>
         <div class="heading-2 m-2">Movies you might also like</div>
         <recommended-list/>
@@ -38,11 +35,15 @@ export default {
   },
   computed: {
     ...mapGetters(["getUserData"]),
+    userDataCheck() {
+      return this.getUserData;
+    },
     getUserInitials() {
-      console.log(this.getUserData)
+      console.log(this.getUserData);
       return this.getUserData.email.slice(0, 1).toUpperCase();
     },
     getUserWatchedCount() {
+      console.log("getss", this.getUserData);
       return this.getUserData.watched.length;
     }
   }

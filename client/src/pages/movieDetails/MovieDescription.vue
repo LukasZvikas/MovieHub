@@ -135,7 +135,8 @@ export default {
       "addToWatched",
       "removeFromWatched",
       "showTrailer",
-      "closeTrailer"
+      "closeTrailer",
+      "incrementWatchedMovieCount"
     ]),
     getPosterPath(path) {
       return generatePosterPath(path);
@@ -159,7 +160,7 @@ export default {
           : this.removeFromFavorites();
       } else {
         response.status === "added"
-          ? this.addToWatched()
+          ? (this.addToWatched(), this.incrementWatchedMovieCount(body.movie_id))
           : this.removeFromWatched();
       }
     }

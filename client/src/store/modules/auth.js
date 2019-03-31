@@ -17,6 +17,9 @@ const mutations = {
   },
   logout(state) {
     state.isLogged = false;
+  },
+  incrementWatchedMovieCount(state, id) {
+    state.userData.watched.push(id);
   }
 };
 
