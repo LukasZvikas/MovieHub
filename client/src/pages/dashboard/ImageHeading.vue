@@ -6,7 +6,7 @@
       class="position-absolute w-100"
       style="top: 40%; left: 50%; transform: translate(-50%, -50%);"
     >
-      <div class="text-light text-center mb-1" style="font-size: 3rem; padding-top: 1.6rem;">
+      <div class="text-light text-center mb-1" style="font-size: 3rem; padding-top: 2rem;">
         Welcome to
         <span class="font-weight-bold heading-1" style="font-size: 3rem;">MovieHub</span>
       </div>

@@ -131,6 +131,9 @@ export default {
 </script>
 
 <style lang="scss">
+.footer {
+  margin: 0;
+}
 .back-image {
   @include image("../../assets/images/pacific.jpg", rgba(0, 0, 0, 0.7));
 }
