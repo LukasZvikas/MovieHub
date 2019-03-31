@@ -51,25 +51,18 @@ export default {
     });
     this.cast = castDetails.cast.slice(0, 4);
 
-    const favoritesURL = "/user/check_if_favorited";
+    const favoritesURL = "/user/check/favorites";
 
-    const watchlistURL = "/user/check_if_watchlisted";
+    const watchlistURL = "/user/check/watchlist";
 
-    const watchedURL = "/user/check_if_watched";
+    const watchedURL = "/user/check/watched";
 
-    await this.getUsersMovieData(
-      "favorites",
-      favoritesURL,
-      this.addToFavorites
-    );
+    await this.getUsersMovieData(favoritesURL, this.addToFavorites);
 
-    await this.getUsersMovieData(
-      "watchlist",
-      watchlistURL,
-      this.addToWatchlist
-    );
+    await this.getUsersMovieData(watchlistURL, this.addToWatchlist);
 
-    await this.getUsersMovieData("watched", watchedURL, this.addToWatched);
+    await this.getUsersMovieData(watchedURL, this.addToWatched);
+    
     await this.getVideoTrailerData(this.movie_details.id);
   },
 
@@ -89,10 +82,9 @@ export default {
       "removeFromWatched"
     ]),
 
-    async getUsersMovieData(type, urlPath, fn) {
+    async getUsersMovieData(urlPath, fn) {
       const body = {
-        movie_id: this.movie_details.id,
-        type
+        movie_id: this.movie_details.id
       };
 
       const response = await postFetchFactory({ urlPath, body });

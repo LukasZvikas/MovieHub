@@ -82,8 +82,10 @@ export default {
         this.errors = [];
         this.errors.push("Please enter a valid email");
       } else {
-        const url = "/user/signin";
+        this.errors = [];
         
+        const url = "/user/signin";
+
         fetch(url, {
           method: "POST",
           body: JSON.stringify({ email: this.email, password: this.password }),

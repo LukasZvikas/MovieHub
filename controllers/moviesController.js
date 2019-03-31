@@ -1,10 +1,8 @@
 const User = require("../models/authSchema");
-const JWT = require("jwt-simple");
-const keys = require("../config/keys");
 
 exports.addToList = (req, res, next) => {
   const movieId = req.body.movie_id;
-  const type = req.body.type;
+  const type = req.params[0];
   console.log("typeis", type);
   if (!movieId)
     res.status(422).send({ error: "No movie details were provided" });
@@ -59,7 +57,7 @@ exports.addToList = (req, res, next) => {
 };
 
 exports.getList = (req, res, next) => {
-  const type = req.query.type;
+  const type = req.params[0];
   if (!req.isAuth) res.status(401).send({ error: "User is not authenticated" });
 
   User.findById(req.userId, async (err, user) => {
@@ -71,7 +69,7 @@ exports.getList = (req, res, next) => {
 
     if (type === "favorites") model = user.favorites;
     else if (type === "watchlist") model = user.watchlist;
-    console.log("userMODE", user);
+    console.log("userMODE", model);
     res.send({
       data: model
     });
@@ -80,7 +78,7 @@ exports.getList = (req, res, next) => {
 
 exports.checkIfListed = (req, res, next) => {
   const movieId = req.body.movie_id;
-  const type = req.body.type;
+  const type = req.params[0];
 
   if (!movieId) res.status(422).send({ error: "User is not authenticated" });
 

@@ -145,7 +145,7 @@ export default {
       const body = { movie_id: id, type };
 
       const response = await postFetchFactory({
-        urlPath: `/user/add_to_${type}`,
+        urlPath: `/user/add/${type}`,
         body
       });
 

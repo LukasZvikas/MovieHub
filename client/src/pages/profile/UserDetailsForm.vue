@@ -78,7 +78,8 @@ export default {
   computed: {
     ...mapGetters(["getUserData"]),
     getUsersEmail() {
-      return this.getUserData.email;
+      this.email = this.getUserData.email;
+      return this.email;
     }
   },
   methods: {
@@ -110,6 +111,7 @@ export default {
         this.errors = [];
         this.errors.push("Your passwords must match");
       } else {
+        this.errors = [];
         const body = { email: this.email, password: this.password };
 
         const response = await postFetchFactory({

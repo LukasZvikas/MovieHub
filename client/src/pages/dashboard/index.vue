@@ -29,12 +29,12 @@ export default {
     async getPopularMovies(listType) {
       const urlPath = `https://api.themoviedb.org/3/movie/${listType}`;
 
-      const params = {
+      const parameters = {
         sort_by: "popularity.desc",
         region: "US"
       };
 
-      const response = await fetchFactory({ urlPath, params });
+      const response = await fetchFactory({ urlPath, parameters, toApi: true });
       switch (listType) {
         case "popular":
           this.popularMovies = response.results;

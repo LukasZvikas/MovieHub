@@ -32,7 +32,7 @@ export default {
 .footer {
   background-color: $black;
   height: 18rem;
-
+  margin-top: 5rem;
   &__heading {
     font-size: 1.6rem;
   }

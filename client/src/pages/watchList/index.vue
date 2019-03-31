@@ -40,15 +40,12 @@ export default {
   },
   methods: {
     async findUsersWatchlistMovies() {
-      const urlPath = "/user/get_user_watchlist";
+      const urlPath = `/user/getList/watchlist`;
 
       const token = getAuthToken();
 
       const response = await fetchFactory({
-        urlPath,
-        parameters: {
-          type: "watchlist"
-        }
+        urlPath
       });
 
       return response.data;

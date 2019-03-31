@@ -102,6 +102,8 @@ export default {
         this.errors = [];
         this.errors.push("Password must be at least 5 characters long");
       } else {
+        this.errors = [];
+
         const url = "/user/signup";
 
         fetch(url, {
