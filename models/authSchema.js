@@ -6,7 +6,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   favorites: [],
   watchlist: [],
-  watched: Array
+  watched: []
 });
 
 const authSchema = mongoose.model("users", userSchema);

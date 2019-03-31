@@ -36,19 +36,24 @@ exports.signup = async (req, res, next) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-
+    console.log("HAS", hashedPassword);
     const user = new User({
       email,
       password: hashedPassword
     });
-    const result = await user.save();
+    console.log("user", user);
+    const result = await user.save((err, user) => {
+      console.log("ERR", err);
+      if (err) return next(err);
 
-    if (result) {
-      res.json({
-        success: "You account was created successfully."
-      });
-    }
+      if (user)
+        res.json({
+          success: "You account was created successfully."
+        });
+    });
+    console.log("sssssssssaaaaa", result);
   } catch (err) {
+    console.log("ERROR", err);
     throw new Error("An error occured while creating a new user");
   }
 };

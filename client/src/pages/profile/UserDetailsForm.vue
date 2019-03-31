@@ -29,6 +29,7 @@
           aria-describedby="emailHelp"
           placeholder="Enter email"
           @input="onEmailChange"
+          :value="getUsersEmail"
         >
       </div>
 
@@ -60,7 +61,7 @@
 
 <script>
 import { validateEmail } from "../authentication/validations";
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import { setAuthToken, getAuthToken } from "../../utilities/localStorage";
 import postFetchFactory from "../../utilities/postFetch";
 
@@ -73,6 +74,12 @@ export default {
       errors: [],
       successMessage: ""
     };
+  },
+  computed: {
+    ...mapGetters(["getUserData"]),
+    getUsersEmail() {
+      return this.getUserData.email;
+    }
   },
   methods: {
     ...mapMutations(["setUserAuth"]),

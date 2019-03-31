@@ -78,10 +78,12 @@ export default {
       this.$router.push("/");
     },
     handleSubmit() {
-      const url = "/user/signin";
       if (!validateEmail(this.email)) {
-        this.errors.push({ email: "Please, enter a valid email" });
+        this.errors = [];
+        this.errors.push("Please enter a valid email");
       } else {
+        const url = "/user/signin";
+        
         fetch(url, {
           method: "POST",
           body: JSON.stringify({ email: this.email, password: this.password }),
