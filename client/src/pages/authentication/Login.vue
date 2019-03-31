@@ -78,7 +78,7 @@ export default {
       this.$router.push("/");
     },
     handleSubmit() {
-      const url = new URL("http://localhost:5000/user/signin");
+      const url = "/user/signin";
       if (!validateEmail(this.email)) {
         this.errors.push({ email: "Please, enter a valid email" });
       } else {

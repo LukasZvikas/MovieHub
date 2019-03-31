@@ -102,7 +102,7 @@ export default {
         this.errors = [];
         this.errors.push("Password must be at least 5 characters long");
       } else {
-        const url = new URL("http://localhost:5000/user/signup");
+        const url = "/user/signup";
 
         fetch(url, {
           method: "POST",

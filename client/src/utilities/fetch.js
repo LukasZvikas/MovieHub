@@ -3,9 +3,9 @@ import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, parameters = {}, toApi = false }) => {
   const url = new URL(urlPath);
-  console.log(process.env);
+
   const params = {
-    api_key: keys.VUE_APP_TMDB_API_KEY || process.env.VUE_APP_TMDB_API_KEY,
+    api_key: process.env.VUE_APP_TMDB_API_KEY,
     ...parameters
   };
   url.search = new URLSearchParams(params);

@@ -1,14 +1,14 @@
 import { getAuthToken } from "./localStorage";
 
 export default async ({ urlPath, body, parameters = {} }) => {
-  const url = new URL(urlPath);
+  const url = urlPath;
 
   const token = getAuthToken();
 
-  const params = {
-    ...parameters
-  };
-  url.search = new URLSearchParams(params);
+  // const params = {
+  //   ...parameters
+  // };
+  // url.search = new URLSearchParams(params);
 
   try {
     const result = await fetch(url, {

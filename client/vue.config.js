@@ -1,6 +1,7 @@
 const path = require("path");
 const keys = require("../config/keys");
 process.env.VUE_APP_TMDB_API_KEY = keys.TMDB_API_KEY;
+
 module.exports = {
   chainWebpack: config => {
     config.module
@@ -14,7 +15,7 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
     proxy: {
-      "/auth/*": {
+      "/user/*": {
         target: "http://localhost:5000",
         changeOrigin: true
       }

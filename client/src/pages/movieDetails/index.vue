@@ -51,11 +51,11 @@ export default {
     });
     this.cast = castDetails.cast.slice(0, 4);
 
-    const favoritesURL = "http://localhost:5000/user/check_if_favorited";
+    const favoritesURL = "/user/check_if_favorited";
 
-    const watchlistURL = "http://localhost:5000/user/check_if_watchlisted";
+    const watchlistURL = "/user/check_if_watchlisted";
 
-    const watchedURL = "http://localhost:5000/user/check_if_watched";
+    const watchedURL = "/user/check_if_watched";
 
     await this.getUsersMovieData(
       "favorites",
