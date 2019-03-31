@@ -1,5 +1,5 @@
 const path = require("path");
-process.env.VUE_APP_TMDB_API_KEY = require("../../config/keys");
+process.env.VUE_APP_TMDB_API_KEY = require("../config/keys");
 module.exports = {
   chainWebpack: config => {
     config.module
