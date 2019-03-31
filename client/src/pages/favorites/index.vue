@@ -24,7 +24,7 @@ export default {
   },
   async created() {
     const response = await this.findUsersFavoriteMovies();
-    console.log("RES", response);
+
     await response.forEach(async movie_id => {
       const movieDetails = await fetchFactory({
         urlPath: `https://api.themoviedb.org/3/movie/${movie_id}`,

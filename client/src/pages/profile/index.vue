@@ -39,11 +39,9 @@ export default {
       return this.getUserData;
     },
     getUserInitials() {
-      console.log(this.getUserData);
       return this.getUserData.email.slice(0, 1).toUpperCase();
     },
     getUserWatchedCount() {
-      console.log("getss", this.getUserData);
       return this.getUserData.watched.length;
     }
   }

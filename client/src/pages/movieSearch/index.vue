@@ -56,7 +56,7 @@ export default {
         include_adult: false
       };
       const response = await fetchFactory({ urlPath, parameters, toApi: true });
-      console.log("this.reposne", response);
+
       this.searchResult = response.results;
     },
     async onDateChange(date) {
@@ -73,7 +73,7 @@ export default {
         "primary_release_date.lte": toDate
       };
       const response = await fetchFactory({ urlPath, parameters, toApi: true });
-      console.log("RESPONSE", response.results);
+
       this.searchResult = response.results;
     }
   }

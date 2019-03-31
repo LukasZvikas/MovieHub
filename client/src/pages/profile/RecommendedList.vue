@@ -23,7 +23,6 @@ export default {
   created() {
     const usersFavorites = this.getUserData.favorites;
     const randomId = this.createRandomSuggestion(usersFavorites);
-    console.log("rand", randomId);
     this.getRecommendedMovies(usersFavorites[randomId] || 500);
   },
   computed: {
@@ -37,8 +36,6 @@ export default {
       const urlPath = `https://api.themoviedb.org/3/movie/${movie_id}/recommendations`;
 
       const response = await fetchFactory({ urlPath, toApi: true });
-
-      console.log(response);
 
       this.recommended = response.results.slice(0, 4);
     }

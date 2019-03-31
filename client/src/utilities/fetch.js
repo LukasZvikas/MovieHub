@@ -12,9 +12,7 @@ export default async ({ urlPath, parameters = {}, toApi = false }) => {
     };
     url.search = new URLSearchParams(params);
   }
-
-  console.log("URL", url);
-
+  
   const headers = determineHeaders(toApi);
 
   try {
