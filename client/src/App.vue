@@ -37,7 +37,7 @@ export default {
       this.$router.push("/");
     },
     getUser() {
-      const url = new URL("http://localhost:5000/user");
+      const url = "/user";
       const token = getAuthToken();
 
       if (!token) return;
