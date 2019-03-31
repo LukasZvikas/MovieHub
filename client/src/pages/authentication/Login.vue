@@ -13,7 +13,7 @@
 
     <form @submit.prevent="handleSubmit" class="form col-10 col-md-6 col-lg-4 px-4 py-5">
       <h2
-        class="text-center mb-2 heading-1 font-weight-bold"
+        class="text-center heading-1 font-weight-bold"
         style="padding-bottom: 1!important; font-size: 2.6rem;"
       >Login to your account</h2>
       <div class="form-group">
