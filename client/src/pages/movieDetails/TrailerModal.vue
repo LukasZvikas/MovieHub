@@ -60,6 +60,7 @@ export default {
   top: 0;
   left: 0;
   background: rgba(24, 24, 24, 0.8);
+  z-index: 100;
 }
 .hidden {
   visibility: hidden;
