@@ -1,4 +1,4 @@
-# vue-project
+# MovieHub
 
 ## Project setup
 ```
@@ -15,17 +15,6 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 ### https://mo-hub.herokuapp.com/
+
+<img width="1679" alt="Screen Shot 2019-04-20 at 8 41 42 PM" src="https://user-images.githubusercontent.com/31712161/56463984-6d8d9c80-63ad-11e9-9d91-9c9b29b2e1fb.png">
