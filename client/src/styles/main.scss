@@ -1,0 +1,46 @@
+$primary: #191414;
+$secondary: #dc143c;
+$secondary-dark: #9e1144;
+$secondary-gradient-regular: linear-gradient(
+  95deg,
+  $secondary 0,
+  $secondary-dark 77%
+);
+
+$grey: #2e3138;
+$light-grey: #a2a2a2;
+$border-radius: 10rem;
+
+$body-bg: $secondary;
+
+.bg-dark {
+  background-color: #191414 !important;
+}
+
+body,
+html {
+  background: $primary;
+  font-family: "Open Sans", sans-serif !important;
+}
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "button";
+@import "form";
+@import "components";
+@import "spacing";
+@import "fonts";
+
+///CUSTOMS
+@import "custom/movieDescription";
+@import "custom/movieList";
+@import "custom/toolTip";
+@import "custom/header";
+@import "custom/spinner";
