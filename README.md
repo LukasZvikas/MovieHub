@@ -25,4 +25,5 @@ Vue, Vuex, Jest, Vue-Test-Utils, Vue Router, Eslint, Bootstrap, SASS, Node, Mong
 
 ### https://mo-hub.herokuapp.com/
 
-<img width="1679" alt="Screen Shot 2019-04-20 at 8 41 42 PM" src="https://user-images.githubusercontent.com/31712161/56463984-6d8d9c80-63ad-11e9-9d91-9c9b29b2e1fb.png">
+<img width="1676" alt="Screen Shot 2019-04-22 at 10 16 54 PM" src="https://user-images.githubusercontent.com/31712161/56547805-6fda2d00-654c-11e9-955f-88f12a9b460f.png">
+
