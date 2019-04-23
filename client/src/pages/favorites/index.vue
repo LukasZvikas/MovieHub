@@ -2,7 +2,7 @@
   <div class="bg-dark h-100" :style="determineMargin">
     <div class="text-center font-weight-bold heading-1">Your Favorites</div>
     <div v-if="!movies.length" class="w-100 d-flex justify-content-center">
-      <div class="heading-2 mr-2 ml-2">You don't have any movies on your favorites list yet</div>
+      <div class="heading-2" style="margin: 0 2rem 0 2rem;">You don't have any movies on your favorites list yet</div>
     </div>
     <template v-else>
       <favorites-list :movies="movies"/>
