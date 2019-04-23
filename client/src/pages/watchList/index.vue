@@ -1,10 +1,10 @@
 <template>
   <div class="bg-dark h-100" :style="determineMargin">
-    <template v-if="!movies">
-      <spinner/>
-    </template>
+    <div class="text-center font-weight-bold heading-1">Your Watchlist</div>
+    <div v-if="!movies.length" class="w-100 d-flex justify-content-center">
+      <div class="heading-2 mr-2 ml-2">You don't have any movies on your watchlist list yet</div>
+    </div>
     <template v-else>
-      <div class="text-center font-weight-bold heading-1">Your Watchlist</div>
       <watch-list :movies="movies"/>
     </template>
   </div>

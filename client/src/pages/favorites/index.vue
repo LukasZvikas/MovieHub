@@ -1,10 +1,10 @@
 <template>
   <div class="bg-dark h-100" :style="determineMargin">
-    <template v-if="!movies">
-      <div></div>
-    </template>
+    <div class="text-center font-weight-bold heading-1">Your Favorites</div>
+    <div v-if="!movies.length" class="w-100 d-flex justify-content-center">
+      <div class="heading-2 mr-2 ml-2">You don't have any movies on your favorites list yet</div>
+    </div>
     <template v-else>
-      <div class="text-center font-weight-bold heading-1">Your Favorites</div>
       <favorites-list :movies="movies"/>
     </template>
   </div>
@@ -13,9 +13,10 @@
 <script>
 import FavoritesList from "./FavoritesList";
 import fetchFactory from "../../utilities/fetch";
+import SearchHeading from "../movieSearch/SearchHeading";
 
 export default {
-  components: { FavoritesList },
+  components: { FavoritesList, SearchHeading },
   data() {
     return {
       movie_ids: [],
