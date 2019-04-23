@@ -1,10 +1,10 @@
 <template>
-  <div class="w-100 mb-3" style="height: 30rem">
-    <div class="position-absolute w-100" style="height: 30rem;background-color: rgba(0,0,0,0.7);"></div>
+  <div class="w-100 mb-4" style="height: 33rem">
+    <div class="position-absolute w-100" style="height: 33rem; background-color: rgba(0,0,0,0.7);"></div>
     <img class="h-100 w-100" style="object-fit: cover;" src="../../assets/images/guardians.jpg">
     <div
       class="position-absolute w-100"
-      style="margin-top: 6rem; top: 32%; left: 50%; transform: translate(-50%, -50%);"
+      style="margin-top: 6rem; top: 30%; left: 50%; transform: translate(-50%, -50%);"
     >
       <div class="text-light text-center mb-1" style="font-size: 3rem; padding-top: 2rem;">
         Welcome to
