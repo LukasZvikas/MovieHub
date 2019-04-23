@@ -4,6 +4,7 @@ const keys = require("./config/keys");
 const bodyParser = require("body-parser");
 const { isAuth } = require("./services/isAuth");
 const cors = require("cors");
+const http = require("http");
 
 mongoose.connect(keys.MONGO_KEY, { useNewUrlParser: true });
 
@@ -21,6 +22,9 @@ require("./routes/movieRoutes")(app);
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV == "production") {
+  setInterval(function() {
+    http.get("https://mo-hub.herokuapp.com/");
+  }, 300000);
   app.use(express.static("client/dist"));
 
   const path = require("path");
